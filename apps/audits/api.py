@@ -257,18 +257,17 @@ class OperateLogViewSet(OrgReadonlyModelViewSet):
         return super().get_serializer_class()
 
     def get_queryset(self):
-        extra_org_ids = set()
-        if str(current_org.id) == Organization.DEFAULT_ID:
-            extra_org_ids.update(Organization.INTERNAL_IDS)
+        current_org_id = str(current_org.id)
 
-        if self.is_action_detail:
-            extra_org_ids.add(Organization.SYSTEM_ID)
-
-        if extra_org_ids:
-            with tmp_to_root_org():
-                qs = OperateLog.objects.filter(org_id__in=extra_org_ids)
-        else:
+        with tmp_to_root_org():
             qs = OperateLog.objects.all()
+            if current_org_id != Organization.ROOT_ID:
+                filtered_org_ids = {current_org_id}
+                if current_org_id == Organization.DEFAULT_ID:
+                    filtered_org_ids.update(Organization.INTERNAL_IDS)
+                if self.is_action_detail:
+                    filtered_org_ids.add(Organization.SYSTEM_ID)
+                qs = OperateLog.objects.filter(org_id__in=filtered_org_ids)
 
         es_config = settings.OPERATE_LOG_ELASTICSEARCH_CONFIG
         if es_config:
