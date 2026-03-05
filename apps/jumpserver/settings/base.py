@@ -160,7 +160,11 @@ INSTALLED_APPS = [
     'simple_history',  # 这个要放到最后，别特么瞎改顺序
 ]
 
+PRE_CUSTOM_MIDDLEWARES = [m for m in CONFIG.PRE_CUSTOM_MIDDLEWARES.split(',') if m.strip()]
+POST_CUSTOM_MIDDLEWARES = [m for m in CONFIG.POST_CUSTOM_MIDDLEWARES.split(',') if m.strip()]
+
 MIDDLEWARE = [
+    *PRE_CUSTOM_MIDDLEWARES,
     'jumpserver.middleware.StartMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -183,8 +187,8 @@ MIDDLEWARE = [
     'authentication.middleware.ThirdPartyLoginMiddleware',
     'authentication.middleware.SessionCookieMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
+    *POST_CUSTOM_MIDDLEWARES,
     'jumpserver.middleware.SafeRedirectMiddleware',
-    'jumpserver.middleware.EndMiddleware',
 ]
 
 if DEBUG or DEBUG_DEV:

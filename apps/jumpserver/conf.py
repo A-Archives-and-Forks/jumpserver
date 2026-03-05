@@ -746,6 +746,10 @@ class Config(dict):
         'OAUTH2_PROVIDER_ACCESS_TOKEN_EXPIRE_SECONDS': 60 * 60,
         'OAUTH2_PROVIDER_REFRESH_TOKEN_EXPIRE_SECONDS': 60 * 60 * 24 * 7,
         'VENDOR': 'jumpserver',
+
+        # Custom middlewares
+        'PRE_CUSTOM_MIDDLEWARES': '',
+        'POST_CUSTOM_MIDDLEWARES': '',
     }
 
     old_config_map = {
