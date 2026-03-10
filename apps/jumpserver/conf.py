@@ -751,6 +751,10 @@ class Config(dict):
         'JDMC_ENABLED': False,
         'JDMC_SOCK_PATH': '',
         'JDMC_LICENSE_PUBLIC_KEY_PATH': '',
+
+        # WEBHOOK
+        'WEBHOOK_ENABLED': False,
+        'WEBHOOK_TOKEN': '',
     }
 
     old_config_map = {
