@@ -4,6 +4,7 @@ on:
     pull_request:
         branches:
             - 'dev'
+            - 'osm'
             - 'v*'
         paths:
             - poetry.lock

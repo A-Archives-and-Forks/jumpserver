@@ -109,5 +109,10 @@ if os.environ.get('DEBUG_TOOLBAR', False):
         path('__debug__/', include('debug_toolbar.urls')),
     ]
 
+if settings.JDMC_ENABLED:
+    urlpatterns += [
+        re_path(r'jdmc/(?P<subpath>.*)$', views.jdmc_proxy_view, name='jdmc-proxy'),
+    ]
+
 handler404 = 'jumpserver.views.handler404'
 handler500 = 'jumpserver.views.handler500'

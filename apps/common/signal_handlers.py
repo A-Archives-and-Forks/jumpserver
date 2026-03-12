@@ -12,7 +12,7 @@ from django.dispatch import receiver
 
 from jumpserver.utils import get_current_request
 from .local import thread_local
-from .signals import django_ready
+from .signals import django_ready, webhook_signal
 from .utils import get_logger
 
 pattern = re.compile(r'FROM `(\w+)`')

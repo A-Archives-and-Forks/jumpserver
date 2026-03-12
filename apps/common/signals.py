@@ -4,3 +4,4 @@
 from django.dispatch import Signal
 
 django_ready = Signal()
+webhook_signal = Signal()

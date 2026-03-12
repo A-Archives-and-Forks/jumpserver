@@ -2,6 +2,7 @@
 #
 
 from django.urls import path
+from django.conf import settings
 
 from .. import api
 
@@ -11,3 +12,6 @@ urlpatterns = [
     path('resources/cache/', api.ResourcesIDCacheApi.as_view(), name='resources-cache'),
     path('countries/', api.CountryListApi.as_view(), name='resources-cache'),
 ]
+
+if settings.WEBHOOK_ENABLED:
+    urlpatterns.append(path('webhook/', api.WebhookApi.as_view(), name='webhooks'))

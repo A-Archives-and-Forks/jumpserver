@@ -92,6 +92,9 @@ ALLOWED_HOSTS = ['*']
 # https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CSRF_TRUSTED_ORIGINS
 CSRF_TRUSTED_ORIGINS = []
 for host_port in ALLOWED_DOMAINS:
+    if '*' in ALLOWED_DOMAINS:
+        CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
+        break
     origin = host_port.strip('.')
 
     if not origin:
@@ -171,7 +174,8 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'jumpserver.middleware.CsrfCheckMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
