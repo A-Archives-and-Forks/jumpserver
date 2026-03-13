@@ -33,8 +33,16 @@ __all__ = [
 
 
 def get_license_asset_limit():
-    license_info = getattr(settings, 'XPACK_LICENSE_INFO', {}) or {}
-    return license_info.get('license', {}).get('count') or 0
+    if not settings.XPACK_ENABLED:
+        return 0
+
+    try:
+        from xpack.models import License
+    except ImportError:
+        return 0
+
+    detail = License.get_license_detail() or {}
+    return detail.get('asset_count', 0)
 
 
 class AssetFilterSet(BaseFilterSet):
@@ -166,7 +174,7 @@ class BaseAssetViewSet(OrgBulkModelViewSet):
 
         if settings.XPACK_LICENSE_IS_VALID:
             license_asset_limit = get_license_asset_limit()
-            if license_asset_limit and asset_count >= license_asset_limit:
+            if asset_count >= license_asset_limit:
                 error = _('The number of assets exceeds the license limit')
                 return Response({'error': error}, status=400)
 
