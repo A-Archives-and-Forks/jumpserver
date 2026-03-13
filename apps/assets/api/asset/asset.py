@@ -32,6 +32,11 @@ __all__ = [
 ]
 
 
+def get_license_asset_limit():
+    license_info = getattr(settings, 'XPACK_LICENSE_INFO', {}) or {}
+    return license_info.get('license', {}).get('count') or 0
+
+
 class AssetFilterSet(BaseFilterSet):
     platform = drf_filters.CharFilter(method='filter_platform')
     is_gateway = drf_filters.BooleanFilter(method='filter_is_gateway')
@@ -153,9 +158,17 @@ class BaseAssetViewSet(OrgBulkModelViewSet):
             error = _('Cannot create asset directly, you should create a host or other')
             return Response({'error': error}, status=400)
 
-        if not settings.XPACK_LICENSE_IS_VALID and self.model.objects.order_by().count() >= 5000:
+        asset_count = self.model.objects.order_by().count()
+
+        if not settings.XPACK_LICENSE_IS_VALID and asset_count >= 5000:
             error = _('The number of assets exceeds the limit of 5000')
             return Response({'error': error}, status=400)
+
+        if settings.XPACK_LICENSE_IS_VALID:
+            license_asset_limit = get_license_asset_limit()
+            if license_asset_limit and asset_count >= license_asset_limit:
+                error = _('The number of assets exceeds the license limit')
+                return Response({'error': error}, status=400)
 
         return super().create(request, *args, **kwargs)
 
