@@ -781,6 +781,8 @@
     "LevelApproval": "Level approval",
     "License": "License",
     "LicenseExpired": "The license has expired",
+    "LicenseMaintenanceExpired": "The license maintenance period has expired",
+    "LicenseWillExpire": "The license will expire soon",
     "LicenseFile": "License file",
     "LicenseForTest": "Test purpose license, this license is only for testing (poc) and demonstration",
     "LicenseReachedAssetAmountLimit": "The assets has exceeded the license limit",

@@ -10,6 +10,15 @@ from rest_framework.views import APIView
 from common.signals import webhook_signal
 
 
+# 记录所有支持的 webhook 事件，供文档和测试使用
+WEBHOOK_OPTIONS_RECORD = [
+    {
+        'sender': 'jdmc',
+        'event': 'license_updated',
+    }
+]
+
+
 class WebhookApi(APIView):
     """
     data:

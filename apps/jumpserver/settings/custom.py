@@ -2,7 +2,7 @@
 #
 from pathlib import Path
 from urllib.parse import quote
-
+from cryptography.hazmat.primitives import serialization
 from .base import TEMPLATES, STATIC_DIR
 from ..const import CONFIG
 
@@ -281,7 +281,16 @@ if Path(VENDOR_TEMPLATES_DIR).is_dir():
 JDMC_ENABLED = CONFIG.JDMC_ENABLED
 JDMC_SOCK_PATH = CONFIG.JDMC_SOCK_PATH
 JDMC_BASE_URL = f"http+unix://{quote(JDMC_SOCK_PATH, safe='')}"
-JDMC_LICENSE_PUBLIC_KEY_PATH = CONFIG.JDMC_LICENSE_PUBLIC_KEY_PATH
+JDMC_PUBLIC_KEY_PATH = CONFIG.JDMC_PUBLIC_KEY_PATH
+JDMC_PUBLIC_KEY = None
+if JDMC_PUBLIC_KEY_PATH:
+    try:
+        with open(JDMC_PUBLIC_KEY_PATH, 'rb') as f:
+            jdmc_public_key = f.read()
+        JDMC_PUBLIC_KEY = serialization.load_pem_public_key(jdmc_public_key)
+    except Exception as exc:
+        print(f'Failed to load JDMC public key: {exc}')
+
 
 # WebHook
 WEBHOOK_ENABLED = CONFIG.WEBHOOK_ENABLED
