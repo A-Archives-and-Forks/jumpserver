@@ -23,6 +23,7 @@ class Services(TextChoices):
     gunicorn = 'gunicorn', 'gunicorn'
     celery_ansible = 'celery_ansible', 'celery_ansible'
     celery_default = 'celery_default', 'celery_default'
+    celery_combine = 'celery_combine', 'celery_combine'
     beat = 'beat', 'beat'
     flower = 'flower', 'flower'
     ws = 'ws', 'ws'
@@ -39,21 +40,22 @@ class Services(TextChoices):
             cls.flower: services.FlowerService,
             cls.celery_default: services.CeleryDefaultService,
             cls.celery_ansible: services.CeleryAnsibleService,
+            cls.celery_combine: services.CeleryCombineService,
             cls.beat: services.BeatService,
         }
         return services_map.get(name)
 
     @classmethod
     def web_services(cls):
-        if SERVER_SIZE == 'small' or os.environ.get('FLOWER_DIABLED', '0') == '1':
+        if SERVER_SIZE == 'small' or os.environ.get('FLOWER_ENABLED', '1') == '0':
             return [cls.gunicorn]
         else:
             return [cls.gunicorn, cls.flower]
 
     @classmethod
     def celery_services(cls):
-        if SERVER_SIZE == 'small' or os.environ.get('CELERY_COMBINE', '0') == '1':
-            return [cls.celery_default]
+        if SERVER_SIZE == 'small' or os.environ.get('CELERY_COMBINE_QUEUES', '0') == '1':
+            return [cls.celery_combine]
         else:
             return [cls.celery_ansible, cls.celery_default]
 
@@ -122,18 +124,13 @@ class BaseActionCommand(BaseCommand):
 
     def get_services_kwargs(self, options):
         worker = options.get('worker', 4)
-        default_queue = 'celery'
 
         if SERVER_SIZE == 'small':
             worker = 1
-            default_queue = 'celery,ansible'
 
         return {
             'gunicorn': {
                 'worker': worker
-            },
-            'celery_default': {
-                'queue': default_queue
             }
         }
 
