@@ -1,6 +1,7 @@
 # coding:utf-8
 #
 from django.urls import path
+from django.conf import settings
 from rest_framework.routers import DefaultRouter
 
 from .. import api
@@ -46,5 +47,12 @@ urlpatterns = [
     path('login-confirm-ticket/status/', api.TicketStatusApi.as_view(), name='login-confirm-ticket-status'),
     path('user-session/', api.UserSessionApi.as_view(), name='user-session'),
 ]
+
+if settings.AUTH_CUSTOM_SSO:
+    urlpatterns += [
+        path('custom-sso/login/', api.CustomSSOLoginAPIView.as_view(), name='custom-sso-login'),
+    ]
+
+
 
 urlpatterns += router.urls + passkey_urlpatterns

@@ -265,6 +265,10 @@ class Config(dict):
 
         'SMS_CUSTOM_FILE_MD5': '',
 
+        'AUTH_CUSTOM_SSO': False,
+        'AUTH_CUSTOM_SSO_FILE_MD5': '',
+        'AUTH_CUSTOM_SSO_QUERY_PARAMS': ['token'],
+
         # 临时密码
         'AUTH_TEMP_TOKEN': False,
 

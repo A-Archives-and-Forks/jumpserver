@@ -273,6 +273,7 @@ AUTH_BACKEND_OIDC_CODE = 'authentication.backends.oidc.OIDCAuthCodeBackend'
 AUTH_BACKEND_RADIUS = 'authentication.backends.radius.RadiusBackend'
 AUTH_BACKEND_CAS = 'authentication.backends.cas.CASBackend'
 AUTH_BACKEND_SSO = 'authentication.backends.sso.SSOAuthentication'
+AUTH_BACKEND_CUSTOM_SSO = 'authentication.backends.sso.CustomSSOAuthentication'
 AUTH_BACKEND_WECOM = 'authentication.backends.sso.WeComAuthentication'
 AUTH_BACKEND_DINGTALK = 'authentication.backends.sso.DingTalkAuthentication'
 AUTH_BACKEND_FEISHU = 'authentication.backends.sso.FeiShuAuthentication'
@@ -295,7 +296,7 @@ AUTHENTICATION_BACKENDS = [
     # 扫码模式
     AUTH_BACKEND_WECOM, AUTH_BACKEND_DINGTALK, AUTH_BACKEND_FEISHU, AUTH_BACKEND_LARK, AUTH_BACKEND_SLACK,
     # Token模式
-    AUTH_BACKEND_AUTH_TOKEN, AUTH_BACKEND_SSO, AUTH_BACKEND_TEMP_TOKEN,
+    AUTH_BACKEND_AUTH_TOKEN, AUTH_BACKEND_SSO, AUTH_BACKEND_CUSTOM_SSO, AUTH_BACKEND_TEMP_TOKEN,
     AUTH_BACKEND_PASSKEY
 ]
 
@@ -360,3 +361,11 @@ ONLY_ALLOW_AUTH_FROM_SOURCE = CONFIG.ONLY_ALLOW_AUTH_FROM_SOURCE
 PRIVACY_MODE = CONFIG.PRIVACY_MODE
 
 SAML_FOLDER = os.path.join(BASE_DIR, 'authentication', 'backends', 'saml2')
+
+AUTH_CUSTOM_SSO = CONFIG.AUTH_CUSTOM_SSO
+AUTH_CUSTOM_SSO_FILE_MD5 = CONFIG.AUTH_CUSTOM_SSO_FILE_MD5
+AUTH_CUSTOM_SSO_FILE_PATH = os.path.join(PROJECT_DIR, 'data', 'auth', 'custom_sso.py')
+if AUTH_CUSTOM_SSO and AUTH_CUSTOM_SSO_FILE_MD5 != get_file_md5(AUTH_CUSTOM_SSO_FILE_PATH):
+    # 如果启用了自定义 SSO 认证，但文件 MD5 不匹配，则不启用自定义 SSO 认证
+    AUTH_CUSTOM_SSO = False
+AUTH_CUSTOM_SSO_QUERY_PARAMS = CONFIG.AUTH_CUSTOM_SSO_QUERY_PARAMS
