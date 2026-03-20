@@ -712,6 +712,8 @@ class Config(dict):
 
         'LIMIT_SUPER_PRIV': False,
 
+        'LOG_KEEP_MIN_DAYS': 1,
+
         # Chat AI
         'CHAT_AI_ENABLED': False,
         'CHAT_AI_METHOD': 'api',
