@@ -13,7 +13,7 @@ class HostnameView(APIView):
     permission_classes = (AllowAny,)
 
     def get_permissions(self):
-        if getattr(settings, 'DEV_DEBUG', False):
+        if getattr(settings, 'DEBUG_DEV', False):
             return [AllowAny()]
         return [OnlySuperUser()]
 
