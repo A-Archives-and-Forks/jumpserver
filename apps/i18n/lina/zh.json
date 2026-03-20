@@ -1656,5 +1656,6 @@
     "ReadAgreeTo": "我已阅读并同意",
     "TermsOfService": "服务条款",
     "PrivacyPolicy": "隐私政策",
-    "and": "和"
+    "and": "和",
+    "DeviceManager": "设备管理"
 }

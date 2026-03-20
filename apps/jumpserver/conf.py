@@ -759,7 +759,6 @@ class Config(dict):
         # JDMC
         'JDMC_ENABLED': False,
         'JDMC_SOCK_PATH': '',
-        'JDMC_PUBLIC_KEY_PATH': '',
 
         # WEBHOOK
         'WEBHOOK_ENABLED': False,
