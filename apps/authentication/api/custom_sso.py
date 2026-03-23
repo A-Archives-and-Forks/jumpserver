@@ -9,6 +9,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 
+from orgs.utils import tmp_to_org
+from orgs.models import Organization
+from rbac.models import OrgRole, OrgRoleBinding
 from common.utils import get_logger
 from ..mixins import AuthMixin
 
@@ -32,6 +35,11 @@ class CustomSSOLoginAPIView(AuthMixin, RetrieveAPIView):
 
     permission_classes = [AllowAny]
 
+    next_url = '/'
+
+    def is_enabled(self):
+        return settings.AUTH_CUSTOM_SSO and callable(custom_sso_authenticate_method)
+
     def retrieve(self, request, *args, **kwargs):
         if not self.is_enabled():
             error = 'Custom SSO authentication is disabled.'
@@ -49,35 +57,46 @@ class CustomSSOLoginAPIView(AuthMixin, RetrieveAPIView):
         if user:
             login(request, user, backend=settings.AUTH_BACKEND_CUSTOM_SSO)
             self.send_auth_signal(success=True, user=user)
-            next_url = request.query_params.get('next', '/')
-            return HttpResponseRedirect(next_url)
+            return HttpResponseRedirect(self.next_url)
         else:
             self.send_auth_signal(success=False, reason=error)
             return Response({'detail': error}, status=status.HTTP_401_UNAUTHORIZED)
 
-    def is_enabled(self):
-        return settings.AUTH_CUSTOM_SSO and callable(custom_sso_authenticate_method)
-
     def authenticate(self, **query_params):
         try:
             userinfo: dict = custom_sso_authenticate_method(**query_params)
+            self.next_url = userinfo.get('next_url', '/')
         except Exception as e:
             error = f'Custom SSO authenticate error: {e}'
             return None, error
         
         try:
-            user, created = self.get_or_create_user_from_userinfo(userinfo)
+            user = self.get_or_create_user_from_userinfo(userinfo)
             return user, ''
         except Exception as e:
             error = f'Custom SSO get or create user error: {e}'
             return None, error
 
     def get_or_create_user_from_userinfo(self, userinfo: dict):
-        username = userinfo['username']
-        attrs = ['name', 'username', 'email', 'is_active']
-        defaults = {attr: userinfo[attr] for attr in attrs}
+        User = get_user_model()
+        username = userinfo.get('username')
+        if username == 'admin':
+            user = User.objects.filter(username='admin').first()
+            return user
+        
+        name = userinfo.get('name')
+        email = userinfo.get('email')
+        defaults = {'name': name, 'email': email}
         user, created = get_user_model().objects.get_or_create(
             username=username, defaults=defaults
         )
-        # TODO: get and set role attribute for user
-        return user, created
+        if created:
+            role_name = userinfo.get('role_name')
+            org_role = OrgRole.objects.filter(name=role_name).first()
+            org_id = userinfo.get('org_id')
+            org = Organization.get_instance(org_id)
+            with tmp_to_org(org):
+                ob = OrgRoleBinding(user=user, role=org_role)
+                ob.save()
+        
+        return user
