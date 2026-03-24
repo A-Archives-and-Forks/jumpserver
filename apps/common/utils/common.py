@@ -174,7 +174,7 @@ def get_trusted_request_ip(request):
         )
         return '0.0.0.0'
 
-    signature_header_name = settings.TRUSTED_IP_VERIFY_SIGNATURE_HEADER
+    signature_header_name = settings.TRUSTED_IP_SIGN_HEADER
     received_signature = request.META.get(signature_header_name, '')
     if not received_signature:
         logger.warning(
@@ -183,18 +183,9 @@ def get_trusted_request_ip(request):
         )
         return '0.0.0.0'
 
-    verification_key_path = settings.TRUSTED_IP_VERIFY_KEY_PATH
-    if not verification_key_path or not os.path.exists(verification_key_path):
-        logger.warning(
-            f"Trusted IP verification enabled but no valid verification key found at "
-            f"'{verification_key_path}'."
-        )
-        return '0.0.0.0'
-
-    with open(verification_key_path) as f:
-        verification_key = f.read().strip()
+    sign_key = settings.TRUSTED_IP_SIGN_KEY
     expected_signature = hmac.new(
-        verification_key.encode(), trusted_ip.encode(), hashlib.sha256
+        sign_key.encode(), trusted_ip.encode(), hashlib.sha256
     ).hexdigest()
     if not hmac.compare_digest(expected_signature.lower(), received_signature.lower()):
         logger.warning(

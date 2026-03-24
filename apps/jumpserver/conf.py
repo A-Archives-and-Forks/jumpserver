@@ -769,8 +769,8 @@ class Config(dict):
         # x-forwarded-for 相关
         'TRUSTED_IP_VERIFY_ENABLED': False,
         'TRUSTED_IP_SOURCE_HEADER': '',
-        'TRUSTED_IP_VERIFY_SIGNATURE_HEADER': '',
-        'TRUSTED_IP_VERIFY_KEY_PATH': '',
+        'TRUSTED_IP_SIGN_HEADER': '',
+        'TRUSTED_IP_SIGN_KEY': '',
     }
 
     old_config_map = {
