@@ -1,14 +1,13 @@
-from .base import BaseService
 from ..hands import *
+from .base import BaseService
 
-__all__ = ['GunicornService']
+__all__ = ['GunicornWSGIService']
 
 
-class GunicornService(BaseService):
+class GunicornWSGIService(BaseService):
 
     def __init__(self, **kwargs):
         self.worker = kwargs.get('worker', 2)
-        self.bind_port = kwargs.get('bind_port', HTTP_PORT)
         super().__init__(**kwargs)
 
     @property
@@ -16,16 +15,14 @@ class GunicornService(BaseService):
         print("\n- Start Gunicorn WSGI HTTP Server")
 
         log_format = '%(h)s %(t)s %(L)ss "%(r)s" %(s)s %(b)s '
-        bind = f'{HTTP_HOST}:{self.bind_port}'
-
+        bind = f'{HTTP_HOST}:{HTTP_PORT}'
         cmd = [
-            'gunicorn', 'jumpserver.asgi:application',
+            'gunicorn', 'jumpserver.wsgi',
             '-b', bind,
-            '-k', 'uvicorn.workers.UvicornWorker',
+            '-k', 'gthread',
+            '--threads', '10',
             '-w', str(self.worker),
-            '--max-requests', '10240',
-            '--max-requests-jitter', '2048',
-            '--graceful-timeout', '30',
+            '--max-requests', '4096',
             '--access-logformat', log_format,
             '--access-logfile', '-'
         ]
