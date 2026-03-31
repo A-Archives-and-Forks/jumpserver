@@ -170,6 +170,9 @@ def authenticate(request=None, **credentials):
                     and the current user is not in the user list. Please contact the administrator.'''
                 )
             continue
+        except Exception as e:
+            logger.error('Authenticate failed: {}'.format(e))
+            continue
         
         if user is None:
             continue
