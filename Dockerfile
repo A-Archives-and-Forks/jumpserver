@@ -1,4 +1,4 @@
-FROM jumpserver/core-base:20260401_025821 AS stage-build
+FROM jumpserver/core-base:20260122_035753 AS stage-build
 
 ARG VERSION
 
