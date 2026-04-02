@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-30 16:22+0800\n"
+"POT-Creation-Date: 2026-04-02 14:52+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr "Không tìm thấy tài sản hợp lệ để tạo tài khoản."
 msgid "Account not found"
 msgstr "Tài khoản không tìm thấy"
 
-#: accounts/api/automations/base.py:88 tickets/api/ticket.py:132
+#: accounts/api/automations/base.py:88 tickets/api/ticket.py:134
 #, python-brace-format
 msgid "The parameter 'action' must be [{}]"
 msgstr "Tham số 'action' phải là [{}]"
@@ -149,7 +149,7 @@ msgstr ""
 #: authentication/confirm/password.py:27 authentication/const.py:13
 #: authentication/forms.py:28
 #: authentication/templates/authentication/login.html:368
-#: authentication/templates/authentication/login.html:414 reports/mixins.py:237
+#: authentication/templates/authentication/login.html:414 reports/mixins.py:194
 #: settings/models.py:216 settings/serializers/auth/ldap.py:27
 #: settings/serializers/auth/ldap.py:53 settings/serializers/auth/ldap_ha.py:35
 #: settings/serializers/msg.py:37 settings/serializers/terminal.py:32
@@ -473,11 +473,12 @@ msgstr ""
 #: acls/notifications.py:70 acls/serializers/base.py:110
 #: assets/models/asset/common.py:102 assets/models/asset/common.py:427
 #: assets/models/cmd_filter.py:36 audits/models.py:59 audits/models.py:336
-#: audits/serializers.py:245 authentication/models/connection_token.py:42
+#: audits/reporting.py:109 audits/serializers.py:245
+#: authentication/models/connection_token.py:42
 #: perms/models/asset_permission.py:69 terminal/backends/command/models.py:17
 #: terminal/models/session/session.py:29 terminal/notifications.py:167
-#: terminal/notifications.py:304 terminal/serializers/command.py:17
-#: terminal/serializers/session.py:38
+#: terminal/notifications.py:304 terminal/reporting.py:123
+#: terminal/serializers/command.py:17 terminal/serializers/session.py:38
 #: terminal/templates/terminal/_msg_command_warning.html:10
 #: terminal/templates/terminal/_msg_session_sharing.html:4
 #: tickets/models/ticket/apply_asset.py:17 xpack/plugins/cloud/models.py:296
@@ -540,11 +541,11 @@ msgstr "Trạng thái đổi mật khẩu"
 #: acls/serializers/base.py:111
 #: acls/templates/acls/asset_login_reminder.html:11
 #: assets/serializers/gateway.py:33 audits/models.py:60 audits/models.py:337
-#: audits/serializers.py:246 authentication/api/connection_token.py:475
-#: ops/models/base.py:18 perms/models/asset_permission.py:75
-#: settings/serializers/msg.py:33 terminal/backends/command/models.py:18
-#: terminal/models/session/session.py:31 terminal/notifications.py:306
-#: terminal/serializers/command.py:72
+#: audits/reporting.py:114 audits/serializers.py:246
+#: authentication/api/connection_token.py:475 ops/models/base.py:18
+#: perms/models/asset_permission.py:75 settings/serializers/msg.py:33
+#: terminal/backends/command/models.py:18 terminal/models/session/session.py:31
+#: terminal/notifications.py:306 terminal/serializers/command.py:72
 #: terminal/templates/terminal/_msg_command_warning.html:11
 #: terminal/templates/terminal/_msg_session_sharing.html:8
 #: tickets/models/ticket/command_confirm.py:14
@@ -606,14 +607,15 @@ msgstr "Hoạt động tài khoản"
 #: ops/models/variable.py:9 ops/serializers/job.py:20
 #: ops/serializers/variable.py:20 orgs/models.py:82
 #: perms/models/asset_permission.py:61 rbac/models/role.py:29
-#: rbac/serializers/role.py:28 settings/models.py:38 settings/models.py:187
-#: settings/serializers/msg.py:90 settings/serializers/terminal.py:9
-#: terminal/models/applet/applet.py:34 terminal/models/component/endpoint.py:13
+#: rbac/serializers/role.py:28 reports/models.py:15 settings/models.py:38
+#: settings/models.py:187 settings/serializers/msg.py:90
+#: settings/serializers/terminal.py:9 terminal/models/applet/applet.py:34
+#: terminal/models/component/endpoint.py:13
 #: terminal/models/component/endpoint.py:107
 #: terminal/models/component/storage.py:26 terminal/models/component/task.py:13
 #: terminal/models/component/terminal.py:86
 #: terminal/models/virtualapp/provider.py:10
-#: terminal/models/virtualapp/virtualapp.py:19 tickets/api/ticket.py:87
+#: terminal/models/virtualapp/virtualapp.py:19 tickets/api/ticket.py:89
 #: users/forms/profile.py:33 users/models/group.py:16
 #: users/models/preference.py:11 users/models/user/__init__.py:67
 #: users/notifications.py:21 users/notifications.py:106
@@ -625,6 +627,7 @@ msgid "Name"
 msgstr "Tên"
 
 #: accounts/models/application.py:18 settings/serializers/auth/oauth2.py:25
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:16
 msgid "Logo"
 msgstr "Biểu tượng"
 
@@ -786,13 +789,13 @@ msgstr "Ngày kết thúc"
 #: accounts/serializers/automations/check_account.py:39
 #: assets/models/automations/base.py:137
 #: assets/serializers/automations/base.py:47 audits/models.py:224
-#: audits/serializers.py:77 ops/models/base.py:49 ops/models/job.py:233
-#: terminal/models/applet/applet.py:382 terminal/models/applet/host.py:140
-#: terminal/models/component/status.py:30
+#: audits/reporting.py:607 audits/serializers.py:77 ops/models/base.py:49
+#: ops/models/job.py:233 terminal/models/applet/applet.py:382
+#: terminal/models/applet/host.py:140 terminal/models/component/status.py:30
 #: terminal/models/virtualapp/virtualapp.py:99
 #: terminal/serializers/applet.py:19 terminal/serializers/applet_host.py:163
 #: terminal/serializers/virtualapp.py:36 tickets/models/ticket/general.py:284
-#: tickets/serializers/super_ticket.py:13
+#: tickets/reporting.py:80 tickets/serializers/super_ticket.py:13
 #: tickets/serializers/ticket/ticket.py:20 xpack/plugins/cloud/models.py:233
 #: xpack/plugins/cloud/models.py:300
 msgid "Status"
@@ -897,8 +900,8 @@ msgstr "Mật khẩu trùng lặp"
 #: accounts/templates/accounts/push_account_report.html:79
 #: accounts/templates/accounts/push_account_report.html:119
 #: acls/serializers/base.py:19 acls/serializers/base.py:50 audits/models.py:204
-#: authentication/forms.py:21 authentication/forms.py:23
-#: authentication/models/temp_token.py:10
+#: audits/reporting.py:241 authentication/forms.py:21
+#: authentication/forms.py:23 authentication/models/temp_token.py:10
 #: authentication/serializers/connect_token_secret.py:43
 #: authentication/serializers/connect_token_secret.py:53
 #: authentication/templates/authentication/_msg_different_city.html:9
@@ -1067,7 +1070,7 @@ msgstr "Tài khoản đặc quyền"
 
 #: accounts/models/base.py:69 assets/models/automations/base.py:28
 #: assets/models/cmd_filter.py:39 assets/models/label.py:22
-#: authentication/serializers/connect_token_secret.py:129 reports/models.py:33
+#: authentication/serializers/connect_token_secret.py:129 reports/models.py:18
 #: terminal/models/applet/applet.py:41
 #: terminal/models/virtualapp/virtualapp.py:23 users/serializers/user.py:257
 msgid "Is active"
@@ -1251,17 +1254,17 @@ msgstr "Thể loại"
 #: assets/models/automations/base.py:146 assets/models/cmd_filter.py:74
 #: assets/models/platform.py:96 assets/serializers/asset/common.py:146
 #: assets/serializers/platform.py:161 assets/serializers/platform.py:173
-#: audits/serializers.py:76 audits/serializers.py:211
-#: authentication/models/connection_token.py:67
+#: audits/reporting.py:221 audits/reporting.py:492 audits/serializers.py:76
+#: audits/serializers.py:211 authentication/models/connection_token.py:67
 #: authentication/serializers/connect_token_secret.py:138 ops/models/job.py:155
-#: perms/serializers/user_permission.py:28 reports/models.py:31
+#: perms/serializers/user_permission.py:28 reports/models.py:16
 #: terminal/models/applet/applet.py:40 terminal/models/component/storage.py:58
 #: terminal/models/component/storage.py:152 terminal/serializers/applet.py:30
 #: terminal/serializers/session.py:33 terminal/serializers/storage.py:281
 #: terminal/serializers/storage.py:294 tickets/models/comment.py:26
 #: tickets/models/flow.py:43 tickets/models/ticket/apply_application.py:16
-#: tickets/models/ticket/general.py:276 tickets/serializers/flow.py:25
-#: tickets/serializers/ticket/ticket.py:19
+#: tickets/models/ticket/general.py:276 tickets/reporting.py:70
+#: tickets/serializers/flow.py:25 tickets/serializers/ticket/ticket.py:19
 msgid "Type"
 msgstr "Loại"
 
@@ -1286,7 +1289,8 @@ msgstr "Đã quản lý mật khẩu"
 
 #: accounts/serializers/account/account.py:296 ops/models/celery.py:84
 #: tickets/models/comment.py:13 tickets/models/ticket/general.py:49
-#: tickets/models/ticket/general.py:280 tickets/serializers/super_ticket.py:14
+#: tickets/models/ticket/general.py:280 tickets/reporting.py:75
+#: tickets/serializers/super_ticket.py:14
 #: tickets/serializers/ticket/ticket.py:21
 msgid "State"
 msgstr "Trạng thái"
@@ -1331,6 +1335,7 @@ msgstr "ID"
 #: acls/templates/acls/user_login_reminder.html:8
 #: assets/models/cmd_filter.py:24 assets/models/label.py:16 audits/models.py:55
 #: audits/models.py:97 audits/models.py:179 audits/models.py:296
+#: audits/reporting.py:104 audits/reporting.py:317 audits/reporting.py:414
 #: audits/serializers.py:212 authentication/models/connection_token.py:38
 #: authentication/models/ssh_key.py:22 authentication/models/sso_token.py:16
 #: authentication/notifications.py:16 authentication/notifications.py:55
@@ -1340,7 +1345,7 @@ msgstr "ID"
 #: rbac/serializers/rolebinding.py:17 terminal/backends/command/models.py:16
 #: terminal/models/session/session.py:27 terminal/models/session/sharing.py:34
 #: terminal/notifications.py:168 terminal/notifications.py:235
-#: terminal/serializers/command.py:16
+#: terminal/reporting.py:118 terminal/serializers/command.py:16
 #: terminal/templates/terminal/_msg_command_warning.html:9
 #: terminal/templates/terminal/_msg_session_sharing.html:6
 #: tickets/models/comment.py:21 tickets/serializers/flow.py:15
@@ -1349,9 +1354,12 @@ msgstr "ID"
 msgid "User"
 msgstr "Người dùng"
 
-#: accounts/serializers/account/account.py:507
+#: accounts/serializers/account/account.py:507 audits/reporting.py:94
+#: audits/reporting.py:216 audits/reporting.py:312 audits/reporting.py:399
+#: audits/reporting.py:487 audits/reporting.py:602
 #: authentication/templates/authentication/_access_key_modal.html:33
 #: terminal/notifications.py:173 terminal/notifications.py:240
+#: terminal/reporting.py:103 tickets/reporting.py:65
 msgid "Date"
 msgstr "Ngày"
 
@@ -1835,7 +1843,7 @@ msgstr "Tài khoản thất bại"
 
 #: accounts/templates/accounts/check_account_report.html:33
 #: terminal/const.py:47 terminal/const.py:86
-#: users/templates/users/reset_password.html:54
+#: users/templates/users/reset_password.html:53
 msgid "Normal"
 msgstr "Bình thường"
 
@@ -1921,7 +1929,8 @@ msgstr ""
 "tiên)"
 
 #: acls/models/base.py:41 acls/serializers/base.py:57
-#: assets/models/cmd_filter.py:81 audits/models.py:99 audits/serializers.py:107
+#: assets/models/cmd_filter.py:81 audits/models.py:99 audits/reporting.py:404
+#: audits/serializers.py:107
 #: authentication/serializers/connect_token_secret.py:131
 #: authentication/templates/authentication/_access_key_modal.html:34
 #: perms/serializers/permission.py:64 perms/serializers/permission.py:86
@@ -2097,6 +2106,7 @@ msgstr "Thời gian đăng nhập"
 #: acls/templates/acls/asset_login_reminder.html:13
 #: acls/templates/acls/user_login_reminder.html:11
 #: terminal/models/session/session.py:34 terminal/models/session/sharing.py:116
+#: terminal/reporting.py:113
 #: terminal/templates/terminal/_msg_command_warning.html:16
 msgid "Login from"
 msgstr "Nguồn đăng nhập"
@@ -2135,7 +2145,7 @@ msgstr ""
 msgid "IP/Host"
 msgstr "IP/Máy chủ"
 
-#: acls/serializers/base.py:99 reports/models.py:36
+#: acls/serializers/base.py:99
 msgid "Recipients"
 msgstr "Người nhận"
 
@@ -2168,7 +2178,7 @@ msgstr ""
 "* biểu thị cho việc khớp tất cả. Ví dụ: 192.168.10.1, 192.168.1.0/24, "
 "10.1.1.1-10.1.1.20, 2001:db8:2de::e13, 2001:db8:1a:1110::/64"
 
-#: acls/serializers/rules/rules.py:48
+#: acls/serializers/rules/rules.py:48 audits/reporting.py:246
 #: authentication/templates/authentication/_msg_oauth_bind.html:12
 #: authentication/templates/authentication/_msg_rest_password_success.html:8
 #: authentication/templates/authentication/_msg_rest_public_key_success.html:8
@@ -2837,7 +2847,7 @@ msgid "Trigger mode"
 msgstr "Chế độ kích hoạt"
 
 #: assets/models/automations/base.py:157 audits/serializers.py:38
-#: ops/models/base.py:52 ops/models/job.py:238
+#: common/drf/reporting.py:24 ops/models/base.py:52 ops/models/job.py:238
 #: xpack/plugins/cloud/manager.py:113
 msgid "Summary"
 msgstr "Tổng hợp"
@@ -3631,7 +3641,7 @@ msgstr "Tạo liên kết mềm"
 
 #: audits/const.py:18 audits/const.py:29
 #: ops/templates/ops/celery_task_log.html:86
-#: terminal/api/session/session.py:157
+#: terminal/api/session/session.py:159
 msgid "Download"
 msgstr "Tải xuống"
 
@@ -3639,7 +3649,7 @@ msgstr "Tải xuống"
 msgid "Rename dir"
 msgstr "Liên kết thư mục"
 
-#: audits/const.py:23 rbac/tree.py:308 terminal/api/session/session.py:288
+#: audits/const.py:23 rbac/tree.py:308 terminal/api/session/session.py:290
 #: terminal/templates/terminal/_msg_session_sharing.html:10
 #: xpack/plugins/cloud/manager.py:104
 msgid "View"
@@ -3662,6 +3672,7 @@ msgstr "Kết nối"
 #: audits/const.py:31 authentication/templates/authentication/login.html:334
 #: authentication/templates/authentication/login.html:407
 #: templates/_header_bar.html:101
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:28
 msgid "Login"
 msgstr "Sign in"
 
@@ -3680,8 +3691,8 @@ msgstr "Kết thúc"
 
 #: audits/const.py:47 settings/serializers/terminal.py:6
 #: terminal/models/applet/host.py:26 terminal/models/component/terminal.py:185
-#: terminal/models/virtualapp/provider.py:14 terminal/serializers/session.py:65
-#: terminal/serializers/session.py:181
+#: terminal/models/virtualapp/provider.py:14 terminal/reporting.py:128
+#: terminal/serializers/session.py:65 terminal/serializers/session.py:181
 msgid "Terminal"
 msgstr "Thiết bị đầu cuối"
 
@@ -3716,17 +3727,19 @@ msgid "Job audit log"
 msgstr "Nhật ký kiểm tra công việc"
 
 #: audits/models.py:57 audits/models.py:107 audits/models.py:182
-#: audits/models.py:333 authentication/models/connection_token.py:62
+#: audits/models.py:333 audits/reporting.py:119 audits/reporting.py:327
+#: audits/reporting.py:424 authentication/models/connection_token.py:62
 #: terminal/models/session/session.py:36 terminal/models/session/sharing.py:111
 #: terminal/notifications.py:171 terminal/notifications.py:238
+#: terminal/reporting.py:133
 msgid "Remote addr"
 msgstr "Địa chỉ xa"
 
-#: audits/models.py:62 audits/serializers.py:61
+#: audits/models.py:62 audits/reporting.py:99 audits/serializers.py:61
 msgid "Operate"
 msgstr "Hành động"
 
-#: audits/models.py:64
+#: audits/models.py:64 audits/reporting.py:124
 msgid "Filename"
 msgstr "Tên tệp"
 
@@ -3747,12 +3760,12 @@ msgstr "Phiên"
 msgid "File transfer log"
 msgstr "Truyền tệp"
 
-#: audits/models.py:101 audits/serializers.py:109
+#: audits/models.py:101 audits/reporting.py:409 audits/serializers.py:109
 msgid "Resource Type"
 msgstr "Loại tài nguyên"
 
 #: audits/models.py:102 audits/models.py:105 audits/models.py:151
-#: audits/serializers.py:108 labels/serializers.py:46
+#: audits/reporting.py:419 audits/serializers.py:108 labels/serializers.py:46
 msgid "Resource"
 msgstr "Tài nguyên"
 
@@ -3774,7 +3787,7 @@ msgstr "Chi tiết ID"
 msgid "Activity log"
 msgstr "Nhật ký hoạt động"
 
-#: audits/models.py:180
+#: audits/models.py:180 audits/reporting.py:322
 msgid "Change by"
 msgstr "Người chỉnh sửa"
 
@@ -3791,15 +3804,16 @@ msgstr "Phương thức đăng nhập"
 msgid "Login IP"
 msgstr "Đăng nhập IP"
 
-#: audits/models.py:216 audits/serializers.py:75
+#: audits/models.py:216 audits/reporting.py:231 audits/serializers.py:75
 #: authentication/templates/authentication/_mfa_confirm_modal.html:14
 #: users/forms/profile.py:64 users/models/user/__init__.py:92
 #: users/serializers/profile.py:63
 msgid "MFA"
 msgstr "MFA"
 
-#: audits/models.py:219 terminal/models/session/sharing.py:123
-#: xpack/plugins/cloud/manager.py:196 xpack/plugins/cloud/models.py:237
+#: audits/models.py:219 audits/reporting.py:251
+#: terminal/models/session/sharing.py:123 xpack/plugins/cloud/manager.py:196
+#: xpack/plugins/cloud/models.py:237
 msgid "Reason"
 msgstr "Nguyên nhân"
 
@@ -3809,7 +3823,7 @@ msgstr "Nguyên nhân"
 msgid "Login Date"
 msgstr "Ngày đăng nhập"
 
-#: audits/models.py:228 audits/models.py:293
+#: audits/models.py:228 audits/models.py:293 audits/reporting.py:226
 msgid "Auth backend"
 msgstr "Mã xác thực"
 
@@ -3841,12 +3855,410 @@ msgstr "Ứng dụng"
 msgid "Application ID"
 msgstr "ID ứng dụng"
 
-#: audits/serializers.py:33 ops/models/adhoc.py:24 ops/models/base.py:16
-#: ops/models/base.py:53 ops/models/celery.py:87 ops/models/job.py:156
-#: ops/models/job.py:239 ops/models/playbook.py:30 ops/models/variable.py:17
+#: audits/reporting.py:11
+#, fuzzy
+#| msgid "File transfer log"
+msgid "File Transfer Report"
+msgstr "Truyền tệp"
+
+#: audits/reporting.py:21 audits/reporting.py:146 audits/reporting.py:264
+#: audits/reporting.py:345 audits/reporting.py:442 audits/reporting.py:529
+#: terminal/reporting.py:23 tickets/reporting.py:16
+#, fuzzy
+#| msgid "Command record"
+msgid "Total records"
+msgstr "Bản ghi lệnh"
+
+#: audits/reporting.py:22 audits/reporting.py:94
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful transfers"
+msgstr "Tài khoản thành công"
+
+#: audits/reporting.py:23 audits/reporting.py:94
+#, fuzzy
+#| msgid "File transfer log"
+msgid "Failed transfers"
+msgstr "Truyền tệp"
+
+#: audits/reporting.py:24 audits/reporting.py:94 audits/reporting.py:149
+#: audits/reporting.py:216 audits/reporting.py:533 audits/reporting.py:602
+#: terminal/reporting.py:28 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Success prompt"
+msgid "Success rate"
+msgstr "Gợi ý thành công"
+
+#: audits/reporting.py:25
+#, fuzzy
+#| msgid "Download"
+msgid "Downloadable files"
+msgstr "Tải xuống"
+
+#: audits/reporting.py:26 audits/reporting.py:150 audits/reporting.py:265
+#: terminal/reporting.py:31
+#, fuzzy
+#| msgid "Check unused users"
+msgid "Unique users"
+msgstr "Kiểm tra người dùng chưa sử dụng."
+
+#: audits/reporting.py:27 terminal/reporting.py:32
+#, fuzzy
+#| msgid "Can view user assets"
+msgid "Unique assets"
+msgstr "Có thể xem tài sản phân quyền của người dùng"
+
+#: audits/reporting.py:28
+#, fuzzy
+#| msgid "Failed accounts"
+msgid "Unique accounts"
+msgstr "Tài khoản thất bại"
+
+#: audits/reporting.py:29 audits/reporting.py:151 audits/reporting.py:267
+#: audits/reporting.py:349
+msgid "Unique IPs"
+msgstr ""
+
+#: audits/reporting.py:91 audits/reporting.py:213 audits/reporting.py:309
+#: audits/reporting.py:396 audits/reporting.py:484 audits/reporting.py:599
+#: terminal/reporting.py:100 tickets/reporting.py:62
+#, fuzzy
+#| msgid "Review"
+msgid "Overview"
+msgstr "Phê duyệt"
+
+#: audits/reporting.py:93 audits/reporting.py:215 audits/reporting.py:311
+#: audits/reporting.py:398 audits/reporting.py:601 terminal/reporting.py:102
+msgid "Daily Trend"
+msgstr ""
+
+#: audits/reporting.py:94 audits/reporting.py:216 audits/reporting.py:602
+#: terminal/reporting.py:103
+msgid "Total"
+msgstr ""
+
+#: audits/reporting.py:98
+msgid "Transfer Type Distribution"
+msgstr ""
+
+#: audits/reporting.py:99 audits/reporting.py:104 audits/reporting.py:109
+#: audits/reporting.py:114 audits/reporting.py:119 audits/reporting.py:124
+#: audits/reporting.py:129 audits/reporting.py:221 audits/reporting.py:226
+#: audits/reporting.py:231 audits/reporting.py:236 audits/reporting.py:241
+#: audits/reporting.py:246 audits/reporting.py:251 audits/reporting.py:312
+#: audits/reporting.py:317 audits/reporting.py:322 audits/reporting.py:327
+#: audits/reporting.py:332 audits/reporting.py:399 audits/reporting.py:404
+#: audits/reporting.py:409 audits/reporting.py:414 audits/reporting.py:419
+#: audits/reporting.py:424 audits/reporting.py:429 audits/reporting.py:487
+#: audits/reporting.py:492 audits/reporting.py:497 audits/reporting.py:502
+#: audits/reporting.py:507 audits/reporting.py:607 audits/reporting.py:612
+#: audits/reporting.py:617 audits/reporting.py:622 terminal/reporting.py:108
+#: terminal/reporting.py:113 terminal/reporting.py:118
+#: terminal/reporting.py:123 terminal/reporting.py:128
+#: terminal/reporting.py:133 terminal/reporting.py:138 tickets/reporting.py:65
+#: tickets/reporting.py:70 tickets/reporting.py:75 tickets/reporting.py:80
+#: tickets/reporting.py:85 tickets/reporting.py:90 tickets/reporting.py:95
+#, fuzzy
+#| msgid "CPU count"
+msgid "Count"
+msgstr "Số lượng CPU"
+
+#: audits/reporting.py:103 audits/reporting.py:316 terminal/reporting.py:117
+#, fuzzy
+#| msgid "User group"
+msgid "User Top 10"
+msgstr "Nhóm người dùng"
+
+#: audits/reporting.py:108 terminal/reporting.py:122
+#, fuzzy
+#| msgid "Asset type"
+msgid "Asset Top 10"
+msgstr "Loại tài sản"
+
+#: audits/reporting.py:113
+#, fuzzy
+#| msgid "Account ID"
+msgid "Account Top 10"
+msgstr "Tài khoản"
+
+#: audits/reporting.py:118 audits/reporting.py:326 audits/reporting.py:423
+#: terminal/reporting.py:132
+msgid "IP Top 10"
+msgstr ""
+
+#: audits/reporting.py:123
+#, fuzzy
+#| msgid "Filename"
+msgid "Filename Top 10"
+msgstr "Tên tệp"
+
+#: audits/reporting.py:128
+msgid "Transfer Time Distribution"
+msgstr ""
+
+#: audits/reporting.py:129 audits/reporting.py:236 audits/reporting.py:332
+#: audits/reporting.py:429
+#, fuzzy
+#| msgid "Time using"
+msgid "Time range"
+msgstr "Thời gian tiêu tốn"
+
+#: audits/reporting.py:136
+#, fuzzy
+#| msgid "User login report"
+msgid "User Login Report"
+msgstr "Báo cáo đăng nhập người dùng"
+
+#: audits/reporting.py:147 audits/reporting.py:216
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful logins"
+msgstr "Tài khoản thành công"
+
+#: audits/reporting.py:148 audits/reporting.py:216
+#, fuzzy
+#| msgid "Failed accounts"
+msgid "Failed logins"
+msgstr "Tài khoản thất bại"
+
+#: audits/reporting.py:152
+msgid "Unique cities"
+msgstr ""
+
+#: audits/reporting.py:153
+#, fuzzy
+#| msgid "Auth backend"
+msgid "Unique auth backends"
+msgstr "Mã xác thực"
+
+#: audits/reporting.py:220
+#, fuzzy
+#| msgid "Login redirection"
+msgid "Login Type Distribution"
+msgstr "Kích hoạt thông báo chuyển hướng đăng nhập"
+
+#: audits/reporting.py:225
+#, fuzzy
+#| msgid "Auth backend display"
+msgid "Auth Backend Distribution"
+msgstr "Phương thức xác thực"
+
+#: audits/reporting.py:230
+#, fuzzy
+#| msgid "MFA setting"
+msgid "MFA Distribution"
+msgstr "Thiết lập xác thực đa yếu tố MFA"
+
+#: audits/reporting.py:235
+#, fuzzy
+#| msgid "Login redirection"
+msgid "Login Time Distribution"
+msgstr "Kích hoạt thông báo chuyển hướng đăng nhập"
+
+#: audits/reporting.py:240
+msgid "Failed User Top 10"
+msgstr ""
+
+#: audits/reporting.py:245
+msgid "Failed IP Top 10"
+msgstr ""
+
+#: audits/reporting.py:250
+msgid "Failed Reason Top 10"
+msgstr ""
+
+#: audits/reporting.py:258
+#, fuzzy
+#| msgid "Password change log"
+msgid "Password Change Report"
+msgstr "Nhật ký thay đổi mật khẩu"
+
+#: audits/reporting.py:266 audits/reporting.py:346
+msgid "Unique operators"
+msgstr ""
+
+#: audits/reporting.py:321 audits/reporting.py:413
+#, fuzzy
+#| msgid "Operate log"
+msgid "Operator Top 10"
+msgstr "Nhật ký hành động"
+
+#: audits/reporting.py:331
+#, fuzzy
+#| msgid "Can change sms setting"
+msgid "Change Time Distribution"
+msgstr "Cài đặt SMS"
+
+#: audits/reporting.py:339
+#, fuzzy
+#| msgid "Operate log"
+msgid "Operate Log Report"
+msgstr "Nhật ký hành động"
+
+#: audits/reporting.py:347
+#, fuzzy
+#| msgid "Resource type"
+msgid "Unique resource types"
+msgstr "Loại tài nguyên"
+
+#: audits/reporting.py:348
+#, fuzzy
+#| msgid "Tagged resource"
+msgid "Unique resources"
+msgstr "Tài nguyên liên quan"
+
+#: audits/reporting.py:403
+#, fuzzy
+#| msgid "Action permission"
+msgid "Action Distribution"
+msgstr "Quyền thao tác"
+
+#: audits/reporting.py:408
+#, fuzzy
+#| msgid "Resource Type"
+msgid "Resource Type Distribution"
+msgstr "Loại tài nguyên"
+
+#: audits/reporting.py:418
+#, fuzzy
+#| msgid "Resource Type"
+msgid "Resource Top 10"
+msgstr "Loại tài nguyên"
+
+#: audits/reporting.py:428
+msgid "Operate Time Distribution"
+msgstr ""
+
+#: audits/reporting.py:436
+#, fuzzy
+#| msgid "Job audit log"
+msgid "Job Audit Report"
+msgstr "Nhật ký kiểm tra công việc"
+
+#: audits/reporting.py:443
+#, fuzzy
+#| msgid "Periodic run"
+msgid "Periodic jobs"
+msgstr "Periodic"
+
+#: audits/reporting.py:444
+msgid "One-time jobs"
+msgstr ""
+
+#: audits/reporting.py:445
+#, fuzzy
+#| msgid "Adhoc"
+msgid "Adhoc jobs"
+msgstr "lệnh"
+
+#: audits/reporting.py:446
+#, fuzzy
+#| msgid "Playbook"
+msgid "Playbook jobs"
+msgstr "Playbook"
+
+#: audits/reporting.py:447 audits/reporting.py:534
+msgid "Unique creators"
+msgstr ""
+
+#: audits/reporting.py:467 ops/const.py:40 ops/models/job.py:154
+#: ops/models/playbook.py:89 ops/models/variable.py:23
+msgid "Playbook"
+msgstr "Playbook"
+
+#: audits/reporting.py:486 tickets/reporting.py:64
+#, fuzzy
+#| msgid "Create Type"
+msgid "Created Trend"
+msgstr "Loại tạo"
+
+#: audits/reporting.py:491 audits/reporting.py:611
+msgid "Job Type Distribution"
+msgstr ""
+
+#: audits/reporting.py:496
+msgid "Module Distribution"
+msgstr ""
+
+#: audits/reporting.py:497 ops/models/adhoc.py:22 ops/models/job.py:151
+msgid "Module"
+msgstr "Mô-đun"
+
+#: audits/reporting.py:501 audits/reporting.py:616
+#, fuzzy
+#| msgid "Creator"
+msgid "Creator Top 10"
+msgstr "Người tạo"
+
+#: audits/reporting.py:502 audits/reporting.py:617 audits/serializers.py:33
+#: ops/models/adhoc.py:24 ops/models/base.py:16 ops/models/base.py:53
+#: ops/models/celery.py:87 ops/models/job.py:156 ops/models/job.py:239
+#: ops/models/playbook.py:30 ops/models/variable.py:17
 #: terminal/models/session/sharing.py:25
 msgid "Creator"
 msgstr "Người tạo"
+
+#: audits/reporting.py:506
+#, fuzzy
+#| msgid "Run as policy"
+msgid "Run as Policy Distribution"
+msgstr "Chiến lược người dùng"
+
+#: audits/reporting.py:507 ops/models/job.py:164
+msgid "Run as policy"
+msgstr "Chiến lược người dùng"
+
+#: audits/reporting.py:514
+#, fuzzy
+#| msgid "Report"
+msgid "Job Log Report"
+msgstr "Báo cáo"
+
+#: audits/reporting.py:530 audits/reporting.py:602
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful jobs"
+msgstr "Tài khoản thành công"
+
+#: audits/reporting.py:531 audits/reporting.py:602
+#, fuzzy
+#| msgid "Finished"
+msgid "Finished jobs"
+msgstr "Kết thúc"
+
+#: audits/reporting.py:532 audits/reporting.py:602
+#, fuzzy
+#| msgid "Is finished"
+msgid "Unfinished jobs"
+msgstr "Finished"
+
+#: audits/reporting.py:537
+msgid "Unique task ids"
+msgstr ""
+
+#: audits/reporting.py:538
+#, fuzzy
+#| msgid "Secret rotation"
+msgid "Average duration"
+msgstr "Thay đổi mật khẩu"
+
+#: audits/reporting.py:606
+msgid "Status Distribution"
+msgstr ""
+
+#: audits/reporting.py:612 ops/serializers/job.py:91
+msgid "Job type"
+msgstr "Loại tác vụ"
+
+#: audits/reporting.py:621 terminal/reporting.py:137
+msgid "Duration Distribution"
+msgstr ""
+
+#: audits/reporting.py:622 terminal/reporting.py:138
+#, fuzzy
+#| msgid "Duration"
+msgid "Duration range"
+msgstr "Thời gian tiêu tốn"
 
 #: audits/serializers.py:39 ops/serializers/celery.py:33
 msgid "Execution cycle"
@@ -3956,11 +4368,11 @@ msgstr "Mật khẩu tạm thời"
 msgid "Passkey"
 msgstr "Khóa truy cập"
 
-#: audits/tasks.py:129
+#: audits/tasks.py:128
 msgid "Clean audits session task log"
 msgstr "Dọn dẹp nhật ký nhiệm vụ kiểm toán tài sản"
 
-#: audits/tasks.py:131
+#: audits/tasks.py:130
 msgid ""
 "Since the system generates login logs, operation logs, file upload logs, "
 "activity \n"
@@ -3976,11 +4388,11 @@ msgstr ""
 "thống - danh sách nhiệm vụ - định kỳ dọn dẹp cấu hình, đối với những thứ "
 "vượt quá thời gian sẽ được dọn dẹp vào lúc 2 giờ sáng mỗi ngày"
 
-#: audits/tasks.py:152
+#: audits/tasks.py:150
 msgid "Upload FTP file to external storage"
 msgstr "Tải lên tệp FTP vào bộ nhớ bên ngoài"
 
-#: audits/tasks.py:154
+#: audits/tasks.py:152
 msgid ""
 "If SERVER_REPLAY_STORAGE is configured, files uploaded through file "
 "management will be \n"
@@ -4052,7 +4464,7 @@ msgstr "So sánh khuôn mặt thất bại"
 msgid "Current user not support mfa type: {}"
 msgstr "Người dùng hiện tại không hỗ trợ loại MFA: {}"
 
-#: authentication/api/password.py:34 terminal/api/session/session.py:345
+#: authentication/api/password.py:34 terminal/api/session/session.py:347
 #: users/views/profile/reset.py:63
 #, python-brace-format
 msgid "User does not exist: {}"
@@ -4076,6 +4488,7 @@ msgstr ""
 #: users/templates/users/forgot_password.html:42
 #: users/templates/users/forgot_password_previewing.html:13
 #: users/templates/users/forgot_password_previewing.html:14
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:25
 msgid "Forgot password"
 msgstr "Quên mật khẩu"
 
@@ -4348,16 +4761,16 @@ msgstr "Mật khẩu của bạn không hợp lệ"
 msgid "Please wait for %s seconds before retry"
 msgstr "Vui lòng thử lại sau %s giây"
 
-#: authentication/errors/redirect.py:85 authentication/mixins.py:433
+#: authentication/errors/redirect.py:85 authentication/mixins.py:436
 #: users/views/profile/reset.py:224
 msgid "Your password is too simple, please change it for security"
 msgstr "Mật khẩu của bạn quá đơn giản, để đảm bảo an toàn, vui lòng thay đổi"
 
-#: authentication/errors/redirect.py:93 authentication/mixins.py:442
+#: authentication/errors/redirect.py:93 authentication/mixins.py:445
 msgid "You should to change your password before login"
 msgstr "Trước khi hoàn tất đăng nhập, vui lòng thay đổi mật khẩu"
 
-#: authentication/errors/redirect.py:101 authentication/mixins.py:451
+#: authentication/errors/redirect.py:101 authentication/mixins.py:454
 msgid "Your password has expired, please reset before logging in"
 msgstr "Mật khẩu của bạn đã hết hạn, hãy thay đổi rồi mới đăng nhập"
 
@@ -4488,11 +4901,11 @@ msgstr ""
 "dùng hiện tại không có trong danh sách người dùng, vui lòng liên hệ với quản "
 "trị viên."
 
-#: authentication/mixins.py:181
+#: authentication/mixins.py:184
 msgid "User is invalid"
 msgstr "Người dùng không hợp lệ"
 
-#: authentication/mixins.py:198
+#: authentication/mixins.py:201
 #, python-brace-format
 msgid ""
 " The administrator has enabled 'Only allow login from user source'. \n"
@@ -4502,12 +4915,12 @@ msgstr ""
 "Quản trị viên đã bật 'chỉ cho phép đăng nhập từ nguồn người dùng', nguồn "
 "người dùng hiện tại là {}, vui lòng liên hệ với quản trị viên."
 
-#: authentication/mixins.py:379
+#: authentication/mixins.py:382
 #, python-brace-format
 msgid "The MFA type ({}) is not enabled"
 msgstr "Phương thức MFA ({}) này chưa được kích hoạt"
 
-#: authentication/mixins.py:421
+#: authentication/mixins.py:424
 msgid "Please change your password"
 msgstr "Vui lòng thay đổi mật khẩu"
 
@@ -4524,8 +4937,9 @@ msgstr "Mật khẩu tùy chỉnh"
 #: authentication/serializers/connect_token_secret.py:126
 #: terminal/models/applet/applet.py:43
 #: terminal/models/virtualapp/virtualapp.py:24 terminal/notifications.py:170
-#: terminal/notifications.py:237 terminal/serializers/session.py:31
-#: terminal/serializers/session.py:58 terminal/serializers/storage.py:71
+#: terminal/notifications.py:237 terminal/reporting.py:108
+#: terminal/serializers/session.py:31 terminal/serializers/session.py:58
+#: terminal/serializers/storage.py:71
 #: terminal/templates/terminal/_msg_command_warning.html:19
 msgid "Protocol"
 msgstr "Giao thức"
@@ -4647,7 +5061,7 @@ msgstr ""
 msgid "binding reminder"
 msgstr "Nhắc nhở liên kết"
 
-#: authentication/serializers/connect_token_secret.py:128 reports/models.py:32
+#: authentication/serializers/connect_token_secret.py:128 reports/models.py:17
 msgid "Is builtin"
 msgstr "Builtin"
 
@@ -4962,6 +5376,7 @@ msgid "Retry"
 msgstr "Thử lại"
 
 #: authentication/templates/authentication/login.html:313
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:5
 msgid ""
 "Configuration file has problems and cannot be logged in. Please contact the "
 "administrator or view latest docs"
@@ -4970,6 +5385,7 @@ msgstr ""
 "trị viên hoặc xem tài liệu mới nhất"
 
 #: authentication/templates/authentication/login.html:314
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:6
 msgid "If you are administrator, you can update the config resolve it, set"
 msgstr ""
 "Nếu bạn là quản trị viên, bạn có thể cập nhật tệp cấu hình để giải quyết, "
@@ -5466,6 +5882,59 @@ msgstr "Chỉ xuất mục đã chọn"
 #: common/drf/renders/mixins.py:50
 msgid "Export filtered"
 msgstr "Xuất tìm kiếm"
+
+#: common/drf/reporting.py:23
+#, fuzzy
+#| msgid "Database"
+msgid "Data"
+msgstr "Cơ sở dữ liệu"
+
+#: common/drf/reporting.py:25 common/drf/reporting.py:180 rbac/tree.py:71
+#: reports/models.py:24
+msgid "Report"
+msgstr "Báo cáo"
+
+#: common/drf/reporting.py:37
+#, fuzzy
+#| msgid "Date left"
+msgid "Date from"
+msgstr "Ngày kết thúc"
+
+#: common/drf/reporting.py:38
+#, fuzzy
+#| msgid "Date left"
+msgid "Date to"
+msgstr "Ngày kết thúc"
+
+#: common/drf/reporting.py:116
+#, fuzzy
+#| msgid "All assets"
+msgid "All data"
+msgstr "Tất cả tài sản"
+
+#: common/drf/reporting.py:181
+#, fuzzy
+#| msgid "General"
+msgid "Generated at"
+msgstr "Chung"
+
+#: common/drf/reporting.py:182
+#, fuzzy
+#| msgid "Export"
+msgid "Exported rows"
+msgstr "Xuất"
+
+#: common/drf/reporting.py:183 reports/models.py:20
+#, fuzzy
+#| msgid "Filter"
+msgid "Filters"
+msgstr "Bộ lọc"
+
+#: common/drf/reporting.py:210
+#, fuzzy
+#| msgid "Summary"
+msgid "Report Summary"
+msgstr "Tổng hợp"
 
 #: common/exceptions.py:15 xpack/plugins/cloud/ws.py:36
 #, python-format
@@ -5965,11 +6434,6 @@ msgstr "VCS"
 msgid "Adhoc"
 msgstr "lệnh"
 
-#: ops/const.py:40 ops/models/job.py:154 ops/models/playbook.py:89
-#: ops/models/variable.py:23
-msgid "Playbook"
-msgstr "Playbook"
-
 #: ops/const.py:41
 msgid "Upload File"
 msgstr "tải lên"
@@ -6099,10 +6563,6 @@ msgstr "Cần thiết lập theo chu kỳ hoặc định kỳ"
 msgid "Pattern"
 msgstr "Chế độ"
 
-#: ops/models/adhoc.py:22 ops/models/job.py:151
-msgid "Module"
-msgstr "Mô-đun"
-
 #: ops/models/adhoc.py:23 ops/models/celery.py:82 ops/models/job.py:149
 #: terminal/models/component/task.py:14
 msgid "Args"
@@ -6168,10 +6628,6 @@ msgstr "Biến thực thi chu kỳ"
 #: ops/models/job.py:162
 msgid "Run as"
 msgstr "Người dùng chạy"
-
-#: ops/models/job.py:164
-msgid "Run as policy"
-msgstr "Chiến lược người dùng"
 
 #: ops/models/job.py:221 ops/models/variable.py:28 ops/serializers/job.py:111
 #: terminal/notifications.py:196
@@ -6265,10 +6721,6 @@ msgstr "Thời gian thực hiện tiếp theo"
 #: ops/serializers/job.py:17
 msgid "Run on save"
 msgstr "Run on save"
-
-#: ops/serializers/job.py:91
-msgid "Job type"
-msgstr "Loại tác vụ"
 
 #: ops/serializers/job.py:94 terminal/serializers/session.py:66
 msgid "Is finished"
@@ -6465,7 +6917,8 @@ msgstr "Vui lòng chọn một tổ chức trước khi lưu"
 #: terminal/notifications.py:309
 #: terminal/templates/terminal/_msg_command_warning.html:27
 #: terminal/templates/terminal/_msg_session_sharing.html:14
-#: tickets/models/ticket/general.py:303 tickets/serializers/ticket/ticket.py:62
+#: tickets/models/ticket/general.py:303 tickets/reporting.py:85
+#: tickets/serializers/ticket/ticket.py:62
 msgid "Organization"
 msgstr "Tổ chức"
 
@@ -6943,7 +7396,7 @@ msgstr "Đồng bộ đám mây"
 msgid "Gather account"
 msgstr "Tài khoản phát hiện"
 
-#: rbac/tree.py:56 reports/mixins.py:456
+#: rbac/tree.py:56 reports/mixins.py:374
 msgid "Account change secret"
 msgstr "Tài khoản đổi mật khẩu"
 
@@ -6982,10 +7435,6 @@ msgstr "Giấy phép"
 msgid "Job audit"
 msgstr "Kiểm tra công việc"
 
-#: rbac/tree.py:71 reports/models.py:40
-msgid "Report"
-msgstr "Báo cáo"
-
 #: rbac/tree.py:195
 msgid "App organizations"
 msgstr "Organizations"
@@ -7019,23 +7468,11 @@ msgstr "Xem mã thông báo truy cập"
 msgid "Revoke access token"
 msgstr "Thu hồi mã thông báo truy cập"
 
-#: reports/models.py:34
+#: reports/models.py:19
 #, fuzzy
 #| msgid "Change by"
 msgid "Range days"
 msgstr "Người chỉnh sửa"
-
-#: reports/models.py:35
-#, fuzzy
-#| msgid "Filter"
-msgid "Filters"
-msgstr "Bộ lọc"
-
-#: reports/models.py:145
-#, fuzzy
-#| msgid "Periodic run"
-msgid "Periodic report"
-msgstr "Periodic"
 
 #: reports/views.py:20
 msgid "User login report"
@@ -7916,47 +8353,47 @@ msgstr ""
 msgid "Organization name already exists"
 msgstr "Tên tổ chức đã tồn tại"
 
-#: settings/serializers/cleaning.py:11
+#: settings/serializers/cleaning.py:10
 msgid "Period clean"
 msgstr "Dọn dẹp định kỳ"
 
-#: settings/serializers/cleaning.py:15
+#: settings/serializers/cleaning.py:14
 msgid "Login log retention days"
 msgstr "Ngày lưu giữ nhật ký đăng nhập"
 
-#: settings/serializers/cleaning.py:19
+#: settings/serializers/cleaning.py:18
 msgid "Task log retention days"
 msgstr "Ngày lưu giữ nhật ký nhiệm vụ"
 
-#: settings/serializers/cleaning.py:23
+#: settings/serializers/cleaning.py:22
 msgid "Operate log retention days"
 msgstr "Ngày lưu giữ nhật ký hành động"
 
-#: settings/serializers/cleaning.py:27
+#: settings/serializers/cleaning.py:26
 msgid "Password change log retention days"
 msgstr "Ngày lưu giữ nhật ký thay đổi mật khẩu người dùng"
 
-#: settings/serializers/cleaning.py:31
+#: settings/serializers/cleaning.py:30
 msgid "FTP log retention days"
 msgstr "Ngày lưu giữ nhật ký tải lên và tải xuống"
 
-#: settings/serializers/cleaning.py:35
+#: settings/serializers/cleaning.py:34
 msgid "Cloud sync task history retention days"
 msgstr "Ngày lưu giữ nhật ký đồng bộ đám mây"
 
-#: settings/serializers/cleaning.py:39
+#: settings/serializers/cleaning.py:38
 msgid "job execution retention days"
 msgstr "Ngày lưu giữ lịch sử thực hiện công việc"
 
-#: settings/serializers/cleaning.py:43
+#: settings/serializers/cleaning.py:42
 msgid "Activity log retention days"
 msgstr "Ngày lưu giữ nhật ký hoạt động"
 
-#: settings/serializers/cleaning.py:46
+#: settings/serializers/cleaning.py:45
 msgid "Session log retention days"
 msgstr "Ngày lưu giữ nhật ký phiên làm việc"
 
-#: settings/serializers/cleaning.py:48
+#: settings/serializers/cleaning.py:47
 msgid ""
 "Session, record, command will be delete if more than duration, only in "
 "database, OSS will not be affected."
@@ -7964,11 +8401,11 @@ msgstr ""
 "Phiên, ghi hình, nhật ký lệnh vượt quá thời gian này sẽ bị xóa (ảnh hưởng "
 "tới lưu trữ cơ sở dữ liệu, không ảnh hưởng tới OSS)"
 
-#: settings/serializers/cleaning.py:53
+#: settings/serializers/cleaning.py:52
 msgid "Change secret and push record retention days"
 msgstr "Ngày lưu giữ nhật ký thông báo thay đổi mật khẩu tài khoản."
 
-#: settings/serializers/cleaning.py:57
+#: settings/serializers/cleaning.py:56
 #, fuzzy
 #| msgid "Change secret and push record retention days"
 msgid "Audit report send record retention days"
@@ -9008,17 +9445,17 @@ msgstr ""
 "Khóa SSH của bạn chưa được thiết lập hoặc đã hết hiệu lực, vui lòng nhấp vào "
 "<a href=\"%(user_pubkey_update)s\"> liên kết </a> để cập nhật."
 
-#: templates/_mfa_login_field.html:29
+#: templates/_mfa_login_field.html:30
 #: users/templates/users/forgot_password.html:101
 msgid "Send"
 msgstr "Gửi"
 
-#: templates/_mfa_login_field.html:108
+#: templates/_mfa_login_field.html:109
 #: users/templates/users/forgot_password.html:176
 msgid "Wait: "
 msgstr "Đang chờ:"
 
-#: templates/_mfa_login_field.html:118
+#: templates/_mfa_login_field.html:119
 #: users/templates/users/forgot_password.html:192
 msgid "The verification code has been sent"
 msgstr "Mã xác thực đã được gửi"
@@ -9135,26 +9572,26 @@ msgstr "kiểm tra thất bại: vui lòng kiểm tra cấu hình"
 msgid "Have online sessions"
 msgstr "có phiên trực tuyến"
 
-#: terminal/api/session/session.py:51
+#: terminal/api/session/session.py:52
 #, python-format
 msgid "User %s %s session %s replay"
 msgstr "người dùng %s %s đã ghi lại phiên %s"
 
-#: terminal/api/session/session.py:161 terminal/api/session/session.py:295
+#: terminal/api/session/session.py:163 terminal/api/session/session.py:297
 #: terminal/models/session/replay.py:12
 msgid "Session replay"
 msgstr "ghi lại phiên"
 
-#: terminal/api/session/session.py:337
+#: terminal/api/session/session.py:339
 #, python-brace-format
 msgid "Session does not exist: {}"
 msgstr "phiên không tồn tại: {}"
 
-#: terminal/api/session/session.py:340
+#: terminal/api/session/session.py:342
 msgid "Session is finished or the protocol not supported"
 msgstr "phiên đã hoàn thành hoặc giao thức không được hỗ trợ"
 
-#: terminal/api/session/session.py:353 tickets/api/ticket.py:140
+#: terminal/api/session/session.py:355 tickets/api/ticket.py:142
 msgid "User does not have permission"
 msgstr "người dùng không có quyền"
 
@@ -9654,6 +10091,72 @@ msgstr "Kiểm tra thất bại: Tài khoản không hợp lệ"
 #: terminal/templates/terminal/_msg_check_command_replay_storage_connectivity.html:4
 msgid "Invalid storage"
 msgstr "Lưu trữ không hợp lệ"
+
+#: terminal/reporting.py:10
+#, fuzzy
+#| msgid "Session record"
+msgid "Session Report"
+msgstr "Bản ghi phiên họp"
+
+#: terminal/reporting.py:24 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful sessions"
+msgstr "Tài khoản thành công"
+
+#: terminal/reporting.py:25 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Kill session"
+msgid "Failed sessions"
+msgstr "chấm dứt phiên"
+
+#: terminal/reporting.py:26
+#, fuzzy
+#| msgid "Online sessions"
+msgid "Finished sessions"
+msgstr "Phiên trực tuyến"
+
+#: terminal/reporting.py:27 terminal/reporting.py:103
+#, fuzzy
+#| msgid "View session"
+msgid "Active sessions"
+msgstr "Xem cuộc hội thoại"
+
+#: terminal/reporting.py:29
+#, fuzzy
+#| msgid "Session replay"
+msgid "Sessions with replay"
+msgstr "ghi lại phiên"
+
+#: terminal/reporting.py:30
+#, fuzzy
+#| msgid "Session join record"
+msgid "Sessions with commands"
+msgstr "Ghi chép tham gia cuộc trò chuyện"
+
+#: terminal/reporting.py:33
+#, fuzzy
+#| msgid "Can view web terminal"
+msgid "Unique terminals"
+msgstr "Web terminal"
+
+#: terminal/reporting.py:107
+#, fuzzy
+#| msgid "Protocols is required"
+msgid "Protocol Distribution"
+msgstr "Giao thức là bắt buộc"
+
+#: terminal/reporting.py:112
+#, fuzzy
+#| msgid "Login redirection"
+msgid "Login From Distribution"
+msgstr "Kích hoạt thông báo chuyển hướng đăng nhập"
+
+#: terminal/reporting.py:127
+#, fuzzy
+#| msgid "Terminal"
+msgid "Terminal Top 10"
+msgstr "Thiết bị đầu cuối"
 
 #: terminal/serializers/applet.py:29 terminal/serializers/virtualapp.py:16
 msgid "Icon"
@@ -10234,7 +10737,8 @@ msgstr ""
 "tác này hoặc phát hiện bất kỳ điều gì bất thường, hãy ngay lập tức thực hiện "
 "các biện pháp cần thiết."
 
-#: tickets/api/ticket.py:88 tickets/models/ticket/general.py:289
+#: tickets/api/ticket.py:90 tickets/models/ticket/general.py:289
+#: tickets/reporting.py:90
 msgid "Applicant"
 msgstr "Người nộp đơn."
 
@@ -10431,7 +10935,7 @@ msgstr "Tiêu đề"
 msgid "TicketFlow"
 msgstr "Quy trình phiếu công việc"
 
-#: tickets/models/ticket/general.py:296
+#: tickets/models/ticket/general.py:296 tickets/reporting.py:95
 msgid "Approval step"
 msgstr "Bước phê duyệt"
 
@@ -10500,6 +11004,86 @@ msgstr "Công việc của bạn đã được xử lý, người xử lý - {}"
 #, python-brace-format
 msgid "Ticket has processed - {} ({})"
 msgstr "Công việc của bạn đã được xử lý, người xử lý - {} ({})"
+
+#: tickets/reporting.py:10
+#, fuzzy
+#| msgid "Ticket step"
+msgid "Ticket Report"
+msgstr "Bước của phiếu công việc"
+
+#: tickets/reporting.py:17
+#, fuzzy
+#| msgid "Super ticket"
+msgid "Open tickets"
+msgstr "Phiếu công việc đặc biệt"
+
+#: tickets/reporting.py:18
+#, fuzzy
+#| msgid "From ticket"
+msgid "Closed tickets"
+msgstr "Từ phiếu công việc"
+
+#: tickets/reporting.py:19
+#, fuzzy
+#| msgid "Pending"
+msgid "Pending tickets"
+msgstr "Đang chờ xử lý"
+
+#: tickets/reporting.py:20
+#, fuzzy
+#| msgid "App Tickets"
+msgid "Approved tickets"
+msgstr "Tickets"
+
+#: tickets/reporting.py:21
+msgid "Rejected tickets"
+msgstr ""
+
+#: tickets/reporting.py:22
+#, fuzzy
+#| msgid "Applicant"
+msgid "Unique applicants"
+msgstr "Người nộp đơn."
+
+#: tickets/reporting.py:25
+#, fuzzy
+#| msgid "All organizations"
+msgid "Unique organizations"
+msgstr "Tất cả tổ chức"
+
+#: tickets/reporting.py:69
+#, fuzzy
+#| msgid "Ticket information"
+msgid "Ticket Type Distribution"
+msgstr "Thông tin công việc"
+
+#: tickets/reporting.py:74
+#, fuzzy
+#| msgid "Ticket information"
+msgid "Ticket State Distribution"
+msgstr "Thông tin công việc"
+
+#: tickets/reporting.py:79
+msgid "Ticket Status Distribution"
+msgstr ""
+
+#: tickets/reporting.py:84
+#, fuzzy
+#| msgid "Organization role"
+msgid "Organization Top 10"
+msgstr "Vai trò tổ chức"
+
+#: tickets/reporting.py:89
+#, fuzzy
+#| msgid "Applicant"
+msgid "Applicant Top 10"
+msgstr "Người nộp đơn."
+
+#: tickets/reporting.py:94
+#, fuzzy
+#| msgid "Approval without login"
+msgid "Approval Step Distribution"
+msgstr "Phê duyệt không cần đăng nhập"
 
 #: tickets/serializers/flow.py:45
 msgid "The current organization type already exists"
@@ -10601,17 +11185,17 @@ msgstr "Nó không thể tự xóa. Vui lòng vô hiệu hóa nó."
 msgid "Cannot delete the admin user. Please disable it instead."
 msgstr "Không thể xóa người dùng quản lý. Vui lòng vô hiệu hóa họ."
 
-#: users/api/user.py:164
+#: users/api/user.py:170
 msgid "Can not invite self"
 msgstr "Không thể mời chính mình"
 
-#: users/api/user.py:170
+#: users/api/user.py:176
 #, python-brace-format
 msgid ""
 "This user {} is already a member of the organization. No need to invite again"
 msgstr ""
 
-#: users/api/user.py:225
+#: users/api/user.py:237
 msgid "Could not reset self otp, use profile reset instead"
 msgstr ""
 "Không thể đặt lại xác thực đa yếu tố (MFA) trên trang này, vui lòng đến "
@@ -11157,7 +11741,7 @@ msgstr ""
 msgid "name not unique"
 msgstr "Tên bị trùng"
 
-#: users/signal_handlers.py:42
+#: users/signal_handlers.py:43
 msgid ""
 "The administrator has enabled \"Only allow existing users to log in\", \n"
 "            and the current user is not in the user list. Please contact the "
@@ -11167,11 +11751,11 @@ msgstr ""
 "dùng hiện tại không có trong danh sách người dùng, xin vui lòng liên hệ với "
 "quản trị viên."
 
-#: users/signal_handlers.py:190
+#: users/signal_handlers.py:204
 msgid "Clean up expired user sessions"
 msgstr "Xóa các phiên người dùng đã hết hạn"
 
-#: users/signal_handlers.py:192
+#: users/signal_handlers.py:206
 msgid ""
 "After logging in via the web, a user session record is created. At 2 a.m. "
 "every day, \n"
@@ -11401,23 +11985,23 @@ msgstr "Mật khẩu của bạn phải đáp ứng:"
 msgid "Password strength"
 msgstr "Độ mạnh mật khẩu:"
 
-#: users/templates/users/reset_password.html:52
+#: users/templates/users/reset_password.html:51
 msgid "Very weak"
 msgstr "Rất yếu"
 
-#: users/templates/users/reset_password.html:53
+#: users/templates/users/reset_password.html:52
 msgid "Weak"
 msgstr "Yếu"
 
-#: users/templates/users/reset_password.html:55
+#: users/templates/users/reset_password.html:54
 msgid "Medium"
 msgstr "Bình thường"
 
-#: users/templates/users/reset_password.html:56
+#: users/templates/users/reset_password.html:55
 msgid "Strong"
 msgstr "Mạnh"
 
-#: users/templates/users/reset_password.html:57
+#: users/templates/users/reset_password.html:56
 msgid "Very strong"
 msgstr "Rất mạnh"
 
@@ -12426,13 +13010,72 @@ msgstr "Đăng xuất"
 msgid "Footer content"
 msgstr "Nội dung chân trang"
 
-#: xpack/plugins/interface/serializers/interface.py:38
+#: xpack/plugins/interface/serializers/interface.py:39
+#, fuzzy
+#| msgid "Account name"
+msgid "Product name"
+msgstr "Tên tài khoản"
+
+#: xpack/plugins/interface/serializers/interface.py:40
 msgid "Wide logo on top"
 msgstr "Logo rộng trên cùng"
 
-#: xpack/plugins/interface/serializers/interface.py:39
+#: xpack/plugins/interface/serializers/interface.py:41
 msgid "Small logo without text"
 msgstr "Logo vuông nhỏ"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:9
+msgid "Secure, Efficient, Controlled"
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:11
+msgid ""
+"One-stop operations management platform to make server access secure, "
+"controllable, and operations efficient and transparent.<br />Easily manage "
+"user permissions and audit operation records to protect critical assets."
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:17
+#, fuzzy
+#| msgid "Support URL"
+msgid "Support"
+msgstr "Hỗ trợ liên kết"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:18
+#, fuzzy
+#| msgid "Please enter your account username"
+msgid "Please enter your username"
+msgstr "Vui lòng nhập tên người dùng tài khoản của bạn"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:19
+#, fuzzy
+#| msgid "Please change your password"
+msgid "Please enter your password"
+msgstr "Vui lòng thay đổi mật khẩu"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:22
+msgid "I have read and agree to the"
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:23
+#, fuzzy
+#| msgid "User agent"
+msgid "User Agreement"
+msgstr "Trình duyệt người dùng"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:24
+msgid "Privacy Policy"
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:29
+#, fuzzy
+#| msgid "More login options"
+msgid "More login methods"
+msgstr "Or"
+
+#: xpack/plugins/jdmc/meta.py:9
+msgid "JDMC"
+msgstr ""
 
 #: xpack/plugins/license/api.py:57
 msgid "License import successfully"
@@ -12441,6 +13084,11 @@ msgstr "Nhập giấy phép thành công"
 #: xpack/plugins/license/api.py:58
 msgid "Invalid license"
 msgstr "Giấy phép không hợp lệ"
+
+#, fuzzy
+#~| msgid "Periodic run"
+#~ msgid "Periodic report"
+#~ msgstr "Periodic"
 
 #~ msgid "Closed"
 #~ msgstr "Đóng"

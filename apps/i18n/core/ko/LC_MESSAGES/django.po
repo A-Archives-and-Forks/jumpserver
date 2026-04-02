@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-30 16:22+0800\n"
+"POT-Creation-Date: 2026-04-02 14:52+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr "계정 생성을 위한 유효한 자산을 찾을 수 없습니다."
 msgid "Account not found"
 msgstr "계정을 찾을 수 없습니다"
 
-#: accounts/api/automations/base.py:88 tickets/api/ticket.py:132
+#: accounts/api/automations/base.py:88 tickets/api/ticket.py:134
 #, python-brace-format
 msgid "The parameter 'action' must be [{}]"
 msgstr "파라미터 'action'은 [{}] 여야 합니다"
@@ -148,7 +148,7 @@ msgstr ">>> 테스트 게이트웨이 계정 연결성 작업 시작"
 #: authentication/confirm/password.py:27 authentication/const.py:13
 #: authentication/forms.py:28
 #: authentication/templates/authentication/login.html:368
-#: authentication/templates/authentication/login.html:414 reports/mixins.py:237
+#: authentication/templates/authentication/login.html:414 reports/mixins.py:194
 #: settings/models.py:216 settings/serializers/auth/ldap.py:27
 #: settings/serializers/auth/ldap.py:53 settings/serializers/auth/ldap_ha.py:35
 #: settings/serializers/msg.py:37 settings/serializers/terminal.py:32
@@ -471,11 +471,12 @@ msgstr ""
 #: acls/notifications.py:70 acls/serializers/base.py:110
 #: assets/models/asset/common.py:102 assets/models/asset/common.py:427
 #: assets/models/cmd_filter.py:36 audits/models.py:59 audits/models.py:336
-#: audits/serializers.py:245 authentication/models/connection_token.py:42
+#: audits/reporting.py:109 audits/serializers.py:245
+#: authentication/models/connection_token.py:42
 #: perms/models/asset_permission.py:69 terminal/backends/command/models.py:17
 #: terminal/models/session/session.py:29 terminal/notifications.py:167
-#: terminal/notifications.py:304 terminal/serializers/command.py:17
-#: terminal/serializers/session.py:38
+#: terminal/notifications.py:304 terminal/reporting.py:123
+#: terminal/serializers/command.py:17 terminal/serializers/session.py:38
 #: terminal/templates/terminal/_msg_command_warning.html:10
 #: terminal/templates/terminal/_msg_session_sharing.html:4
 #: tickets/models/ticket/apply_asset.py:17 xpack/plugins/cloud/models.py:296
@@ -538,11 +539,11 @@ msgstr "비밀번호 변경 상태"
 #: acls/serializers/base.py:111
 #: acls/templates/acls/asset_login_reminder.html:11
 #: assets/serializers/gateway.py:33 audits/models.py:60 audits/models.py:337
-#: audits/serializers.py:246 authentication/api/connection_token.py:475
-#: ops/models/base.py:18 perms/models/asset_permission.py:75
-#: settings/serializers/msg.py:33 terminal/backends/command/models.py:18
-#: terminal/models/session/session.py:31 terminal/notifications.py:306
-#: terminal/serializers/command.py:72
+#: audits/reporting.py:114 audits/serializers.py:246
+#: authentication/api/connection_token.py:475 ops/models/base.py:18
+#: perms/models/asset_permission.py:75 settings/serializers/msg.py:33
+#: terminal/backends/command/models.py:18 terminal/models/session/session.py:31
+#: terminal/notifications.py:306 terminal/serializers/command.py:72
 #: terminal/templates/terminal/_msg_command_warning.html:11
 #: terminal/templates/terminal/_msg_session_sharing.html:8
 #: tickets/models/ticket/command_confirm.py:14
@@ -604,14 +605,15 @@ msgstr "계정 활동"
 #: ops/models/variable.py:9 ops/serializers/job.py:20
 #: ops/serializers/variable.py:20 orgs/models.py:82
 #: perms/models/asset_permission.py:61 rbac/models/role.py:29
-#: rbac/serializers/role.py:28 settings/models.py:38 settings/models.py:187
-#: settings/serializers/msg.py:90 settings/serializers/terminal.py:9
-#: terminal/models/applet/applet.py:34 terminal/models/component/endpoint.py:13
+#: rbac/serializers/role.py:28 reports/models.py:15 settings/models.py:38
+#: settings/models.py:187 settings/serializers/msg.py:90
+#: settings/serializers/terminal.py:9 terminal/models/applet/applet.py:34
+#: terminal/models/component/endpoint.py:13
 #: terminal/models/component/endpoint.py:107
 #: terminal/models/component/storage.py:26 terminal/models/component/task.py:13
 #: terminal/models/component/terminal.py:86
 #: terminal/models/virtualapp/provider.py:10
-#: terminal/models/virtualapp/virtualapp.py:19 tickets/api/ticket.py:87
+#: terminal/models/virtualapp/virtualapp.py:19 tickets/api/ticket.py:89
 #: users/forms/profile.py:33 users/models/group.py:16
 #: users/models/preference.py:11 users/models/user/__init__.py:67
 #: users/notifications.py:21 users/notifications.py:106
@@ -623,6 +625,7 @@ msgid "Name"
 msgstr "이름"
 
 #: accounts/models/application.py:18 settings/serializers/auth/oauth2.py:25
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:16
 msgid "Logo"
 msgstr "아이콘"
 
@@ -784,13 +787,13 @@ msgstr "종료 날짜"
 #: accounts/serializers/automations/check_account.py:39
 #: assets/models/automations/base.py:137
 #: assets/serializers/automations/base.py:47 audits/models.py:224
-#: audits/serializers.py:77 ops/models/base.py:49 ops/models/job.py:233
-#: terminal/models/applet/applet.py:382 terminal/models/applet/host.py:140
-#: terminal/models/component/status.py:30
+#: audits/reporting.py:607 audits/serializers.py:77 ops/models/base.py:49
+#: ops/models/job.py:233 terminal/models/applet/applet.py:382
+#: terminal/models/applet/host.py:140 terminal/models/component/status.py:30
 #: terminal/models/virtualapp/virtualapp.py:99
 #: terminal/serializers/applet.py:19 terminal/serializers/applet_host.py:163
 #: terminal/serializers/virtualapp.py:36 tickets/models/ticket/general.py:284
-#: tickets/serializers/super_ticket.py:13
+#: tickets/reporting.py:80 tickets/serializers/super_ticket.py:13
 #: tickets/serializers/ticket/ticket.py:20 xpack/plugins/cloud/models.py:233
 #: xpack/plugins/cloud/models.py:300
 msgid "Status"
@@ -895,8 +898,8 @@ msgstr "중복 비밀번호"
 #: accounts/templates/accounts/push_account_report.html:79
 #: accounts/templates/accounts/push_account_report.html:119
 #: acls/serializers/base.py:19 acls/serializers/base.py:50 audits/models.py:204
-#: authentication/forms.py:21 authentication/forms.py:23
-#: authentication/models/temp_token.py:10
+#: audits/reporting.py:241 authentication/forms.py:21
+#: authentication/forms.py:23 authentication/models/temp_token.py:10
 #: authentication/serializers/connect_token_secret.py:43
 #: authentication/serializers/connect_token_secret.py:53
 #: authentication/templates/authentication/_msg_different_city.html:9
@@ -1051,7 +1054,7 @@ msgstr "권한 계정"
 
 #: accounts/models/base.py:69 assets/models/automations/base.py:28
 #: assets/models/cmd_filter.py:39 assets/models/label.py:22
-#: authentication/serializers/connect_token_secret.py:129 reports/models.py:33
+#: authentication/serializers/connect_token_secret.py:129 reports/models.py:18
 #: terminal/models/applet/applet.py:41
 #: terminal/models/virtualapp/virtualapp.py:23 users/serializers/user.py:257
 msgid "Is active"
@@ -1231,17 +1234,17 @@ msgstr "카테고리"
 #: assets/models/automations/base.py:146 assets/models/cmd_filter.py:74
 #: assets/models/platform.py:96 assets/serializers/asset/common.py:146
 #: assets/serializers/platform.py:161 assets/serializers/platform.py:173
-#: audits/serializers.py:76 audits/serializers.py:211
-#: authentication/models/connection_token.py:67
+#: audits/reporting.py:221 audits/reporting.py:492 audits/serializers.py:76
+#: audits/serializers.py:211 authentication/models/connection_token.py:67
 #: authentication/serializers/connect_token_secret.py:138 ops/models/job.py:155
-#: perms/serializers/user_permission.py:28 reports/models.py:31
+#: perms/serializers/user_permission.py:28 reports/models.py:16
 #: terminal/models/applet/applet.py:40 terminal/models/component/storage.py:58
 #: terminal/models/component/storage.py:152 terminal/serializers/applet.py:30
 #: terminal/serializers/session.py:33 terminal/serializers/storage.py:281
 #: terminal/serializers/storage.py:294 tickets/models/comment.py:26
 #: tickets/models/flow.py:43 tickets/models/ticket/apply_application.py:16
-#: tickets/models/ticket/general.py:276 tickets/serializers/flow.py:25
-#: tickets/serializers/ticket/ticket.py:19
+#: tickets/models/ticket/general.py:276 tickets/reporting.py:70
+#: tickets/serializers/flow.py:25 tickets/serializers/ticket/ticket.py:19
 msgid "Type"
 msgstr "유형"
 
@@ -1266,7 +1269,8 @@ msgstr "이미 관리된 비밀번호"
 
 #: accounts/serializers/account/account.py:296 ops/models/celery.py:84
 #: tickets/models/comment.py:13 tickets/models/ticket/general.py:49
-#: tickets/models/ticket/general.py:280 tickets/serializers/super_ticket.py:14
+#: tickets/models/ticket/general.py:280 tickets/reporting.py:75
+#: tickets/serializers/super_ticket.py:14
 #: tickets/serializers/ticket/ticket.py:21
 msgid "State"
 msgstr "상태"
@@ -1311,6 +1315,7 @@ msgstr "ID"
 #: acls/templates/acls/user_login_reminder.html:8
 #: assets/models/cmd_filter.py:24 assets/models/label.py:16 audits/models.py:55
 #: audits/models.py:97 audits/models.py:179 audits/models.py:296
+#: audits/reporting.py:104 audits/reporting.py:317 audits/reporting.py:414
 #: audits/serializers.py:212 authentication/models/connection_token.py:38
 #: authentication/models/ssh_key.py:22 authentication/models/sso_token.py:16
 #: authentication/notifications.py:16 authentication/notifications.py:55
@@ -1320,7 +1325,7 @@ msgstr "ID"
 #: rbac/serializers/rolebinding.py:17 terminal/backends/command/models.py:16
 #: terminal/models/session/session.py:27 terminal/models/session/sharing.py:34
 #: terminal/notifications.py:168 terminal/notifications.py:235
-#: terminal/serializers/command.py:16
+#: terminal/reporting.py:118 terminal/serializers/command.py:16
 #: terminal/templates/terminal/_msg_command_warning.html:9
 #: terminal/templates/terminal/_msg_session_sharing.html:6
 #: tickets/models/comment.py:21 tickets/serializers/flow.py:15
@@ -1329,9 +1334,12 @@ msgstr "ID"
 msgid "User"
 msgstr "사용자"
 
-#: accounts/serializers/account/account.py:507
+#: accounts/serializers/account/account.py:507 audits/reporting.py:94
+#: audits/reporting.py:216 audits/reporting.py:312 audits/reporting.py:399
+#: audits/reporting.py:487 audits/reporting.py:602
 #: authentication/templates/authentication/_access_key_modal.html:33
 #: terminal/notifications.py:173 terminal/notifications.py:240
+#: terminal/reporting.py:103 tickets/reporting.py:65
 msgid "Date"
 msgstr "날짜"
 
@@ -1803,7 +1811,7 @@ msgstr "실패한 계정"
 
 #: accounts/templates/accounts/check_account_report.html:33
 #: terminal/const.py:47 terminal/const.py:86
-#: users/templates/users/reset_password.html:54
+#: users/templates/users/reset_password.html:53
 msgid "Normal"
 msgstr "정상"
 
@@ -1887,7 +1895,8 @@ msgid "1-100, the lower the value will be match first"
 msgstr "우선순위 선택 범위는 1-100 (숫자가 작을수록 더 우선)"
 
 #: acls/models/base.py:41 acls/serializers/base.py:57
-#: assets/models/cmd_filter.py:81 audits/models.py:99 audits/serializers.py:107
+#: assets/models/cmd_filter.py:81 audits/models.py:99 audits/reporting.py:404
+#: audits/serializers.py:107
 #: authentication/serializers/connect_token_secret.py:131
 #: authentication/templates/authentication/_access_key_modal.html:34
 #: perms/serializers/permission.py:64 perms/serializers/permission.py:86
@@ -2063,6 +2072,7 @@ msgstr "ACL 이름"
 #: acls/templates/acls/asset_login_reminder.html:13
 #: acls/templates/acls/user_login_reminder.html:11
 #: terminal/models/session/session.py:34 terminal/models/session/sharing.py:116
+#: terminal/reporting.py:113
 #: terminal/templates/terminal/_msg_command_warning.html:16
 msgid "Login from"
 msgstr "로그인 출처"
@@ -2101,7 +2111,7 @@ msgstr ""
 msgid "IP/Host"
 msgstr "IP/호스트"
 
-#: acls/serializers/base.py:99 reports/models.py:36
+#: acls/serializers/base.py:99
 msgid "Recipients"
 msgstr "수신자"
 
@@ -2134,7 +2144,7 @@ msgstr ""
 "* 모든 것을 포함함을 나타냅니다. 예: 192.168.10.1, 192.168.1.0/24, "
 "10.1.1.1-10.1.1.20, 2001:db8:2de::e13, 2001:db8:1a:1110::/64"
 
-#: acls/serializers/rules/rules.py:48
+#: acls/serializers/rules/rules.py:48 audits/reporting.py:246
 #: authentication/templates/authentication/_msg_oauth_bind.html:12
 #: authentication/templates/authentication/_msg_rest_password_success.html:8
 #: authentication/templates/authentication/_msg_rest_public_key_success.html:8
@@ -2785,7 +2795,7 @@ msgid "Trigger mode"
 msgstr "트리거 모드"
 
 #: assets/models/automations/base.py:157 audits/serializers.py:38
-#: ops/models/base.py:52 ops/models/job.py:238
+#: common/drf/reporting.py:24 ops/models/base.py:52 ops/models/job.py:238
 #: xpack/plugins/cloud/manager.py:113
 msgid "Summary"
 msgstr "요약"
@@ -3539,7 +3549,7 @@ msgstr "심볼릭 링크 생성"
 
 #: audits/const.py:18 audits/const.py:29
 #: ops/templates/ops/celery_task_log.html:86
-#: terminal/api/session/session.py:157
+#: terminal/api/session/session.py:159
 msgid "Download"
 msgstr "다운로드"
 
@@ -3547,7 +3557,7 @@ msgstr "다운로드"
 msgid "Rename dir"
 msgstr "디렉터리 매핑"
 
-#: audits/const.py:23 rbac/tree.py:308 terminal/api/session/session.py:288
+#: audits/const.py:23 rbac/tree.py:308 terminal/api/session/session.py:290
 #: terminal/templates/terminal/_msg_session_sharing.html:10
 #: xpack/plugins/cloud/manager.py:104
 msgid "View"
@@ -3570,6 +3580,7 @@ msgstr "연결"
 #: audits/const.py:31 authentication/templates/authentication/login.html:334
 #: authentication/templates/authentication/login.html:407
 #: templates/_header_bar.html:101
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:28
 msgid "Login"
 msgstr "로그인"
 
@@ -3588,8 +3599,8 @@ msgstr "종료"
 
 #: audits/const.py:47 settings/serializers/terminal.py:6
 #: terminal/models/applet/host.py:26 terminal/models/component/terminal.py:185
-#: terminal/models/virtualapp/provider.py:14 terminal/serializers/session.py:65
-#: terminal/serializers/session.py:181
+#: terminal/models/virtualapp/provider.py:14 terminal/reporting.py:128
+#: terminal/serializers/session.py:65 terminal/serializers/session.py:181
 msgid "Terminal"
 msgstr "터미널"
 
@@ -3624,17 +3635,19 @@ msgid "Job audit log"
 msgstr "작업 감사 로그"
 
 #: audits/models.py:57 audits/models.py:107 audits/models.py:182
-#: audits/models.py:333 authentication/models/connection_token.py:62
+#: audits/models.py:333 audits/reporting.py:119 audits/reporting.py:327
+#: audits/reporting.py:424 authentication/models/connection_token.py:62
 #: terminal/models/session/session.py:36 terminal/models/session/sharing.py:111
 #: terminal/notifications.py:171 terminal/notifications.py:238
+#: terminal/reporting.py:133
 msgid "Remote addr"
 msgstr "원격 주소"
 
-#: audits/models.py:62 audits/serializers.py:61
+#: audits/models.py:62 audits/reporting.py:99 audits/serializers.py:61
 msgid "Operate"
 msgstr "액션"
 
-#: audits/models.py:64
+#: audits/models.py:64 audits/reporting.py:124
 msgid "Filename"
 msgstr "파일 이름"
 
@@ -3655,12 +3668,12 @@ msgstr "세션"
 msgid "File transfer log"
 msgstr "파일 전송"
 
-#: audits/models.py:101 audits/serializers.py:109
+#: audits/models.py:101 audits/reporting.py:409 audits/serializers.py:109
 msgid "Resource Type"
 msgstr "자원 유형"
 
 #: audits/models.py:102 audits/models.py:105 audits/models.py:151
-#: audits/serializers.py:108 labels/serializers.py:46
+#: audits/reporting.py:419 audits/serializers.py:108 labels/serializers.py:46
 msgid "Resource"
 msgstr "자원"
 
@@ -3682,7 +3695,7 @@ msgstr "상세 ID"
 msgid "Activity log"
 msgstr "활동 로그"
 
-#: audits/models.py:180
+#: audits/models.py:180 audits/reporting.py:322
 msgid "Change by"
 msgstr "수정자"
 
@@ -3699,15 +3712,16 @@ msgstr "로그인 방식"
 msgid "Login IP"
 msgstr "로그인 IP"
 
-#: audits/models.py:216 audits/serializers.py:75
+#: audits/models.py:216 audits/reporting.py:231 audits/serializers.py:75
 #: authentication/templates/authentication/_mfa_confirm_modal.html:14
 #: users/forms/profile.py:64 users/models/user/__init__.py:92
 #: users/serializers/profile.py:63
 msgid "MFA"
 msgstr "MFA"
 
-#: audits/models.py:219 terminal/models/session/sharing.py:123
-#: xpack/plugins/cloud/manager.py:196 xpack/plugins/cloud/models.py:237
+#: audits/models.py:219 audits/reporting.py:251
+#: terminal/models/session/sharing.py:123 xpack/plugins/cloud/manager.py:196
+#: xpack/plugins/cloud/models.py:237
 msgid "Reason"
 msgstr "원인"
 
@@ -3717,7 +3731,7 @@ msgstr "원인"
 msgid "Login Date"
 msgstr "로그인 날짜"
 
-#: audits/models.py:228 audits/models.py:293
+#: audits/models.py:228 audits/models.py:293 audits/reporting.py:226
 msgid "Auth backend"
 msgstr "인증 토큰"
 
@@ -3749,12 +3763,410 @@ msgstr "애플리케이션"
 msgid "Application ID"
 msgstr "애플리케이션 ID"
 
-#: audits/serializers.py:33 ops/models/adhoc.py:24 ops/models/base.py:16
-#: ops/models/base.py:53 ops/models/celery.py:87 ops/models/job.py:156
-#: ops/models/job.py:239 ops/models/playbook.py:30 ops/models/variable.py:17
+#: audits/reporting.py:11
+#, fuzzy
+#| msgid "File transfer log"
+msgid "File Transfer Report"
+msgstr "파일 전송"
+
+#: audits/reporting.py:21 audits/reporting.py:146 audits/reporting.py:264
+#: audits/reporting.py:345 audits/reporting.py:442 audits/reporting.py:529
+#: terminal/reporting.py:23 tickets/reporting.py:16
+#, fuzzy
+#| msgid "Command record"
+msgid "Total records"
+msgstr "명령 기록"
+
+#: audits/reporting.py:22 audits/reporting.py:94
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful transfers"
+msgstr "성공한 계정"
+
+#: audits/reporting.py:23 audits/reporting.py:94
+#, fuzzy
+#| msgid "File transfer log"
+msgid "Failed transfers"
+msgstr "파일 전송"
+
+#: audits/reporting.py:24 audits/reporting.py:94 audits/reporting.py:149
+#: audits/reporting.py:216 audits/reporting.py:533 audits/reporting.py:602
+#: terminal/reporting.py:28 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Success prompt"
+msgid "Success rate"
+msgstr "성공 메시지"
+
+#: audits/reporting.py:25
+#, fuzzy
+#| msgid "Download"
+msgid "Downloadable files"
+msgstr "다운로드"
+
+#: audits/reporting.py:26 audits/reporting.py:150 audits/reporting.py:265
+#: terminal/reporting.py:31
+#, fuzzy
+#| msgid "Check unused users"
+msgid "Unique users"
+msgstr "사용하지 않는 사용자 확인"
+
+#: audits/reporting.py:27 terminal/reporting.py:32
+#, fuzzy
+#| msgid "Can view user assets"
+msgid "Unique assets"
+msgstr "사용자가 권한 부여한 자산 보기 가능"
+
+#: audits/reporting.py:28
+#, fuzzy
+#| msgid "Failed accounts"
+msgid "Unique accounts"
+msgstr "실패한 계정"
+
+#: audits/reporting.py:29 audits/reporting.py:151 audits/reporting.py:267
+#: audits/reporting.py:349
+msgid "Unique IPs"
+msgstr ""
+
+#: audits/reporting.py:91 audits/reporting.py:213 audits/reporting.py:309
+#: audits/reporting.py:396 audits/reporting.py:484 audits/reporting.py:599
+#: terminal/reporting.py:100 tickets/reporting.py:62
+#, fuzzy
+#| msgid "Review"
+msgid "Overview"
+msgstr "승인"
+
+#: audits/reporting.py:93 audits/reporting.py:215 audits/reporting.py:311
+#: audits/reporting.py:398 audits/reporting.py:601 terminal/reporting.py:102
+msgid "Daily Trend"
+msgstr ""
+
+#: audits/reporting.py:94 audits/reporting.py:216 audits/reporting.py:602
+#: terminal/reporting.py:103
+msgid "Total"
+msgstr ""
+
+#: audits/reporting.py:98
+msgid "Transfer Type Distribution"
+msgstr ""
+
+#: audits/reporting.py:99 audits/reporting.py:104 audits/reporting.py:109
+#: audits/reporting.py:114 audits/reporting.py:119 audits/reporting.py:124
+#: audits/reporting.py:129 audits/reporting.py:221 audits/reporting.py:226
+#: audits/reporting.py:231 audits/reporting.py:236 audits/reporting.py:241
+#: audits/reporting.py:246 audits/reporting.py:251 audits/reporting.py:312
+#: audits/reporting.py:317 audits/reporting.py:322 audits/reporting.py:327
+#: audits/reporting.py:332 audits/reporting.py:399 audits/reporting.py:404
+#: audits/reporting.py:409 audits/reporting.py:414 audits/reporting.py:419
+#: audits/reporting.py:424 audits/reporting.py:429 audits/reporting.py:487
+#: audits/reporting.py:492 audits/reporting.py:497 audits/reporting.py:502
+#: audits/reporting.py:507 audits/reporting.py:607 audits/reporting.py:612
+#: audits/reporting.py:617 audits/reporting.py:622 terminal/reporting.py:108
+#: terminal/reporting.py:113 terminal/reporting.py:118
+#: terminal/reporting.py:123 terminal/reporting.py:128
+#: terminal/reporting.py:133 terminal/reporting.py:138 tickets/reporting.py:65
+#: tickets/reporting.py:70 tickets/reporting.py:75 tickets/reporting.py:80
+#: tickets/reporting.py:85 tickets/reporting.py:90 tickets/reporting.py:95
+#, fuzzy
+#| msgid "CPU count"
+msgid "Count"
+msgstr "CPU 수량"
+
+#: audits/reporting.py:103 audits/reporting.py:316 terminal/reporting.py:117
+#, fuzzy
+#| msgid "User group"
+msgid "User Top 10"
+msgstr "사용자 그룹"
+
+#: audits/reporting.py:108 terminal/reporting.py:122
+#, fuzzy
+#| msgid "Asset type"
+msgid "Asset Top 10"
+msgstr "자산 유형"
+
+#: audits/reporting.py:113
+#, fuzzy
+#| msgid "Account ID"
+msgid "Account Top 10"
+msgstr "계정"
+
+#: audits/reporting.py:118 audits/reporting.py:326 audits/reporting.py:423
+#: terminal/reporting.py:132
+msgid "IP Top 10"
+msgstr ""
+
+#: audits/reporting.py:123
+#, fuzzy
+#| msgid "Filename"
+msgid "Filename Top 10"
+msgstr "파일 이름"
+
+#: audits/reporting.py:128
+msgid "Transfer Time Distribution"
+msgstr ""
+
+#: audits/reporting.py:129 audits/reporting.py:236 audits/reporting.py:332
+#: audits/reporting.py:429
+#, fuzzy
+#| msgid "Time using"
+msgid "Time range"
+msgstr "소요 시간"
+
+#: audits/reporting.py:136
+#, fuzzy
+#| msgid "User login report"
+msgid "User Login Report"
+msgstr "사용자 로그인 보고서"
+
+#: audits/reporting.py:147 audits/reporting.py:216
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful logins"
+msgstr "성공한 계정"
+
+#: audits/reporting.py:148 audits/reporting.py:216
+#, fuzzy
+#| msgid "Failed accounts"
+msgid "Failed logins"
+msgstr "실패한 계정"
+
+#: audits/reporting.py:152
+msgid "Unique cities"
+msgstr ""
+
+#: audits/reporting.py:153
+#, fuzzy
+#| msgid "Auth backend"
+msgid "Unique auth backends"
+msgstr "인증 토큰"
+
+#: audits/reporting.py:220
+#, fuzzy
+#| msgid "Login redirection"
+msgid "Login Type Distribution"
+msgstr "로그인 리디렉션 알림 활성화"
+
+#: audits/reporting.py:225
+#, fuzzy
+#| msgid "Auth backend display"
+msgid "Auth Backend Distribution"
+msgstr "인증 방식"
+
+#: audits/reporting.py:230
+#, fuzzy
+#| msgid "MFA setting"
+msgid "MFA Distribution"
+msgstr "MFA 다중 인증 설정"
+
+#: audits/reporting.py:235
+#, fuzzy
+#| msgid "Login redirection"
+msgid "Login Time Distribution"
+msgstr "로그인 리디렉션 알림 활성화"
+
+#: audits/reporting.py:240
+msgid "Failed User Top 10"
+msgstr ""
+
+#: audits/reporting.py:245
+msgid "Failed IP Top 10"
+msgstr ""
+
+#: audits/reporting.py:250
+msgid "Failed Reason Top 10"
+msgstr ""
+
+#: audits/reporting.py:258
+#, fuzzy
+#| msgid "Password change log"
+msgid "Password Change Report"
+msgstr "비밀번호 변경 로그"
+
+#: audits/reporting.py:266 audits/reporting.py:346
+msgid "Unique operators"
+msgstr ""
+
+#: audits/reporting.py:321 audits/reporting.py:413
+#, fuzzy
+#| msgid "Operate log"
+msgid "Operator Top 10"
+msgstr "작업 로그"
+
+#: audits/reporting.py:331
+#, fuzzy
+#| msgid "Can change sms setting"
+msgid "Change Time Distribution"
+msgstr "SMS 설정"
+
+#: audits/reporting.py:339
+#, fuzzy
+#| msgid "Operate log"
+msgid "Operate Log Report"
+msgstr "작업 로그"
+
+#: audits/reporting.py:347
+#, fuzzy
+#| msgid "Resource type"
+msgid "Unique resource types"
+msgstr "자원 유형"
+
+#: audits/reporting.py:348
+#, fuzzy
+#| msgid "Tagged resource"
+msgid "Unique resources"
+msgstr "연관된 자원"
+
+#: audits/reporting.py:403
+#, fuzzy
+#| msgid "Action permission"
+msgid "Action Distribution"
+msgstr "작업 권한"
+
+#: audits/reporting.py:408
+#, fuzzy
+#| msgid "Resource Type"
+msgid "Resource Type Distribution"
+msgstr "자원 유형"
+
+#: audits/reporting.py:418
+#, fuzzy
+#| msgid "Resource Type"
+msgid "Resource Top 10"
+msgstr "자원 유형"
+
+#: audits/reporting.py:428
+msgid "Operate Time Distribution"
+msgstr ""
+
+#: audits/reporting.py:436
+#, fuzzy
+#| msgid "Job audit log"
+msgid "Job Audit Report"
+msgstr "작업 감사 로그"
+
+#: audits/reporting.py:443
+#, fuzzy
+#| msgid "Periodic run"
+msgid "Periodic jobs"
+msgstr "주기 실행"
+
+#: audits/reporting.py:444
+msgid "One-time jobs"
+msgstr ""
+
+#: audits/reporting.py:445
+#, fuzzy
+#| msgid "Adhoc"
+msgid "Adhoc jobs"
+msgstr "명령"
+
+#: audits/reporting.py:446
+#, fuzzy
+#| msgid "Playbook"
+msgid "Playbook jobs"
+msgstr "플레이북"
+
+#: audits/reporting.py:447 audits/reporting.py:534
+msgid "Unique creators"
+msgstr ""
+
+#: audits/reporting.py:467 ops/const.py:40 ops/models/job.py:154
+#: ops/models/playbook.py:89 ops/models/variable.py:23
+msgid "Playbook"
+msgstr "플레이북"
+
+#: audits/reporting.py:486 tickets/reporting.py:64
+#, fuzzy
+#| msgid "Create Type"
+msgid "Created Trend"
+msgstr "생성 유형"
+
+#: audits/reporting.py:491 audits/reporting.py:611
+msgid "Job Type Distribution"
+msgstr ""
+
+#: audits/reporting.py:496
+msgid "Module Distribution"
+msgstr ""
+
+#: audits/reporting.py:497 ops/models/adhoc.py:22 ops/models/job.py:151
+msgid "Module"
+msgstr "모듈"
+
+#: audits/reporting.py:501 audits/reporting.py:616
+#, fuzzy
+#| msgid "Creator"
+msgid "Creator Top 10"
+msgstr "생성자"
+
+#: audits/reporting.py:502 audits/reporting.py:617 audits/serializers.py:33
+#: ops/models/adhoc.py:24 ops/models/base.py:16 ops/models/base.py:53
+#: ops/models/celery.py:87 ops/models/job.py:156 ops/models/job.py:239
+#: ops/models/playbook.py:30 ops/models/variable.py:17
 #: terminal/models/session/sharing.py:25
 msgid "Creator"
 msgstr "생성자"
+
+#: audits/reporting.py:506
+#, fuzzy
+#| msgid "Run as policy"
+msgid "Run as Policy Distribution"
+msgstr "사용자 정책"
+
+#: audits/reporting.py:507 ops/models/job.py:164
+msgid "Run as policy"
+msgstr "사용자 정책"
+
+#: audits/reporting.py:514
+#, fuzzy
+#| msgid "Report"
+msgid "Job Log Report"
+msgstr "보고서"
+
+#: audits/reporting.py:530 audits/reporting.py:602
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful jobs"
+msgstr "성공한 계정"
+
+#: audits/reporting.py:531 audits/reporting.py:602
+#, fuzzy
+#| msgid "Finished"
+msgid "Finished jobs"
+msgstr "종료"
+
+#: audits/reporting.py:532 audits/reporting.py:602
+#, fuzzy
+#| msgid "Is finished"
+msgid "Unfinished jobs"
+msgstr "완료 여부"
+
+#: audits/reporting.py:537
+msgid "Unique task ids"
+msgstr ""
+
+#: audits/reporting.py:538
+#, fuzzy
+#| msgid "Secret rotation"
+msgid "Average duration"
+msgstr "비밀번호 회전"
+
+#: audits/reporting.py:606
+msgid "Status Distribution"
+msgstr ""
+
+#: audits/reporting.py:612 ops/serializers/job.py:91
+msgid "Job type"
+msgstr "작업 유형"
+
+#: audits/reporting.py:621 terminal/reporting.py:137
+msgid "Duration Distribution"
+msgstr ""
+
+#: audits/reporting.py:622 terminal/reporting.py:138
+#, fuzzy
+#| msgid "Duration"
+msgid "Duration range"
+msgstr "소요 시간"
 
 #: audits/serializers.py:39 ops/serializers/celery.py:33
 msgid "Execution cycle"
@@ -3864,11 +4276,11 @@ msgstr "임시 비밀번호"
 msgid "Passkey"
 msgstr "Passkey"
 
-#: audits/tasks.py:129
+#: audits/tasks.py:128
 msgid "Clean audits session task log"
 msgstr "자산 감사 세션 작업 로그 정리"
 
-#: audits/tasks.py:131
+#: audits/tasks.py:130
 msgid ""
 "Since the system generates login logs, operation logs, file upload logs, "
 "activity \n"
@@ -3883,11 +4295,11 @@ msgstr ""
 "업 목록 - 정기 청소 구성에 따라 설정된 시간에 따라 매일 오전 2시에 청소를 수"
 "행합니다."
 
-#: audits/tasks.py:152
+#: audits/tasks.py:150
 msgid "Upload FTP file to external storage"
 msgstr "외부 저장소에 FTP 파일을 업로드합니다."
 
-#: audits/tasks.py:154
+#: audits/tasks.py:152
 msgid ""
 "If SERVER_REPLAY_STORAGE is configured, files uploaded through file "
 "management will be \n"
@@ -3959,7 +4371,7 @@ msgstr "얼굴 인식 실패"
 msgid "Current user not support mfa type: {}"
 msgstr "현재 사용자는 MFA 유형을 지원하지 않습니다: {}"
 
-#: authentication/api/password.py:34 terminal/api/session/session.py:345
+#: authentication/api/password.py:34 terminal/api/session/session.py:347
 #: users/views/profile/reset.py:63
 #, python-brace-format
 msgid "User does not exist: {}"
@@ -3982,6 +4394,7 @@ msgstr "사용자가 {}에서 옵니다. 해당 시스템에서 비밀번호를 
 #: users/templates/users/forgot_password.html:42
 #: users/templates/users/forgot_password_previewing.html:13
 #: users/templates/users/forgot_password_previewing.html:14
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:25
 msgid "Forgot password"
 msgstr "비밀번호를 잊으셨나요"
 
@@ -4254,16 +4667,16 @@ msgstr "귀하의 비밀번호가 유효하지 않습니다"
 msgid "Please wait for %s seconds before retry"
 msgstr "%s 초 후에 다시 시도해주세요."
 
-#: authentication/errors/redirect.py:85 authentication/mixins.py:433
+#: authentication/errors/redirect.py:85 authentication/mixins.py:436
 #: users/views/profile/reset.py:224
 msgid "Your password is too simple, please change it for security"
 msgstr "비밀번호가 너무 간단합니다. 보안을 위해 수정해주세요."
 
-#: authentication/errors/redirect.py:93 authentication/mixins.py:442
+#: authentication/errors/redirect.py:93 authentication/mixins.py:445
 msgid "You should to change your password before login"
 msgstr "로그인 완료 전에 비밀번호를 먼저 수정해주세요."
 
-#: authentication/errors/redirect.py:101 authentication/mixins.py:451
+#: authentication/errors/redirect.py:101 authentication/mixins.py:454
 msgid "Your password has expired, please reset before logging in"
 msgstr "당신의 비밀번호가 만료되었습니다. 수정 후 로그인해주세요."
 
@@ -4392,11 +4805,11 @@ msgstr ""
 "관리자가 '존재하는 사용자만 로그인 허용'을 활성화했습니다. 현재 사용자가 사용"
 "자 목록에 없습니다. 관리자에게 문의하십시오."
 
-#: authentication/mixins.py:181
+#: authentication/mixins.py:184
 msgid "User is invalid"
 msgstr "무효한 사용자"
 
-#: authentication/mixins.py:198
+#: authentication/mixins.py:201
 #, python-brace-format
 msgid ""
 " The administrator has enabled 'Only allow login from user source'. \n"
@@ -4406,12 +4819,12 @@ msgstr ""
 "관리자가 '사용자 출처에서만 로그인 허용'을 활성화했습니다. 현재 사용자 출처"
 "는 {}입니다. 관리자에게 문의하십시오."
 
-#: authentication/mixins.py:379
+#: authentication/mixins.py:382
 #, python-brace-format
 msgid "The MFA type ({}) is not enabled"
 msgstr "해당 MFA ({}) 방식이 활성화되지 않았습니다."
 
-#: authentication/mixins.py:421
+#: authentication/mixins.py:424
 msgid "Please change your password"
 msgstr "비밀번호를 수정하십시오."
 
@@ -4428,8 +4841,9 @@ msgstr "비밀번호 사용자 정의"
 #: authentication/serializers/connect_token_secret.py:126
 #: terminal/models/applet/applet.py:43
 #: terminal/models/virtualapp/virtualapp.py:24 terminal/notifications.py:170
-#: terminal/notifications.py:237 terminal/serializers/session.py:31
-#: terminal/serializers/session.py:58 terminal/serializers/storage.py:71
+#: terminal/notifications.py:237 terminal/reporting.py:108
+#: terminal/serializers/session.py:31 terminal/serializers/session.py:58
+#: terminal/serializers/storage.py:71
 #: terminal/templates/terminal/_msg_command_warning.html:19
 msgid "Protocol"
 msgstr "프로토콜"
@@ -4549,7 +4963,7 @@ msgstr "OAuth ID"
 msgid "binding reminder"
 msgstr "바인딩 알림"
 
-#: authentication/serializers/connect_token_secret.py:128 reports/models.py:32
+#: authentication/serializers/connect_token_secret.py:128 reports/models.py:17
 msgid "Is builtin"
 msgstr "내장된"
 
@@ -4866,12 +5280,14 @@ msgstr ""
 "신 문서를 확인해 주세요."
 
 #: authentication/templates/authentication/login.html:313
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:5
 msgid ""
 "Configuration file has problems and cannot be logged in. Please contact the "
 "administrator or view latest docs"
 msgstr "당신이 관리자라면, 설정 항목을 업데이트하여 문제를 해결할 수 있습니다."
 
 #: authentication/templates/authentication/login.html:314
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:6
 msgid "If you are administrator, you can update the config resolve it, set"
 msgstr "다른 통로로 로그인"
 
@@ -5350,6 +5766,59 @@ msgstr "선택 항목만 내보내기"
 #: common/drf/renders/mixins.py:50
 msgid "Export filtered"
 msgstr "검색 내보내기"
+
+#: common/drf/reporting.py:23
+#, fuzzy
+#| msgid "Database"
+msgid "Data"
+msgstr "데이터베이스"
+
+#: common/drf/reporting.py:25 common/drf/reporting.py:180 rbac/tree.py:71
+#: reports/models.py:24
+msgid "Report"
+msgstr "보고서"
+
+#: common/drf/reporting.py:37
+#, fuzzy
+#| msgid "Date left"
+msgid "Date from"
+msgstr "종료 날짜"
+
+#: common/drf/reporting.py:38
+#, fuzzy
+#| msgid "Date left"
+msgid "Date to"
+msgstr "종료 날짜"
+
+#: common/drf/reporting.py:116
+#, fuzzy
+#| msgid "All assets"
+msgid "All data"
+msgstr "모든 자산"
+
+#: common/drf/reporting.py:181
+#, fuzzy
+#| msgid "General"
+msgid "Generated at"
+msgstr "일반"
+
+#: common/drf/reporting.py:182
+#, fuzzy
+#| msgid "Export"
+msgid "Exported rows"
+msgstr "내보내기"
+
+#: common/drf/reporting.py:183 reports/models.py:20
+#, fuzzy
+#| msgid "Filter"
+msgid "Filters"
+msgstr "필터"
+
+#: common/drf/reporting.py:210
+#, fuzzy
+#| msgid "Summary"
+msgid "Report Summary"
+msgstr "요약"
 
 #: common/exceptions.py:15 xpack/plugins/cloud/ws.py:36
 #, python-format
@@ -5862,11 +6331,6 @@ msgstr "VCS"
 msgid "Adhoc"
 msgstr "명령"
 
-#: ops/const.py:40 ops/models/job.py:154 ops/models/playbook.py:89
-#: ops/models/variable.py:23
-msgid "Playbook"
-msgstr "플레이북"
-
 #: ops/const.py:41
 msgid "Upload File"
 msgstr "업로드"
@@ -5995,10 +6459,6 @@ msgstr "주기 또는 정기 설정이 필요합니다"
 msgid "Pattern"
 msgstr "모드"
 
-#: ops/models/adhoc.py:22 ops/models/job.py:151
-msgid "Module"
-msgstr "모듈"
-
 #: ops/models/adhoc.py:23 ops/models/celery.py:82 ops/models/job.py:149
 #: terminal/models/component/task.py:14
 msgid "Args"
@@ -6064,10 +6524,6 @@ msgstr "주기적인 실행 변수"
 #: ops/models/job.py:162
 msgid "Run as"
 msgstr "운영 사용자"
-
-#: ops/models/job.py:164
-msgid "Run as policy"
-msgstr "사용자 정책"
 
 #: ops/models/job.py:221 ops/models/variable.py:28 ops/serializers/job.py:111
 #: terminal/notifications.py:196
@@ -6161,10 +6617,6 @@ msgstr "다음 실행 시간"
 #: ops/serializers/job.py:17
 msgid "Run on save"
 msgstr "저장 후 실행"
-
-#: ops/serializers/job.py:91
-msgid "Job type"
-msgstr "작업 유형"
 
 #: ops/serializers/job.py:94 terminal/serializers/session.py:66
 msgid "Is finished"
@@ -6357,7 +6809,8 @@ msgstr "저장하기 전에 조직을 선택해 주십시오"
 #: terminal/notifications.py:309
 #: terminal/templates/terminal/_msg_command_warning.html:27
 #: terminal/templates/terminal/_msg_session_sharing.html:14
-#: tickets/models/ticket/general.py:303 tickets/serializers/ticket/ticket.py:62
+#: tickets/models/ticket/general.py:303 tickets/reporting.py:85
+#: tickets/serializers/ticket/ticket.py:62
 msgid "Organization"
 msgstr "조직"
 
@@ -6849,7 +7302,7 @@ msgstr "클라우드 동기화"
 msgid "Gather account"
 msgstr "계정 탐색"
 
-#: rbac/tree.py:56 reports/mixins.py:456
+#: rbac/tree.py:56 reports/mixins.py:374
 msgid "Account change secret"
 msgstr "계정 비밀번호 변경"
 
@@ -6888,10 +7341,6 @@ msgstr "라이센스"
 msgid "Job audit"
 msgstr "작업 감사"
 
-#: rbac/tree.py:71 reports/models.py:40
-msgid "Report"
-msgstr "보고서"
-
 #: rbac/tree.py:195
 msgid "App organizations"
 msgstr "조직 관리"
@@ -6925,23 +7374,11 @@ msgstr "접근 토큰 보기"
 msgid "Revoke access token"
 msgstr "접근 토큰 철회"
 
-#: reports/models.py:34
+#: reports/models.py:19
 #, fuzzy
 #| msgid "Change by"
 msgid "Range days"
 msgstr "수정자"
-
-#: reports/models.py:35
-#, fuzzy
-#| msgid "Filter"
-msgid "Filters"
-msgstr "필터"
-
-#: reports/models.py:145
-#, fuzzy
-#| msgid "Periodic run"
-msgid "Periodic report"
-msgstr "주기 실행"
 
 #: reports/views.py:20
 msgid "User login report"
@@ -7799,47 +8236,47 @@ msgstr "지원 URL은 상단 내비게이션 바의 주소를 의미하며, 도�
 msgid "Organization name already exists"
 msgstr "조직 이름이 이미 존재합니다"
 
-#: settings/serializers/cleaning.py:11
+#: settings/serializers/cleaning.py:10
 msgid "Period clean"
 msgstr "정기 청소"
 
-#: settings/serializers/cleaning.py:15
+#: settings/serializers/cleaning.py:14
 msgid "Login log retention days"
 msgstr "로그인 로그 보존 일수"
 
-#: settings/serializers/cleaning.py:19
+#: settings/serializers/cleaning.py:18
 msgid "Task log retention days"
 msgstr "작업 로그 보존 일수"
 
-#: settings/serializers/cleaning.py:23
+#: settings/serializers/cleaning.py:22
 msgid "Operate log retention days"
 msgstr "액션 로그 보존 일수"
 
-#: settings/serializers/cleaning.py:27
+#: settings/serializers/cleaning.py:26
 msgid "Password change log retention days"
 msgstr "사용자 비밀번호 변경 로그 보존 일수"
 
-#: settings/serializers/cleaning.py:31
+#: settings/serializers/cleaning.py:30
 msgid "FTP log retention days"
 msgstr "업로드 다운로드 기록 보존 일수"
 
-#: settings/serializers/cleaning.py:35
+#: settings/serializers/cleaning.py:34
 msgid "Cloud sync task history retention days"
 msgstr "클라우드 동기화 기록 보존 일수"
 
-#: settings/serializers/cleaning.py:39
+#: settings/serializers/cleaning.py:38
 msgid "job execution retention days"
 msgstr "작업 실행 이력 보존 일수"
 
-#: settings/serializers/cleaning.py:43
+#: settings/serializers/cleaning.py:42
 msgid "Activity log retention days"
 msgstr "활동 기록 보존 일수"
 
-#: settings/serializers/cleaning.py:46
+#: settings/serializers/cleaning.py:45
 msgid "Session log retention days"
 msgstr "세션 로그 보존 일수"
 
-#: settings/serializers/cleaning.py:48
+#: settings/serializers/cleaning.py:47
 msgid ""
 "Session, record, command will be delete if more than duration, only in "
 "database, OSS will not be affected."
@@ -7847,11 +8284,11 @@ msgstr ""
 "세션, 녹화 및 명령 기록은 해당 시간을 초과하면 삭제됩니다 (데이터베이스 저장"
 "소에 영향, OSS 등은 영향을 받지 않습니다)"
 
-#: settings/serializers/cleaning.py:53
+#: settings/serializers/cleaning.py:52
 msgid "Change secret and push record retention days"
 msgstr "계정 비밀번호 변경 푸시 기록 보존 일수"
 
-#: settings/serializers/cleaning.py:57
+#: settings/serializers/cleaning.py:56
 #, fuzzy
 #| msgid "Change secret and push record retention days"
 msgid "Audit report send record retention days"
@@ -8892,17 +9329,17 @@ msgstr ""
 "귀하의 SSH 키가 설정되어 있지 않거나 만료되었습니다. <a "
 "href=\"%(user_pubkey_update)s\"> 링크 </a>를 클릭하여 업데이트해 주십시오."
 
-#: templates/_mfa_login_field.html:29
+#: templates/_mfa_login_field.html:30
 #: users/templates/users/forgot_password.html:101
 msgid "Send"
 msgstr "전송"
 
-#: templates/_mfa_login_field.html:108
+#: templates/_mfa_login_field.html:109
 #: users/templates/users/forgot_password.html:176
 msgid "Wait: "
 msgstr "대기 중:"
 
-#: templates/_mfa_login_field.html:118
+#: templates/_mfa_login_field.html:119
 #: users/templates/users/forgot_password.html:192
 msgid "The verification code has been sent"
 msgstr "인증 코드가 전송되었습니다."
@@ -9017,26 +9454,26 @@ msgstr "테스트 실패: 구성을 확인하십시오."
 msgid "Have online sessions"
 msgstr "온라인 세션이 있습니다."
 
-#: terminal/api/session/session.py:51
+#: terminal/api/session/session.py:52
 #, python-format
 msgid "User %s %s session %s replay"
 msgstr "사용자 %s %s는 세션 %s의 녹화를 했습니다."
 
-#: terminal/api/session/session.py:161 terminal/api/session/session.py:295
+#: terminal/api/session/session.py:163 terminal/api/session/session.py:297
 #: terminal/models/session/replay.py:12
 msgid "Session replay"
 msgstr "세션 녹화"
 
-#: terminal/api/session/session.py:337
+#: terminal/api/session/session.py:339
 #, python-brace-format
 msgid "Session does not exist: {}"
 msgstr "회화가 존재하지 않습니다: {}"
 
-#: terminal/api/session/session.py:340
+#: terminal/api/session/session.py:342
 msgid "Session is finished or the protocol not supported"
 msgstr "회화가 이미 완료되었거나 프로토콜이 지원되지 않습니다."
 
-#: terminal/api/session/session.py:353 tickets/api/ticket.py:140
+#: terminal/api/session/session.py:355 tickets/api/ticket.py:142
 msgid "User does not have permission"
 msgstr "사용자에게 권한이 없습니다."
 
@@ -9536,6 +9973,72 @@ msgstr "테스트 실패: 계정이 유효하지 않음"
 #: terminal/templates/terminal/_msg_check_command_replay_storage_connectivity.html:4
 msgid "Invalid storage"
 msgstr "유효하지 않은 저장소"
+
+#: terminal/reporting.py:10
+#, fuzzy
+#| msgid "Session record"
+msgid "Session Report"
+msgstr "세션 기록"
+
+#: terminal/reporting.py:24 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful sessions"
+msgstr "성공한 계정"
+
+#: terminal/reporting.py:25 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Kill session"
+msgid "Failed sessions"
+msgstr "세션 종료"
+
+#: terminal/reporting.py:26
+#, fuzzy
+#| msgid "Online sessions"
+msgid "Finished sessions"
+msgstr "온라인 세션"
+
+#: terminal/reporting.py:27 terminal/reporting.py:103
+#, fuzzy
+#| msgid "View session"
+msgid "Active sessions"
+msgstr "대화 보기"
+
+#: terminal/reporting.py:29
+#, fuzzy
+#| msgid "Session replay"
+msgid "Sessions with replay"
+msgstr "세션 녹화"
+
+#: terminal/reporting.py:30
+#, fuzzy
+#| msgid "Session join record"
+msgid "Sessions with commands"
+msgstr "세션 가입 기록"
+
+#: terminal/reporting.py:33
+#, fuzzy
+#| msgid "Can view web terminal"
+msgid "Unique terminals"
+msgstr "웹 터미널"
+
+#: terminal/reporting.py:107
+#, fuzzy
+#| msgid "Protocols is required"
+msgid "Protocol Distribution"
+msgstr "프로토콜은 필수입니다."
+
+#: terminal/reporting.py:112
+#, fuzzy
+#| msgid "Login redirection"
+msgid "Login From Distribution"
+msgstr "로그인 리디렉션 알림 활성화"
+
+#: terminal/reporting.py:127
+#, fuzzy
+#| msgid "Terminal"
+msgid "Terminal Top 10"
+msgstr "터미널"
 
 #: terminal/serializers/applet.py:29 terminal/serializers/virtualapp.py:16
 msgid "Icon"
@@ -10109,7 +10612,8 @@ msgstr ""
 "시오. 이 작업이 승인되지 않았거나 이상 징후가 발견되면 즉시 필요한 조치를 취"
 "하십시오."
 
-#: tickets/api/ticket.py:88 tickets/models/ticket/general.py:289
+#: tickets/api/ticket.py:90 tickets/models/ticket/general.py:289
+#: tickets/reporting.py:90
 msgid "Applicant"
 msgstr "신청인"
 
@@ -10305,7 +10809,7 @@ msgstr "제목"
 msgid "TicketFlow"
 msgstr "작업 프로세스"
 
-#: tickets/models/ticket/general.py:296
+#: tickets/models/ticket/general.py:296 tickets/reporting.py:95
 msgid "Approval step"
 msgstr "승인 단계"
 
@@ -10374,6 +10878,86 @@ msgstr "귀하의 작업 티켓이 처리되었습니다, 처리자 - {}"
 #, python-brace-format
 msgid "Ticket has processed - {} ({})"
 msgstr "귀하의 작업 티켓이 처리되었습니다, 처리자 - {} ({})"
+
+#: tickets/reporting.py:10
+#, fuzzy
+#| msgid "Ticket step"
+msgid "Ticket Report"
+msgstr "작업 단계"
+
+#: tickets/reporting.py:17
+#, fuzzy
+#| msgid "Super ticket"
+msgid "Open tickets"
+msgstr "슈퍼 작업 티켓"
+
+#: tickets/reporting.py:18
+#, fuzzy
+#| msgid "From ticket"
+msgid "Closed tickets"
+msgstr "워크오더에서 가져옴"
+
+#: tickets/reporting.py:19
+#, fuzzy
+#| msgid "Pending"
+msgid "Pending tickets"
+msgstr "대기 중"
+
+#: tickets/reporting.py:20
+#, fuzzy
+#| msgid "App Tickets"
+msgid "Approved tickets"
+msgstr "작업 관리"
+
+#: tickets/reporting.py:21
+msgid "Rejected tickets"
+msgstr ""
+
+#: tickets/reporting.py:22
+#, fuzzy
+#| msgid "Applicant"
+msgid "Unique applicants"
+msgstr "신청인"
+
+#: tickets/reporting.py:25
+#, fuzzy
+#| msgid "All organizations"
+msgid "Unique organizations"
+msgstr "모든 조직"
+
+#: tickets/reporting.py:69
+#, fuzzy
+#| msgid "Ticket information"
+msgid "Ticket Type Distribution"
+msgstr "작업 정보"
+
+#: tickets/reporting.py:74
+#, fuzzy
+#| msgid "Ticket information"
+msgid "Ticket State Distribution"
+msgstr "작업 정보"
+
+#: tickets/reporting.py:79
+msgid "Ticket Status Distribution"
+msgstr ""
+
+#: tickets/reporting.py:84
+#, fuzzy
+#| msgid "Organization role"
+msgid "Organization Top 10"
+msgstr "조직 역할"
+
+#: tickets/reporting.py:89
+#, fuzzy
+#| msgid "Applicant"
+msgid "Applicant Top 10"
+msgstr "신청인"
+
+#: tickets/reporting.py:94
+#, fuzzy
+#| msgid "Approval without login"
+msgid "Approval Step Distribution"
+msgstr "로그인 불필요 승인"
 
 #: tickets/serializers/flow.py:45
 msgid "The current organization type already exists"
@@ -10490,17 +11074,17 @@ msgstr "본인은 삭제할 수 없습니다. 대신 기능을 비활성화해 �
 msgid "Cannot delete the admin user. Please disable it instead."
 msgstr "관리자 사용자는 삭제할 수 없습니다. 이 사용자를 비활성화해 주세요"
 
-#: users/api/user.py:164
+#: users/api/user.py:170
 msgid "Can not invite self"
 msgstr "자신을 초대할 수 없습니다"
 
-#: users/api/user.py:170
+#: users/api/user.py:176
 #, python-brace-format
 msgid ""
 "This user {} is already a member of the organization. No need to invite again"
 msgstr ""
 
-#: users/api/user.py:225
+#: users/api/user.py:237
 msgid "Could not reset self otp, use profile reset instead"
 msgstr ""
 "해당 페이지에서 MFA 다중 인증을 재설정할 수 없습니다, 개인 정보 페이지로 가셔"
@@ -11040,7 +11624,7 @@ msgstr ""
 msgid "name not unique"
 msgstr "이름 중복"
 
-#: users/signal_handlers.py:42
+#: users/signal_handlers.py:43
 msgid ""
 "The administrator has enabled \"Only allow existing users to log in\", \n"
 "            and the current user is not in the user list. Please contact the "
@@ -11049,11 +11633,11 @@ msgstr ""
 "관리자가 '기존 사용자만 로그인 허용'을 활성화했으며, 현재 사용자가 사용자 목"
 "록에 없습니다. 관리자에게 연락해 주십시오."
 
-#: users/signal_handlers.py:190
+#: users/signal_handlers.py:204
 msgid "Clean up expired user sessions"
 msgstr "만료된 사용자 세션 정리"
 
-#: users/signal_handlers.py:192
+#: users/signal_handlers.py:206
 msgid ""
 "After logging in via the web, a user session record is created. At 2 a.m. "
 "every day, \n"
@@ -11255,23 +11839,23 @@ msgstr "귀하의 비밀번호는 다음 조건을 충족해야 합니다:"
 msgid "Password strength"
 msgstr "비밀번호 강도："
 
-#: users/templates/users/reset_password.html:52
+#: users/templates/users/reset_password.html:51
 msgid "Very weak"
 msgstr "매우 약함"
 
-#: users/templates/users/reset_password.html:53
+#: users/templates/users/reset_password.html:52
 msgid "Weak"
 msgstr "약함"
 
-#: users/templates/users/reset_password.html:55
+#: users/templates/users/reset_password.html:54
 msgid "Medium"
 msgstr "보통"
 
-#: users/templates/users/reset_password.html:56
+#: users/templates/users/reset_password.html:55
 msgid "Strong"
 msgstr "강함"
 
-#: users/templates/users/reset_password.html:57
+#: users/templates/users/reset_password.html:56
 msgid "Very strong"
 msgstr "매우 강함"
 
@@ -12247,13 +12831,72 @@ msgstr "로그아웃"
 msgid "Footer content"
 msgstr "바닥글 내용"
 
-#: xpack/plugins/interface/serializers/interface.py:38
+#: xpack/plugins/interface/serializers/interface.py:39
+#, fuzzy
+#| msgid "Account name"
+msgid "Product name"
+msgstr "계정 이름"
+
+#: xpack/plugins/interface/serializers/interface.py:40
 msgid "Wide logo on top"
 msgstr "상단 넓은 로고"
 
-#: xpack/plugins/interface/serializers/interface.py:39
+#: xpack/plugins/interface/serializers/interface.py:41
 msgid "Small logo without text"
 msgstr "사각형 작은 로고"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:9
+msgid "Secure, Efficient, Controlled"
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:11
+msgid ""
+"One-stop operations management platform to make server access secure, "
+"controllable, and operations efficient and transparent.<br />Easily manage "
+"user permissions and audit operation records to protect critical assets."
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:17
+#, fuzzy
+#| msgid "Support URL"
+msgid "Support"
+msgstr "지원 링크"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:18
+#, fuzzy
+#| msgid "Please enter your account username"
+msgid "Please enter your username"
+msgstr "귀하의 계정 사용자 이름을 입력하십시오"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:19
+#, fuzzy
+#| msgid "Please change your password"
+msgid "Please enter your password"
+msgstr "비밀번호를 수정하십시오."
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:22
+msgid "I have read and agree to the"
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:23
+#, fuzzy
+#| msgid "User agent"
+msgid "User Agreement"
+msgstr "사용자 에이전트"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:24
+msgid "Privacy Policy"
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:29
+#, fuzzy
+#| msgid "More login options"
+msgid "More login methods"
+msgstr "기타 로그인 방법"
+
+#: xpack/plugins/jdmc/meta.py:9
+msgid "JDMC"
+msgstr ""
 
 #: xpack/plugins/license/api.py:57
 msgid "License import successfully"
@@ -12262,6 +12905,11 @@ msgstr "라이센스 가져오기 성공"
 #: xpack/plugins/license/api.py:58
 msgid "Invalid license"
 msgstr "라이센스가 유효하지 않습니다."
+
+#, fuzzy
+#~| msgid "Periodic run"
+#~ msgid "Periodic report"
+#~ msgstr "주기 실행"
 
 #~ msgid "Closed"
 #~ msgstr "닫기"

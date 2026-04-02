@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-30 16:22+0800\n"
+"POT-Creation-Date: 2026-04-02 14:52+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr "No se encontraron activos válidos disponibles para crear una cuenta."
 msgid "Account not found"
 msgstr "Cuenta no encontrada"
 
-#: accounts/api/automations/base.py:88 tickets/api/ticket.py:132
+#: accounts/api/automations/base.py:88 tickets/api/ticket.py:134
 #, python-brace-format
 msgid "The parameter 'action' must be [{}]"
 msgstr "El parámetro 'action' debe ser [{}]"
@@ -174,7 +174,7 @@ msgstr ""
 #: authentication/confirm/password.py:27 authentication/const.py:13
 #: authentication/forms.py:28
 #: authentication/templates/authentication/login.html:368
-#: authentication/templates/authentication/login.html:414 reports/mixins.py:237
+#: authentication/templates/authentication/login.html:414 reports/mixins.py:194
 #: settings/models.py:216 settings/serializers/auth/ldap.py:27
 #: settings/serializers/auth/ldap.py:53 settings/serializers/auth/ldap_ha.py:35
 #: settings/serializers/msg.py:37 settings/serializers/terminal.py:32
@@ -498,11 +498,12 @@ msgstr ""
 #: acls/notifications.py:70 acls/serializers/base.py:110
 #: assets/models/asset/common.py:102 assets/models/asset/common.py:427
 #: assets/models/cmd_filter.py:36 audits/models.py:59 audits/models.py:336
-#: audits/serializers.py:245 authentication/models/connection_token.py:42
+#: audits/reporting.py:109 audits/serializers.py:245
+#: authentication/models/connection_token.py:42
 #: perms/models/asset_permission.py:69 terminal/backends/command/models.py:17
 #: terminal/models/session/session.py:29 terminal/notifications.py:167
-#: terminal/notifications.py:304 terminal/serializers/command.py:17
-#: terminal/serializers/session.py:38
+#: terminal/notifications.py:304 terminal/reporting.py:123
+#: terminal/serializers/command.py:17 terminal/serializers/session.py:38
 #: terminal/templates/terminal/_msg_command_warning.html:10
 #: terminal/templates/terminal/_msg_session_sharing.html:4
 #: tickets/models/ticket/apply_asset.py:17 xpack/plugins/cloud/models.py:296
@@ -565,11 +566,11 @@ msgstr "Estado de cambio de contraseña"
 #: acls/serializers/base.py:111
 #: acls/templates/acls/asset_login_reminder.html:11
 #: assets/serializers/gateway.py:33 audits/models.py:60 audits/models.py:337
-#: audits/serializers.py:246 authentication/api/connection_token.py:475
-#: ops/models/base.py:18 perms/models/asset_permission.py:75
-#: settings/serializers/msg.py:33 terminal/backends/command/models.py:18
-#: terminal/models/session/session.py:31 terminal/notifications.py:306
-#: terminal/serializers/command.py:72
+#: audits/reporting.py:114 audits/serializers.py:246
+#: authentication/api/connection_token.py:475 ops/models/base.py:18
+#: perms/models/asset_permission.py:75 settings/serializers/msg.py:33
+#: terminal/backends/command/models.py:18 terminal/models/session/session.py:31
+#: terminal/notifications.py:306 terminal/serializers/command.py:72
 #: terminal/templates/terminal/_msg_command_warning.html:11
 #: terminal/templates/terminal/_msg_session_sharing.html:8
 #: tickets/models/ticket/command_confirm.py:14
@@ -631,14 +632,15 @@ msgstr "Actividad de cuenta"
 #: ops/models/variable.py:9 ops/serializers/job.py:20
 #: ops/serializers/variable.py:20 orgs/models.py:82
 #: perms/models/asset_permission.py:61 rbac/models/role.py:29
-#: rbac/serializers/role.py:28 settings/models.py:38 settings/models.py:187
-#: settings/serializers/msg.py:90 settings/serializers/terminal.py:9
-#: terminal/models/applet/applet.py:34 terminal/models/component/endpoint.py:13
+#: rbac/serializers/role.py:28 reports/models.py:15 settings/models.py:38
+#: settings/models.py:187 settings/serializers/msg.py:90
+#: settings/serializers/terminal.py:9 terminal/models/applet/applet.py:34
+#: terminal/models/component/endpoint.py:13
 #: terminal/models/component/endpoint.py:107
 #: terminal/models/component/storage.py:26 terminal/models/component/task.py:13
 #: terminal/models/component/terminal.py:86
 #: terminal/models/virtualapp/provider.py:10
-#: terminal/models/virtualapp/virtualapp.py:19 tickets/api/ticket.py:87
+#: terminal/models/virtualapp/virtualapp.py:19 tickets/api/ticket.py:89
 #: users/forms/profile.py:33 users/models/group.py:16
 #: users/models/preference.py:11 users/models/user/__init__.py:67
 #: users/notifications.py:21 users/notifications.py:106
@@ -650,6 +652,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #: accounts/models/application.py:18 settings/serializers/auth/oauth2.py:25
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:16
 msgid "Logo"
 msgstr "Ícono"
 
@@ -811,13 +814,13 @@ msgstr "Fecha de finalización"
 #: accounts/serializers/automations/check_account.py:39
 #: assets/models/automations/base.py:137
 #: assets/serializers/automations/base.py:47 audits/models.py:224
-#: audits/serializers.py:77 ops/models/base.py:49 ops/models/job.py:233
-#: terminal/models/applet/applet.py:382 terminal/models/applet/host.py:140
-#: terminal/models/component/status.py:30
+#: audits/reporting.py:607 audits/serializers.py:77 ops/models/base.py:49
+#: ops/models/job.py:233 terminal/models/applet/applet.py:382
+#: terminal/models/applet/host.py:140 terminal/models/component/status.py:30
 #: terminal/models/virtualapp/virtualapp.py:99
 #: terminal/serializers/applet.py:19 terminal/serializers/applet_host.py:163
 #: terminal/serializers/virtualapp.py:36 tickets/models/ticket/general.py:284
-#: tickets/serializers/super_ticket.py:13
+#: tickets/reporting.py:80 tickets/serializers/super_ticket.py:13
 #: tickets/serializers/ticket/ticket.py:20 xpack/plugins/cloud/models.py:233
 #: xpack/plugins/cloud/models.py:300
 msgid "Status"
@@ -922,8 +925,8 @@ msgstr "Contraseña duplicada"
 #: accounts/templates/accounts/push_account_report.html:79
 #: accounts/templates/accounts/push_account_report.html:119
 #: acls/serializers/base.py:19 acls/serializers/base.py:50 audits/models.py:204
-#: authentication/forms.py:21 authentication/forms.py:23
-#: authentication/models/temp_token.py:10
+#: audits/reporting.py:241 authentication/forms.py:21
+#: authentication/forms.py:23 authentication/models/temp_token.py:10
 #: authentication/serializers/connect_token_secret.py:43
 #: authentication/serializers/connect_token_secret.py:53
 #: authentication/templates/authentication/_msg_different_city.html:9
@@ -1081,7 +1084,7 @@ msgstr "cuenta privilegiada."
 
 #: accounts/models/base.py:69 assets/models/automations/base.py:28
 #: assets/models/cmd_filter.py:39 assets/models/label.py:22
-#: authentication/serializers/connect_token_secret.py:129 reports/models.py:33
+#: authentication/serializers/connect_token_secret.py:129 reports/models.py:18
 #: terminal/models/applet/applet.py:41
 #: terminal/models/virtualapp/virtualapp.py:23 users/serializers/user.py:257
 msgid "Is active"
@@ -1269,17 +1272,17 @@ msgstr "Categoría"
 #: assets/models/automations/base.py:146 assets/models/cmd_filter.py:74
 #: assets/models/platform.py:96 assets/serializers/asset/common.py:146
 #: assets/serializers/platform.py:161 assets/serializers/platform.py:173
-#: audits/serializers.py:76 audits/serializers.py:211
-#: authentication/models/connection_token.py:67
+#: audits/reporting.py:221 audits/reporting.py:492 audits/serializers.py:76
+#: audits/serializers.py:211 authentication/models/connection_token.py:67
 #: authentication/serializers/connect_token_secret.py:138 ops/models/job.py:155
-#: perms/serializers/user_permission.py:28 reports/models.py:31
+#: perms/serializers/user_permission.py:28 reports/models.py:16
 #: terminal/models/applet/applet.py:40 terminal/models/component/storage.py:58
 #: terminal/models/component/storage.py:152 terminal/serializers/applet.py:30
 #: terminal/serializers/session.py:33 terminal/serializers/storage.py:281
 #: terminal/serializers/storage.py:294 tickets/models/comment.py:26
 #: tickets/models/flow.py:43 tickets/models/ticket/apply_application.py:16
-#: tickets/models/ticket/general.py:276 tickets/serializers/flow.py:25
-#: tickets/serializers/ticket/ticket.py:19
+#: tickets/models/ticket/general.py:276 tickets/reporting.py:70
+#: tickets/serializers/flow.py:25 tickets/serializers/ticket/ticket.py:19
 msgid "Type"
 msgstr "Tipo"
 
@@ -1304,7 +1307,8 @@ msgstr "Contraseña ya gestionada"
 
 #: accounts/serializers/account/account.py:296 ops/models/celery.py:84
 #: tickets/models/comment.py:13 tickets/models/ticket/general.py:49
-#: tickets/models/ticket/general.py:280 tickets/serializers/super_ticket.py:14
+#: tickets/models/ticket/general.py:280 tickets/reporting.py:75
+#: tickets/serializers/super_ticket.py:14
 #: tickets/serializers/ticket/ticket.py:21
 msgid "State"
 msgstr "Estado"
@@ -1349,6 +1353,7 @@ msgstr "ID"
 #: acls/templates/acls/user_login_reminder.html:8
 #: assets/models/cmd_filter.py:24 assets/models/label.py:16 audits/models.py:55
 #: audits/models.py:97 audits/models.py:179 audits/models.py:296
+#: audits/reporting.py:104 audits/reporting.py:317 audits/reporting.py:414
 #: audits/serializers.py:212 authentication/models/connection_token.py:38
 #: authentication/models/ssh_key.py:22 authentication/models/sso_token.py:16
 #: authentication/notifications.py:16 authentication/notifications.py:55
@@ -1358,7 +1363,7 @@ msgstr "ID"
 #: rbac/serializers/rolebinding.py:17 terminal/backends/command/models.py:16
 #: terminal/models/session/session.py:27 terminal/models/session/sharing.py:34
 #: terminal/notifications.py:168 terminal/notifications.py:235
-#: terminal/serializers/command.py:16
+#: terminal/reporting.py:118 terminal/serializers/command.py:16
 #: terminal/templates/terminal/_msg_command_warning.html:9
 #: terminal/templates/terminal/_msg_session_sharing.html:6
 #: tickets/models/comment.py:21 tickets/serializers/flow.py:15
@@ -1367,9 +1372,12 @@ msgstr "ID"
 msgid "User"
 msgstr "Usuario"
 
-#: accounts/serializers/account/account.py:507
+#: accounts/serializers/account/account.py:507 audits/reporting.py:94
+#: audits/reporting.py:216 audits/reporting.py:312 audits/reporting.py:399
+#: audits/reporting.py:487 audits/reporting.py:602
 #: authentication/templates/authentication/_access_key_modal.html:33
 #: terminal/notifications.py:173 terminal/notifications.py:240
+#: terminal/reporting.py:103 tickets/reporting.py:65
 msgid "Date"
 msgstr "Fecha"
 
@@ -1876,7 +1884,7 @@ msgstr "Cuenta fallida"
 
 #: accounts/templates/accounts/check_account_report.html:33
 #: terminal/const.py:47 terminal/const.py:86
-#: users/templates/users/reset_password.html:54
+#: users/templates/users/reset_password.html:53
 msgid "Normal"
 msgstr "Normal"
 
@@ -1962,7 +1970,8 @@ msgstr ""
 "prioridad)"
 
 #: acls/models/base.py:41 acls/serializers/base.py:57
-#: assets/models/cmd_filter.py:81 audits/models.py:99 audits/serializers.py:107
+#: assets/models/cmd_filter.py:81 audits/models.py:99 audits/reporting.py:404
+#: audits/serializers.py:107
 #: authentication/serializers/connect_token_secret.py:131
 #: authentication/templates/authentication/_access_key_modal.html:34
 #: perms/serializers/permission.py:64 perms/serializers/permission.py:86
@@ -2138,6 +2147,7 @@ msgstr "Nombre de ACL"
 #: acls/templates/acls/asset_login_reminder.html:13
 #: acls/templates/acls/user_login_reminder.html:11
 #: terminal/models/session/session.py:34 terminal/models/session/sharing.py:116
+#: terminal/reporting.py:113
 #: terminal/templates/terminal/_msg_command_warning.html:16
 msgid "Login from"
 msgstr "Fuente de inicio de sesión"
@@ -2177,7 +2187,7 @@ msgstr ""
 msgid "IP/Host"
 msgstr "IP/Host"
 
-#: acls/serializers/base.py:99 reports/models.py:36
+#: acls/serializers/base.py:99
 msgid "Recipients"
 msgstr "Destinatario"
 
@@ -2210,7 +2220,7 @@ msgstr ""
 "* El asterisco indica que se coincide con todos. Por ejemplo: 192.168.10.1, "
 "192.168.1.0/24, 10.1.1.1-10.1.1.20, 2001:db8:2de::e13, 2001:db8:1a:1110::/64"
 
-#: acls/serializers/rules/rules.py:48
+#: acls/serializers/rules/rules.py:48 audits/reporting.py:246
 #: authentication/templates/authentication/_msg_oauth_bind.html:12
 #: authentication/templates/authentication/_msg_rest_password_success.html:8
 #: authentication/templates/authentication/_msg_rest_public_key_success.html:8
@@ -2880,7 +2890,7 @@ msgid "Trigger mode"
 msgstr "Modo de activación"
 
 #: assets/models/automations/base.py:157 audits/serializers.py:38
-#: ops/models/base.py:52 ops/models/job.py:238
+#: common/drf/reporting.py:24 ops/models/base.py:52 ops/models/job.py:238
 #: xpack/plugins/cloud/manager.py:113
 msgid "Summary"
 msgstr "Resumen"
@@ -3655,7 +3665,7 @@ msgstr "Establecer enlace simbólico"
 
 #: audits/const.py:18 audits/const.py:29
 #: ops/templates/ops/celery_task_log.html:86
-#: terminal/api/session/session.py:157
+#: terminal/api/session/session.py:159
 msgid "Download"
 msgstr "Descargar"
 
@@ -3663,7 +3673,7 @@ msgstr "Descargar"
 msgid "Rename dir"
 msgstr "Mapear directorio"
 
-#: audits/const.py:23 rbac/tree.py:308 terminal/api/session/session.py:288
+#: audits/const.py:23 rbac/tree.py:308 terminal/api/session/session.py:290
 #: terminal/templates/terminal/_msg_session_sharing.html:10
 #: xpack/plugins/cloud/manager.py:104
 msgid "View"
@@ -3686,6 +3696,7 @@ msgstr "Conectar"
 #: audits/const.py:31 authentication/templates/authentication/login.html:334
 #: authentication/templates/authentication/login.html:407
 #: templates/_header_bar.html:101
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:28
 msgid "Login"
 msgstr "Iniciar sesión"
 
@@ -3704,8 +3715,8 @@ msgstr "Terminar"
 
 #: audits/const.py:47 settings/serializers/terminal.py:6
 #: terminal/models/applet/host.py:26 terminal/models/component/terminal.py:185
-#: terminal/models/virtualapp/provider.py:14 terminal/serializers/session.py:65
-#: terminal/serializers/session.py:181
+#: terminal/models/virtualapp/provider.py:14 terminal/reporting.py:128
+#: terminal/serializers/session.py:65 terminal/serializers/session.py:181
 msgid "Terminal"
 msgstr "Terminal"
 
@@ -3740,17 +3751,19 @@ msgid "Job audit log"
 msgstr "Registro de auditoría de trabajos"
 
 #: audits/models.py:57 audits/models.py:107 audits/models.py:182
-#: audits/models.py:333 authentication/models/connection_token.py:62
+#: audits/models.py:333 audits/reporting.py:119 audits/reporting.py:327
+#: audits/reporting.py:424 authentication/models/connection_token.py:62
 #: terminal/models/session/session.py:36 terminal/models/session/sharing.py:111
 #: terminal/notifications.py:171 terminal/notifications.py:238
+#: terminal/reporting.py:133
 msgid "Remote addr"
 msgstr "Dirección remota"
 
-#: audits/models.py:62 audits/serializers.py:61
+#: audits/models.py:62 audits/reporting.py:99 audits/serializers.py:61
 msgid "Operate"
 msgstr "Acción"
 
-#: audits/models.py:64
+#: audits/models.py:64 audits/reporting.py:124
 msgid "Filename"
 msgstr "Nombre del archivo"
 
@@ -3771,12 +3784,12 @@ msgstr "Conversación"
 msgid "File transfer log"
 msgstr "Transferencia de archivos"
 
-#: audits/models.py:101 audits/serializers.py:109
+#: audits/models.py:101 audits/reporting.py:409 audits/serializers.py:109
 msgid "Resource Type"
 msgstr "Tipo de recurso"
 
 #: audits/models.py:102 audits/models.py:105 audits/models.py:151
-#: audits/serializers.py:108 labels/serializers.py:46
+#: audits/reporting.py:419 audits/serializers.py:108 labels/serializers.py:46
 msgid "Resource"
 msgstr "Recurso"
 
@@ -3798,7 +3811,7 @@ msgstr "Detalles ID"
 msgid "Activity log"
 msgstr "Registro de actividad"
 
-#: audits/models.py:180
+#: audits/models.py:180 audits/reporting.py:322
 msgid "Change by"
 msgstr "Modificador"
 
@@ -3815,15 +3828,16 @@ msgstr "Método de inicio de sesión"
 msgid "Login IP"
 msgstr "IP de inicio de sesión"
 
-#: audits/models.py:216 audits/serializers.py:75
+#: audits/models.py:216 audits/reporting.py:231 audits/serializers.py:75
 #: authentication/templates/authentication/_mfa_confirm_modal.html:14
 #: users/forms/profile.py:64 users/models/user/__init__.py:92
 #: users/serializers/profile.py:63
 msgid "MFA"
 msgstr "MFA"
 
-#: audits/models.py:219 terminal/models/session/sharing.py:123
-#: xpack/plugins/cloud/manager.py:196 xpack/plugins/cloud/models.py:237
+#: audits/models.py:219 audits/reporting.py:251
+#: terminal/models/session/sharing.py:123 xpack/plugins/cloud/manager.py:196
+#: xpack/plugins/cloud/models.py:237
 msgid "Reason"
 msgstr "Razón"
 
@@ -3833,7 +3847,7 @@ msgstr "Razón"
 msgid "Login Date"
 msgstr "Fecha de inicio de sesión"
 
-#: audits/models.py:228 audits/models.py:293
+#: audits/models.py:228 audits/models.py:293 audits/reporting.py:226
 msgid "Auth backend"
 msgstr "Token de autenticación"
 
@@ -3865,12 +3879,410 @@ msgstr "Aplicación"
 msgid "Application ID"
 msgstr "ID de aplicación"
 
-#: audits/serializers.py:33 ops/models/adhoc.py:24 ops/models/base.py:16
-#: ops/models/base.py:53 ops/models/celery.py:87 ops/models/job.py:156
-#: ops/models/job.py:239 ops/models/playbook.py:30 ops/models/variable.py:17
+#: audits/reporting.py:11
+#, fuzzy
+#| msgid "File transfer log"
+msgid "File Transfer Report"
+msgstr "Transferencia de archivos"
+
+#: audits/reporting.py:21 audits/reporting.py:146 audits/reporting.py:264
+#: audits/reporting.py:345 audits/reporting.py:442 audits/reporting.py:529
+#: terminal/reporting.py:23 tickets/reporting.py:16
+#, fuzzy
+#| msgid "Command record"
+msgid "Total records"
+msgstr "Registro de comandos"
+
+#: audits/reporting.py:22 audits/reporting.py:94
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful transfers"
+msgstr "Cuenta exitosa"
+
+#: audits/reporting.py:23 audits/reporting.py:94
+#, fuzzy
+#| msgid "File transfer log"
+msgid "Failed transfers"
+msgstr "Transferencia de archivos"
+
+#: audits/reporting.py:24 audits/reporting.py:94 audits/reporting.py:149
+#: audits/reporting.py:216 audits/reporting.py:533 audits/reporting.py:602
+#: terminal/reporting.py:28 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Success prompt"
+msgid "Success rate"
+msgstr "mensaje de éxito"
+
+#: audits/reporting.py:25
+#, fuzzy
+#| msgid "Download"
+msgid "Downloadable files"
+msgstr "Descargar"
+
+#: audits/reporting.py:26 audits/reporting.py:150 audits/reporting.py:265
+#: terminal/reporting.py:31
+#, fuzzy
+#| msgid "Check unused users"
+msgid "Unique users"
+msgstr "Verificación de usuarios no activos"
+
+#: audits/reporting.py:27 terminal/reporting.py:32
+#, fuzzy
+#| msgid "Can view user assets"
+msgid "Unique assets"
+msgstr "Puedes ver los activos autorizados por el usuario"
+
+#: audits/reporting.py:28
+#, fuzzy
+#| msgid "Failed accounts"
+msgid "Unique accounts"
+msgstr "Cuenta fallida"
+
+#: audits/reporting.py:29 audits/reporting.py:151 audits/reporting.py:267
+#: audits/reporting.py:349
+msgid "Unique IPs"
+msgstr ""
+
+#: audits/reporting.py:91 audits/reporting.py:213 audits/reporting.py:309
+#: audits/reporting.py:396 audits/reporting.py:484 audits/reporting.py:599
+#: terminal/reporting.py:100 tickets/reporting.py:62
+#, fuzzy
+#| msgid "Review"
+msgid "Overview"
+msgstr "Aprobación"
+
+#: audits/reporting.py:93 audits/reporting.py:215 audits/reporting.py:311
+#: audits/reporting.py:398 audits/reporting.py:601 terminal/reporting.py:102
+msgid "Daily Trend"
+msgstr ""
+
+#: audits/reporting.py:94 audits/reporting.py:216 audits/reporting.py:602
+#: terminal/reporting.py:103
+msgid "Total"
+msgstr ""
+
+#: audits/reporting.py:98
+msgid "Transfer Type Distribution"
+msgstr ""
+
+#: audits/reporting.py:99 audits/reporting.py:104 audits/reporting.py:109
+#: audits/reporting.py:114 audits/reporting.py:119 audits/reporting.py:124
+#: audits/reporting.py:129 audits/reporting.py:221 audits/reporting.py:226
+#: audits/reporting.py:231 audits/reporting.py:236 audits/reporting.py:241
+#: audits/reporting.py:246 audits/reporting.py:251 audits/reporting.py:312
+#: audits/reporting.py:317 audits/reporting.py:322 audits/reporting.py:327
+#: audits/reporting.py:332 audits/reporting.py:399 audits/reporting.py:404
+#: audits/reporting.py:409 audits/reporting.py:414 audits/reporting.py:419
+#: audits/reporting.py:424 audits/reporting.py:429 audits/reporting.py:487
+#: audits/reporting.py:492 audits/reporting.py:497 audits/reporting.py:502
+#: audits/reporting.py:507 audits/reporting.py:607 audits/reporting.py:612
+#: audits/reporting.py:617 audits/reporting.py:622 terminal/reporting.py:108
+#: terminal/reporting.py:113 terminal/reporting.py:118
+#: terminal/reporting.py:123 terminal/reporting.py:128
+#: terminal/reporting.py:133 terminal/reporting.py:138 tickets/reporting.py:65
+#: tickets/reporting.py:70 tickets/reporting.py:75 tickets/reporting.py:80
+#: tickets/reporting.py:85 tickets/reporting.py:90 tickets/reporting.py:95
+#, fuzzy
+#| msgid "CPU count"
+msgid "Count"
+msgstr "Cantidad de CPU"
+
+#: audits/reporting.py:103 audits/reporting.py:316 terminal/reporting.py:117
+#, fuzzy
+#| msgid "User group"
+msgid "User Top 10"
+msgstr "Grupo de usuarios"
+
+#: audits/reporting.py:108 terminal/reporting.py:122
+#, fuzzy
+#| msgid "Asset type"
+msgid "Asset Top 10"
+msgstr "Tipo de activo"
+
+#: audits/reporting.py:113
+#, fuzzy
+#| msgid "Account ID"
+msgid "Account Top 10"
+msgstr "Cuenta"
+
+#: audits/reporting.py:118 audits/reporting.py:326 audits/reporting.py:423
+#: terminal/reporting.py:132
+msgid "IP Top 10"
+msgstr ""
+
+#: audits/reporting.py:123
+#, fuzzy
+#| msgid "Filename"
+msgid "Filename Top 10"
+msgstr "Nombre del archivo"
+
+#: audits/reporting.py:128
+msgid "Transfer Time Distribution"
+msgstr ""
+
+#: audits/reporting.py:129 audits/reporting.py:236 audits/reporting.py:332
+#: audits/reporting.py:429
+#, fuzzy
+#| msgid "Time using"
+msgid "Time range"
+msgstr "Duración"
+
+#: audits/reporting.py:136
+#, fuzzy
+#| msgid "User login report"
+msgid "User Login Report"
+msgstr "Informe de inicio de sesión de usuarios"
+
+#: audits/reporting.py:147 audits/reporting.py:216
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful logins"
+msgstr "Cuenta exitosa"
+
+#: audits/reporting.py:148 audits/reporting.py:216
+#, fuzzy
+#| msgid "Failed accounts"
+msgid "Failed logins"
+msgstr "Cuenta fallida"
+
+#: audits/reporting.py:152
+msgid "Unique cities"
+msgstr ""
+
+#: audits/reporting.py:153
+#, fuzzy
+#| msgid "Auth backend"
+msgid "Unique auth backends"
+msgstr "Token de autenticación"
+
+#: audits/reporting.py:220
+#, fuzzy
+#| msgid "Login redirection"
+msgid "Login Type Distribution"
+msgstr "Habilitar aviso de redirección al iniciar sesión"
+
+#: audits/reporting.py:225
+#, fuzzy
+#| msgid "Auth backend display"
+msgid "Auth Backend Distribution"
+msgstr "Método de autenticación"
+
+#: audits/reporting.py:230
+#, fuzzy
+#| msgid "MFA setting"
+msgid "MFA Distribution"
+msgstr "Configurar autenticación multifactor (MFA)"
+
+#: audits/reporting.py:235
+#, fuzzy
+#| msgid "Login redirection"
+msgid "Login Time Distribution"
+msgstr "Habilitar aviso de redirección al iniciar sesión"
+
+#: audits/reporting.py:240
+msgid "Failed User Top 10"
+msgstr ""
+
+#: audits/reporting.py:245
+msgid "Failed IP Top 10"
+msgstr ""
+
+#: audits/reporting.py:250
+msgid "Failed Reason Top 10"
+msgstr ""
+
+#: audits/reporting.py:258
+#, fuzzy
+#| msgid "Password change log"
+msgid "Password Change Report"
+msgstr "Registro de cambio de contraseña"
+
+#: audits/reporting.py:266 audits/reporting.py:346
+msgid "Unique operators"
+msgstr ""
+
+#: audits/reporting.py:321 audits/reporting.py:413
+#, fuzzy
+#| msgid "Operate log"
+msgid "Operator Top 10"
+msgstr "Registro de operaciones"
+
+#: audits/reporting.py:331
+#, fuzzy
+#| msgid "Can change sms setting"
+msgid "Change Time Distribution"
+msgstr "Configuración de mensajes de texto"
+
+#: audits/reporting.py:339
+#, fuzzy
+#| msgid "Operate log"
+msgid "Operate Log Report"
+msgstr "Registro de operaciones"
+
+#: audits/reporting.py:347
+#, fuzzy
+#| msgid "Resource type"
+msgid "Unique resource types"
+msgstr "Tipo de recurso"
+
+#: audits/reporting.py:348
+#, fuzzy
+#| msgid "Tagged resource"
+msgid "Unique resources"
+msgstr "Recursos asociados"
+
+#: audits/reporting.py:403
+#, fuzzy
+#| msgid "Action permission"
+msgid "Action Distribution"
+msgstr "Permiso de operación"
+
+#: audits/reporting.py:408
+#, fuzzy
+#| msgid "Resource Type"
+msgid "Resource Type Distribution"
+msgstr "Tipo de recurso"
+
+#: audits/reporting.py:418
+#, fuzzy
+#| msgid "Resource Type"
+msgid "Resource Top 10"
+msgstr "Tipo de recurso"
+
+#: audits/reporting.py:428
+msgid "Operate Time Distribution"
+msgstr ""
+
+#: audits/reporting.py:436
+#, fuzzy
+#| msgid "Job audit log"
+msgid "Job Audit Report"
+msgstr "Registro de auditoría de trabajos"
+
+#: audits/reporting.py:443
+#, fuzzy
+#| msgid "Periodic run"
+msgid "Periodic jobs"
+msgstr "Ejecutar periódicamente"
+
+#: audits/reporting.py:444
+msgid "One-time jobs"
+msgstr ""
+
+#: audits/reporting.py:445
+#, fuzzy
+#| msgid "Adhoc"
+msgid "Adhoc jobs"
+msgstr "Comando"
+
+#: audits/reporting.py:446
+#, fuzzy
+#| msgid "Playbook"
+msgid "Playbook jobs"
+msgstr "Playbook"
+
+#: audits/reporting.py:447 audits/reporting.py:534
+msgid "Unique creators"
+msgstr ""
+
+#: audits/reporting.py:467 ops/const.py:40 ops/models/job.py:154
+#: ops/models/playbook.py:89 ops/models/variable.py:23
+msgid "Playbook"
+msgstr "Playbook"
+
+#: audits/reporting.py:486 tickets/reporting.py:64
+#, fuzzy
+#| msgid "Create Type"
+msgid "Created Trend"
+msgstr "Tipo de creación"
+
+#: audits/reporting.py:491 audits/reporting.py:611
+msgid "Job Type Distribution"
+msgstr ""
+
+#: audits/reporting.py:496
+msgid "Module Distribution"
+msgstr ""
+
+#: audits/reporting.py:497 ops/models/adhoc.py:22 ops/models/job.py:151
+msgid "Module"
+msgstr "Módulo"
+
+#: audits/reporting.py:501 audits/reporting.py:616
+#, fuzzy
+#| msgid "Creator"
+msgid "Creator Top 10"
+msgstr "Creador"
+
+#: audits/reporting.py:502 audits/reporting.py:617 audits/serializers.py:33
+#: ops/models/adhoc.py:24 ops/models/base.py:16 ops/models/base.py:53
+#: ops/models/celery.py:87 ops/models/job.py:156 ops/models/job.py:239
+#: ops/models/playbook.py:30 ops/models/variable.py:17
 #: terminal/models/session/sharing.py:25
 msgid "Creator"
 msgstr "Creador"
+
+#: audits/reporting.py:506
+#, fuzzy
+#| msgid "Run as policy"
+msgid "Run as Policy Distribution"
+msgstr "Política de usuario"
+
+#: audits/reporting.py:507 ops/models/job.py:164
+msgid "Run as policy"
+msgstr "Política de usuario"
+
+#: audits/reporting.py:514
+#, fuzzy
+#| msgid "Report"
+msgid "Job Log Report"
+msgstr "Informe"
+
+#: audits/reporting.py:530 audits/reporting.py:602
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful jobs"
+msgstr "Cuenta exitosa"
+
+#: audits/reporting.py:531 audits/reporting.py:602
+#, fuzzy
+#| msgid "Finished"
+msgid "Finished jobs"
+msgstr "Terminar"
+
+#: audits/reporting.py:532 audits/reporting.py:602
+#, fuzzy
+#| msgid "Is finished"
+msgid "Unfinished jobs"
+msgstr "¿Completado?"
+
+#: audits/reporting.py:537
+msgid "Unique task ids"
+msgstr ""
+
+#: audits/reporting.py:538
+#, fuzzy
+#| msgid "Secret rotation"
+msgid "Average duration"
+msgstr "Rotación de contraseñas"
+
+#: audits/reporting.py:606
+msgid "Status Distribution"
+msgstr ""
+
+#: audits/reporting.py:612 ops/serializers/job.py:91
+msgid "Job type"
+msgstr "Tipo de Tarea"
+
+#: audits/reporting.py:621 terminal/reporting.py:137
+msgid "Duration Distribution"
+msgstr ""
+
+#: audits/reporting.py:622 terminal/reporting.py:138
+#, fuzzy
+#| msgid "Duration"
+msgid "Duration range"
+msgstr "Tiempo transcurrido"
 
 #: audits/serializers.py:39 ops/serializers/celery.py:33
 msgid "Execution cycle"
@@ -3980,11 +4392,11 @@ msgstr "Contraseña temporal"
 msgid "Passkey"
 msgstr "Passkey"
 
-#: audits/tasks.py:129
+#: audits/tasks.py:128
 msgid "Clean audits session task log"
 msgstr "Limpiar el registro de tareas de auditoría de activos"
 
-#: audits/tasks.py:131
+#: audits/tasks.py:130
 msgid ""
 "Since the system generates login logs, operation logs, file upload logs, "
 "activity \n"
@@ -4001,11 +4413,11 @@ msgstr ""
 "según la configuración del sistema en la lista de tareas, limpiando "
 "diariamente a las 2 de la madrugada los elementos que excedan el tiempo"
 
-#: audits/tasks.py:152
+#: audits/tasks.py:150
 msgid "Upload FTP file to external storage"
 msgstr "Subir archivos FTP al almacenamiento externo."
 
-#: audits/tasks.py:154
+#: audits/tasks.py:152
 msgid ""
 "If SERVER_REPLAY_STORAGE is configured, files uploaded through file "
 "management will be \n"
@@ -4090,7 +4502,7 @@ msgstr "El emparejamiento facial ha fallado."
 msgid "Current user not support mfa type: {}"
 msgstr "El usuario actual no es compatible con el tipo de MFA: {}"
 
-#: authentication/api/password.py:34 terminal/api/session/session.py:345
+#: authentication/api/password.py:34 terminal/api/session/session.py:347
 #: users/views/profile/reset.py:63
 #, python-brace-format
 msgid "User does not exist: {}"
@@ -4115,6 +4527,7 @@ msgstr ""
 #: users/templates/users/forgot_password.html:42
 #: users/templates/users/forgot_password_previewing.html:13
 #: users/templates/users/forgot_password_previewing.html:14
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:25
 msgid "Forgot password"
 msgstr "Olvidé la contraseña"
 
@@ -4389,18 +4802,18 @@ msgstr "Tu contraseña es inválida"
 msgid "Please wait for %s seconds before retry"
 msgstr "Por favor, inténtalo de nuevo en %s segundos"
 
-#: authentication/errors/redirect.py:85 authentication/mixins.py:433
+#: authentication/errors/redirect.py:85 authentication/mixins.py:436
 #: users/views/profile/reset.py:224
 msgid "Your password is too simple, please change it for security"
 msgstr ""
 "Tu contraseña es demasiado simple, por razones de seguridad, modifícala"
 
-#: authentication/errors/redirect.py:93 authentication/mixins.py:442
+#: authentication/errors/redirect.py:93 authentication/mixins.py:445
 msgid "You should to change your password before login"
 msgstr ""
 "Antes de completar el inicio de sesión, por favor, modifique su contraseña."
 
-#: authentication/errors/redirect.py:101 authentication/mixins.py:451
+#: authentication/errors/redirect.py:101 authentication/mixins.py:454
 msgid "Your password has expired, please reset before logging in"
 msgstr "Su contraseña ha expirado; modifíquela antes de iniciar sesión."
 
@@ -4537,11 +4950,11 @@ msgstr ""
 "existentes', el usuario actual no está en la lista de usuarios, por favor "
 "contacta al administrador."
 
-#: authentication/mixins.py:181
+#: authentication/mixins.py:184
 msgid "User is invalid"
 msgstr "Usuario no válido"
 
-#: authentication/mixins.py:198
+#: authentication/mixins.py:201
 #, python-brace-format
 msgid ""
 " The administrator has enabled 'Only allow login from user source'. \n"
@@ -4552,12 +4965,12 @@ msgstr ""
 "fuente de usuarios', la fuente del usuario actual es {}, por favor contacta "
 "al administrador."
 
-#: authentication/mixins.py:379
+#: authentication/mixins.py:382
 #, python-brace-format
 msgid "The MFA type ({}) is not enabled"
 msgstr "El método MFA ({}) no está habilitado"
 
-#: authentication/mixins.py:421
+#: authentication/mixins.py:424
 msgid "Please change your password"
 msgstr "Por favor, modifica la contraseña"
 
@@ -4574,8 +4987,9 @@ msgstr "Contraseña personalizada"
 #: authentication/serializers/connect_token_secret.py:126
 #: terminal/models/applet/applet.py:43
 #: terminal/models/virtualapp/virtualapp.py:24 terminal/notifications.py:170
-#: terminal/notifications.py:237 terminal/serializers/session.py:31
-#: terminal/serializers/session.py:58 terminal/serializers/storage.py:71
+#: terminal/notifications.py:237 terminal/reporting.py:108
+#: terminal/serializers/session.py:31 terminal/serializers/session.py:58
+#: terminal/serializers/storage.py:71
 #: terminal/templates/terminal/_msg_command_warning.html:19
 msgid "Protocol"
 msgstr "Protocolo"
@@ -4695,7 +5109,7 @@ msgstr "ID de OAuth"
 msgid "binding reminder"
 msgstr "Recordatorio de vinculación"
 
-#: authentication/serializers/connect_token_secret.py:128 reports/models.py:32
+#: authentication/serializers/connect_token_secret.py:128 reports/models.py:17
 msgid "Is builtin"
 msgstr "Incorporado"
 
@@ -5016,6 +5430,7 @@ msgid "Retry"
 msgstr "Reintentar"
 
 #: authentication/templates/authentication/login.html:313
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:5
 msgid ""
 "Configuration file has problems and cannot be logged in. Please contact the "
 "administrator or view latest docs"
@@ -5024,6 +5439,7 @@ msgstr ""
 "contacta al administrador o consulta la documentación más reciente."
 
 #: authentication/templates/authentication/login.html:314
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:6
 msgid "If you are administrator, you can update the config resolve it, set"
 msgstr ""
 "Si eres el administrador, puedes actualizar el perfil para solucionarlo, "
@@ -5514,6 +5930,59 @@ msgstr "Exportar solo selección"
 #: common/drf/renders/mixins.py:50
 msgid "Export filtered"
 msgstr "Exportar búsqueda"
+
+#: common/drf/reporting.py:23
+#, fuzzy
+#| msgid "Database"
+msgid "Data"
+msgstr "Base de datos"
+
+#: common/drf/reporting.py:25 common/drf/reporting.py:180 rbac/tree.py:71
+#: reports/models.py:24
+msgid "Report"
+msgstr "Informe"
+
+#: common/drf/reporting.py:37
+#, fuzzy
+#| msgid "Date left"
+msgid "Date from"
+msgstr "fecha de finalización"
+
+#: common/drf/reporting.py:38
+#, fuzzy
+#| msgid "Date left"
+msgid "Date to"
+msgstr "fecha de finalización"
+
+#: common/drf/reporting.py:116
+#, fuzzy
+#| msgid "All assets"
+msgid "All data"
+msgstr "Todos los Activos"
+
+#: common/drf/reporting.py:181
+#, fuzzy
+#| msgid "General"
+msgid "Generated at"
+msgstr "General"
+
+#: common/drf/reporting.py:182
+#, fuzzy
+#| msgid "Export"
+msgid "Exported rows"
+msgstr "Exportar"
+
+#: common/drf/reporting.py:183 reports/models.py:20
+#, fuzzy
+#| msgid "Filter"
+msgid "Filters"
+msgstr "Filtro"
+
+#: common/drf/reporting.py:210
+#, fuzzy
+#| msgid "Summary"
+msgid "Report Summary"
+msgstr "Resumen"
 
 #: common/exceptions.py:15 xpack/plugins/cloud/ws.py:36
 #, python-format
@@ -6053,11 +6522,6 @@ msgstr "VCS"
 msgid "Adhoc"
 msgstr "Comando"
 
-#: ops/const.py:40 ops/models/job.py:154 ops/models/playbook.py:89
-#: ops/models/variable.py:23
-msgid "Playbook"
-msgstr "Playbook"
-
 #: ops/const.py:41
 msgid "Upload File"
 msgstr "Subir"
@@ -6186,10 +6650,6 @@ msgstr "Se requiere un ciclo o configuración periódica"
 msgid "Pattern"
 msgstr "Modo"
 
-#: ops/models/adhoc.py:22 ops/models/job.py:151
-msgid "Module"
-msgstr "Módulo"
-
 #: ops/models/adhoc.py:23 ops/models/celery.py:82 ops/models/job.py:149
 #: terminal/models/component/task.py:14
 msgid "Args"
@@ -6255,10 +6715,6 @@ msgstr "Variables de ejecución periódica"
 #: ops/models/job.py:162
 msgid "Run as"
 msgstr "Usuario de ejecución"
-
-#: ops/models/job.py:164
-msgid "Run as policy"
-msgstr "Política de usuario"
 
 #: ops/models/job.py:221 ops/models/variable.py:28 ops/serializers/job.py:111
 #: terminal/notifications.py:196
@@ -6353,10 +6809,6 @@ msgstr "Hora de la próxima ejecución"
 #: ops/serializers/job.py:17
 msgid "Run on save"
 msgstr "Ejecutar después de guardar"
-
-#: ops/serializers/job.py:91
-msgid "Job type"
-msgstr "Tipo de Tarea"
 
 #: ops/serializers/job.py:94 terminal/serializers/session.py:66
 msgid "Is finished"
@@ -6579,7 +7031,8 @@ msgstr "Por favor, seleccione una organización antes de guardar."
 #: terminal/notifications.py:309
 #: terminal/templates/terminal/_msg_command_warning.html:27
 #: terminal/templates/terminal/_msg_session_sharing.html:14
-#: tickets/models/ticket/general.py:303 tickets/serializers/ticket/ticket.py:62
+#: tickets/models/ticket/general.py:303 tickets/reporting.py:85
+#: tickets/serializers/ticket/ticket.py:62
 msgid "Organization"
 msgstr "Organización"
 
@@ -7059,7 +7512,7 @@ msgstr "Sincronización en la nube"
 msgid "Gather account"
 msgstr "Descubrimiento de cuenta"
 
-#: rbac/tree.py:56 reports/mixins.py:456
+#: rbac/tree.py:56 reports/mixins.py:374
 msgid "Account change secret"
 msgstr "Cambio de contraseña de cuenta"
 
@@ -7098,10 +7551,6 @@ msgstr "Licencia"
 msgid "Job audit"
 msgstr "Auditoría de acciones"
 
-#: rbac/tree.py:71 reports/models.py:40
-msgid "Report"
-msgstr "Informe"
-
 #: rbac/tree.py:195
 msgid "App organizations"
 msgstr "Gestión de organizaciones"
@@ -7135,23 +7584,11 @@ msgstr "Ver token de acceso"
 msgid "Revoke access token"
 msgstr "Revocar token de acceso"
 
-#: reports/models.py:34
+#: reports/models.py:19
 #, fuzzy
 #| msgid "Change by"
 msgid "Range days"
 msgstr "Modificador"
-
-#: reports/models.py:35
-#, fuzzy
-#| msgid "Filter"
-msgid "Filters"
-msgstr "Filtro"
-
-#: reports/models.py:145
-#, fuzzy
-#| msgid "Periodic run"
-msgid "Periodic report"
-msgstr "Ejecutar periódicamente"
 
 #: reports/views.py:20
 msgid "User login report"
@@ -8101,47 +8538,47 @@ msgstr ""
 msgid "Organization name already exists"
 msgstr "El nombre de la organización ya existe"
 
-#: settings/serializers/cleaning.py:11
+#: settings/serializers/cleaning.py:10
 msgid "Period clean"
 msgstr "Limpieza programada"
 
-#: settings/serializers/cleaning.py:15
+#: settings/serializers/cleaning.py:14
 msgid "Login log retention days"
 msgstr "Días de retención de los registros de inicio de sesión"
 
-#: settings/serializers/cleaning.py:19
+#: settings/serializers/cleaning.py:18
 msgid "Task log retention days"
 msgstr "Días de retención de los registros de tareas"
 
-#: settings/serializers/cleaning.py:23
+#: settings/serializers/cleaning.py:22
 msgid "Operate log retention days"
 msgstr "Días de retención de los registros de acción"
 
-#: settings/serializers/cleaning.py:27
+#: settings/serializers/cleaning.py:26
 msgid "Password change log retention days"
 msgstr "Días de retención de los registros de cambio de contraseña de usuario"
 
-#: settings/serializers/cleaning.py:31
+#: settings/serializers/cleaning.py:30
 msgid "FTP log retention days"
 msgstr "Días de retención de los registros de subida y descarga"
 
-#: settings/serializers/cleaning.py:35
+#: settings/serializers/cleaning.py:34
 msgid "Cloud sync task history retention days"
 msgstr "Días de retención de los registros de sincronización en la nube"
 
-#: settings/serializers/cleaning.py:39
+#: settings/serializers/cleaning.py:38
 msgid "job execution retention days"
 msgstr "Días de retención del historial de ejecución de trabajos"
 
-#: settings/serializers/cleaning.py:43
+#: settings/serializers/cleaning.py:42
 msgid "Activity log retention days"
 msgstr "Días de retención de los registros de actividades"
 
-#: settings/serializers/cleaning.py:46
+#: settings/serializers/cleaning.py:45
 msgid "Session log retention days"
 msgstr "Días de retención de los registros de sesiones"
 
-#: settings/serializers/cleaning.py:48
+#: settings/serializers/cleaning.py:47
 msgid ""
 "Session, record, command will be delete if more than duration, only in "
 "database, OSS will not be affected."
@@ -8150,13 +8587,13 @@ msgstr ""
 "serán eliminados (sin afectar el almacenamiento de la base de datos, OSS, "
 "etc.)"
 
-#: settings/serializers/cleaning.py:53
+#: settings/serializers/cleaning.py:52
 msgid "Change secret and push record retention days"
 msgstr ""
 "Días de retención de los registros de notificaciones de cambio de contraseña "
 "de cuenta"
 
-#: settings/serializers/cleaning.py:57
+#: settings/serializers/cleaning.py:56
 #, fuzzy
 #| msgid "Change secret and push record retention days"
 msgid "Audit report send record retention days"
@@ -9260,17 +9697,17 @@ msgstr ""
 "Tu clave SSH no está configurada o ha caducado, por favor haz clic en <a "
 "href=\"%(user_pubkey_update)s\">el enlace</a> para actualizarla"
 
-#: templates/_mfa_login_field.html:29
+#: templates/_mfa_login_field.html:30
 #: users/templates/users/forgot_password.html:101
 msgid "Send"
 msgstr "Esperando:"
 
-#: templates/_mfa_login_field.html:108
+#: templates/_mfa_login_field.html:109
 #: users/templates/users/forgot_password.html:176
 msgid "Wait: "
 msgstr "El código de verificación ha sido enviado"
 
-#: templates/_mfa_login_field.html:118
+#: templates/_mfa_login_field.html:119
 #: users/templates/users/forgot_password.html:192
 msgid "The verification code has been sent"
 msgstr "Página principal"
@@ -9391,26 +9828,26 @@ msgstr "Prueba fallida: por favor, verifica la configuración"
 msgid "Have online sessions"
 msgstr "Hay una sesión en línea"
 
-#: terminal/api/session/session.py:51
+#: terminal/api/session/session.py:52
 #, python-format
 msgid "User %s %s session %s replay"
 msgstr "El usuario %s %s ha grabado la sesión %s"
 
-#: terminal/api/session/session.py:161 terminal/api/session/session.py:295
+#: terminal/api/session/session.py:163 terminal/api/session/session.py:297
 #: terminal/models/session/replay.py:12
 msgid "Session replay"
 msgstr "Grabación de sesiones"
 
-#: terminal/api/session/session.py:337
+#: terminal/api/session/session.py:339
 #, python-brace-format
 msgid "Session does not exist: {}"
 msgstr "La sesión no existe: {}"
 
-#: terminal/api/session/session.py:340
+#: terminal/api/session/session.py:342
 msgid "Session is finished or the protocol not supported"
 msgstr "La sesión ya ha finalizado o el protocolo no es compatible"
 
-#: terminal/api/session/session.py:353 tickets/api/ticket.py:140
+#: terminal/api/session/session.py:355 tickets/api/ticket.py:142
 msgid "User does not have permission"
 msgstr "El usuario no tiene permiso"
 
@@ -9924,6 +10361,72 @@ msgstr "Prueba fallida: cuenta no válida"
 #: terminal/templates/terminal/_msg_check_command_replay_storage_connectivity.html:4
 msgid "Invalid storage"
 msgstr "Almacenamiento no válido"
+
+#: terminal/reporting.py:10
+#, fuzzy
+#| msgid "Session record"
+msgid "Session Report"
+msgstr "Registro de la conversación"
+
+#: terminal/reporting.py:24 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Success accounts"
+msgid "Successful sessions"
+msgstr "Cuenta exitosa"
+
+#: terminal/reporting.py:25 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Kill session"
+msgid "Failed sessions"
+msgstr "Terminar sesión"
+
+#: terminal/reporting.py:26
+#, fuzzy
+#| msgid "Online sessions"
+msgid "Finished sessions"
+msgstr "Sesiones en línea"
+
+#: terminal/reporting.py:27 terminal/reporting.py:103
+#, fuzzy
+#| msgid "View session"
+msgid "Active sessions"
+msgstr "Consulta de conversación"
+
+#: terminal/reporting.py:29
+#, fuzzy
+#| msgid "Session replay"
+msgid "Sessions with replay"
+msgstr "Grabación de sesiones"
+
+#: terminal/reporting.py:30
+#, fuzzy
+#| msgid "Session join record"
+msgid "Sessions with commands"
+msgstr "registro de entrada a la conversación"
+
+#: terminal/reporting.py:33
+#, fuzzy
+#| msgid "Can view web terminal"
+msgid "Unique terminals"
+msgstr "Terminal web"
+
+#: terminal/reporting.py:107
+#, fuzzy
+#| msgid "Protocols is required"
+msgid "Protocol Distribution"
+msgstr "El protocolo es obligatorio."
+
+#: terminal/reporting.py:112
+#, fuzzy
+#| msgid "Login redirection"
+msgid "Login From Distribution"
+msgstr "Habilitar aviso de redirección al iniciar sesión"
+
+#: terminal/reporting.py:127
+#, fuzzy
+#| msgid "Terminal"
+msgid "Terminal Top 10"
+msgstr "Terminal"
 
 #: terminal/serializers/applet.py:29 terminal/serializers/virtualapp.py:16
 msgid "Icon"
@@ -10519,7 +11022,8 @@ msgstr ""
 "para esta acción o encuentras alguna anomalía, toma las medidas necesarias "
 "de inmediato."
 
-#: tickets/api/ticket.py:88 tickets/models/ticket/general.py:289
+#: tickets/api/ticket.py:90 tickets/models/ticket/general.py:289
+#: tickets/reporting.py:90
 msgid "Applicant"
 msgstr "Solicitante"
 
@@ -10716,7 +11220,7 @@ msgstr "Título"
 msgid "TicketFlow"
 msgstr "Proceso de la orden"
 
-#: tickets/models/ticket/general.py:296
+#: tickets/models/ticket/general.py:296 tickets/reporting.py:95
 msgid "Approval step"
 msgstr "Pasos de aprobación"
 
@@ -10785,6 +11289,86 @@ msgstr "Tu orden de trabajo ha sido procesada, responsable - {}"
 #, python-brace-format
 msgid "Ticket has processed - {} ({})"
 msgstr "Tu orden de trabajo ha sido procesada, responsable - {} ({})"
+
+#: tickets/reporting.py:10
+#, fuzzy
+#| msgid "Ticket step"
+msgid "Ticket Report"
+msgstr "Pasos de la orden"
+
+#: tickets/reporting.py:17
+#, fuzzy
+#| msgid "Super ticket"
+msgid "Open tickets"
+msgstr "Super orden"
+
+#: tickets/reporting.py:18
+#, fuzzy
+#| msgid "From ticket"
+msgid "Closed tickets"
+msgstr "Proveniente de la orden de trabajo"
+
+#: tickets/reporting.py:19
+#, fuzzy
+#| msgid "Pending"
+msgid "Pending tickets"
+msgstr "pendiente"
+
+#: tickets/reporting.py:20
+#, fuzzy
+#| msgid "App Tickets"
+msgid "Approved tickets"
+msgstr "Gestión de Tickets"
+
+#: tickets/reporting.py:21
+msgid "Rejected tickets"
+msgstr ""
+
+#: tickets/reporting.py:22
+#, fuzzy
+#| msgid "Applicant"
+msgid "Unique applicants"
+msgstr "Solicitante"
+
+#: tickets/reporting.py:25
+#, fuzzy
+#| msgid "All organizations"
+msgid "Unique organizations"
+msgstr "Todas las organizaciones"
+
+#: tickets/reporting.py:69
+#, fuzzy
+#| msgid "Ticket information"
+msgid "Ticket Type Distribution"
+msgstr "Información de la orden de trabajo"
+
+#: tickets/reporting.py:74
+#, fuzzy
+#| msgid "Ticket information"
+msgid "Ticket State Distribution"
+msgstr "Información de la orden de trabajo"
+
+#: tickets/reporting.py:79
+msgid "Ticket Status Distribution"
+msgstr ""
+
+#: tickets/reporting.py:84
+#, fuzzy
+#| msgid "Organization role"
+msgid "Organization Top 10"
+msgstr "Rol de la organización"
+
+#: tickets/reporting.py:89
+#, fuzzy
+#| msgid "Applicant"
+msgid "Applicant Top 10"
+msgstr "Solicitante"
+
+#: tickets/reporting.py:94
+#, fuzzy
+#| msgid "Approval without login"
+msgid "Approval Step Distribution"
+msgstr "Aprobación sin inicio de sesión"
 
 #: tickets/serializers/flow.py:45
 msgid "The current organization type already exists"
@@ -10888,17 +11472,17 @@ msgstr "No se puede eliminar a sí mismo. Por favor, deshabilítelo."
 msgid "Cannot delete the admin user. Please disable it instead."
 msgstr "No se puede eliminar el usuario administrador. Por favor, desactívelo."
 
-#: users/api/user.py:164
+#: users/api/user.py:170
 msgid "Can not invite self"
 msgstr "No se puede invitar a uno mismo."
 
-#: users/api/user.py:170
+#: users/api/user.py:176
 #, python-brace-format
 msgid ""
 "This user {} is already a member of the organization. No need to invite again"
 msgstr ""
 
-#: users/api/user.py:225
+#: users/api/user.py:237
 msgid "Could not reset self otp, use profile reset instead"
 msgstr ""
 "No se puede restablecer la autenticación multifactor (MFA) en esta página, "
@@ -11451,7 +12035,7 @@ msgstr ""
 msgid "name not unique"
 msgstr "Nombres duplicados"
 
-#: users/signal_handlers.py:42
+#: users/signal_handlers.py:43
 msgid ""
 "The administrator has enabled \"Only allow existing users to log in\", \n"
 "            and the current user is not in the user list. Please contact the "
@@ -11461,11 +12045,11 @@ msgstr ""
 "inicien sesión', el usuario actual no está en la lista, por favor contacta "
 "al administrador."
 
-#: users/signal_handlers.py:190
+#: users/signal_handlers.py:204
 msgid "Clean up expired user sessions"
 msgstr "Limpiar sesiones de usuario vencidas"
 
-#: users/signal_handlers.py:192
+#: users/signal_handlers.py:206
 msgid ""
 "After logging in via the web, a user session record is created. At 2 a.m. "
 "every day, \n"
@@ -11663,23 +12247,23 @@ msgstr "Tu contraseña debe cumplir con:"
 msgid "Password strength"
 msgstr "Fuerza de la contraseña:"
 
-#: users/templates/users/reset_password.html:52
+#: users/templates/users/reset_password.html:51
 msgid "Very weak"
 msgstr "Muy débil"
 
-#: users/templates/users/reset_password.html:53
+#: users/templates/users/reset_password.html:52
 msgid "Weak"
 msgstr "Débil"
 
-#: users/templates/users/reset_password.html:55
+#: users/templates/users/reset_password.html:54
 msgid "Medium"
 msgstr "Regular"
 
-#: users/templates/users/reset_password.html:56
+#: users/templates/users/reset_password.html:55
 msgid "Strong"
 msgstr "Fuerte"
 
-#: users/templates/users/reset_password.html:57
+#: users/templates/users/reset_password.html:56
 msgid "Very strong"
 msgstr "Muy fuerte"
 
@@ -12686,13 +13270,72 @@ msgstr "Cerrar sesión"
 msgid "Footer content"
 msgstr "Contenido del pie de página"
 
-#: xpack/plugins/interface/serializers/interface.py:38
+#: xpack/plugins/interface/serializers/interface.py:39
+#, fuzzy
+#| msgid "Account name"
+msgid "Product name"
+msgstr "Nombre de la cuenta"
+
+#: xpack/plugins/interface/serializers/interface.py:40
 msgid "Wide logo on top"
 msgstr "Logo ancho en la parte superior"
 
-#: xpack/plugins/interface/serializers/interface.py:39
+#: xpack/plugins/interface/serializers/interface.py:41
 msgid "Small logo without text"
 msgstr "Logo pequeño cuadrado"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:9
+msgid "Secure, Efficient, Controlled"
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:11
+msgid ""
+"One-stop operations management platform to make server access secure, "
+"controllable, and operations efficient and transparent.<br />Easily manage "
+"user permissions and audit operation records to protect critical assets."
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:17
+#, fuzzy
+#| msgid "Support URL"
+msgid "Support"
+msgstr "Enlace de soporte"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:18
+#, fuzzy
+#| msgid "Please enter your account username"
+msgid "Please enter your username"
+msgstr "Por favor, introduzca su nombre de usuario"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:19
+#, fuzzy
+#| msgid "Please change your password"
+msgid "Please enter your password"
+msgstr "Por favor, modifica la contraseña"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:22
+msgid "I have read and agree to the"
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:23
+#, fuzzy
+#| msgid "User agent"
+msgid "User Agreement"
+msgstr "Agente del usuario"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:24
+msgid "Privacy Policy"
+msgstr ""
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:29
+#, fuzzy
+#| msgid "More login options"
+msgid "More login methods"
+msgstr "Otras formas de iniciar sesión"
+
+#: xpack/plugins/jdmc/meta.py:9
+msgid "JDMC"
+msgstr ""
 
 #: xpack/plugins/license/api.py:57
 msgid "License import successfully"
@@ -12701,6 +13344,11 @@ msgstr "Importación de licencia exitosa"
 #: xpack/plugins/license/api.py:58
 msgid "Invalid license"
 msgstr "Licencia no válida"
+
+#, fuzzy
+#~| msgid "Periodic run"
+#~ msgid "Periodic report"
+#~ msgstr "Ejecutar periódicamente"
 
 #~ msgid "Closed"
 #~ msgstr "Cerrado"

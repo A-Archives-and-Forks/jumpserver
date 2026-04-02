@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JumpServer 0.3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-31 17:20+0800\n"
+"POT-Creation-Date: 2026-04-02 14:52+0800\n"
 "PO-Revision-Date: 2021-05-20 10:54+0800\n"
 "Last-Translator: ibuler <ibuler@qq.com>\n"
 "Language-Team: JumpServer team<ibuler@qq.com>\n"
@@ -144,12 +144,14 @@ msgstr ">>> 开始执行测试网关账号可连接性任务"
 #: accounts/serializers/automations/change_secret.py:36
 #: audits/signal_handlers/login_log.py:34 authentication/confirm/password.py:25
 #: authentication/confirm/password.py:27 authentication/const.py:13
-#: authentication/forms.py:28 reports/mixins.py:194 settings/models.py:216
-#: settings/serializers/auth/ldap.py:27 settings/serializers/auth/ldap.py:53
-#: settings/serializers/auth/ldap_ha.py:35 settings/serializers/msg.py:37
-#: settings/serializers/terminal.py:32 terminal/serializers/storage.py:123
-#: terminal/serializers/storage.py:142 users/forms/profile.py:22
-#: users/serializers/user.py:148
+#: authentication/forms.py:28
+#: authentication/templates/authentication/login.html:368
+#: authentication/templates/authentication/login.html:414 reports/mixins.py:194
+#: settings/models.py:216 settings/serializers/auth/ldap.py:27
+#: settings/serializers/auth/ldap.py:53 settings/serializers/auth/ldap_ha.py:35
+#: settings/serializers/msg.py:37 settings/serializers/terminal.py:32
+#: terminal/serializers/storage.py:123 terminal/serializers/storage.py:142
+#: users/forms/profile.py:22 users/serializers/user.py:148
 #: users/templates/users/_msg_user_created.html:13
 #: users/templates/users/user_password_verify.html:18
 #: xpack/plugins/cloud/serializers/account_attrs.py:43
@@ -619,11 +621,8 @@ msgstr "账号活动"
 msgid "Name"
 msgstr "名称"
 
-#: accounts/models/application.py:18
-#: authentication/templates/authentication/login.html:615
-#: authentication/templates/authentication/login.html:624
-#: authentication/templates/authentication/login.html:637
-#: settings/serializers/auth/oauth2.py:25
+#: accounts/models/application.py:18 settings/serializers/auth/oauth2.py:25
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:16
 msgid "Logo"
 msgstr "图标"
 
@@ -902,6 +901,7 @@ msgstr "重复密码"
 #: authentication/serializers/connect_token_secret.py:53
 #: authentication/templates/authentication/_msg_different_city.html:9
 #: authentication/templates/authentication/_msg_oauth_bind.html:9
+#: authentication/templates/authentication/login.html:414
 #: terminal/serializers/storage.py:136 users/forms/profile.py:32
 #: users/forms/profile.py:117 users/models/user/__init__.py:66
 #: users/notifications.py:20 users/serializers/profile.py:190
@@ -1918,7 +1918,7 @@ msgstr "正则表达式"
 #: acls/models/command_acl.py:26 assets/models/cmd_filter.py:79
 #: settings/models.py:188 settings/serializers/feature.py:24
 #: settings/serializers/msg.py:79 users/notifications.py:19
-#: xpack/plugins/license/models.py:31
+#: xpack/plugins/license/models.py:34
 msgid "Content"
 msgstr "内容"
 
@@ -3527,8 +3527,10 @@ msgstr "导出"
 msgid "Connect"
 msgstr "连接"
 
-#: audits/const.py:31 authentication/templates/authentication/login.html:708
+#: audits/const.py:31 authentication/templates/authentication/login.html:334
+#: authentication/templates/authentication/login.html:407
 #: templates/_header_bar.html:101
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:28
 msgid "Login"
 msgstr "登录"
 
@@ -4238,11 +4240,12 @@ msgid ""
 msgstr "用户来自 {} 请去相应系统修改密码"
 
 #: authentication/api/password.py:69
-#: authentication/templates/authentication/login.html:700
+#: authentication/templates/authentication/login.html:399
 #: users/templates/users/forgot_password.html:41
 #: users/templates/users/forgot_password.html:42
 #: users/templates/users/forgot_password_previewing.html:13
 #: users/templates/users/forgot_password_previewing.html:14
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:25
 msgid "Forgot password"
 msgstr "忘记密码"
 
@@ -5090,49 +5093,22 @@ msgstr "取消"
 msgid "Retry"
 msgstr "重试"
 
-#: authentication/templates/authentication/login.html:603
+#: authentication/templates/authentication/login.html:313
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:5
+msgid ""
+"Configuration file has problems and cannot be logged in. Please contact the "
+"administrator or view latest docs"
+msgstr ""
+
+#: authentication/templates/authentication/login.html:314
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:6
 msgid "If you are administrator, you can update the config resolve it, set"
 msgstr "如果你是管理员，可以更新配置文件解决，设置配置项"
 
-#: authentication/templates/authentication/login.html:608
-msgid "Secure, Efficient, Controlled"
-msgstr "安全 · 高效 · 可控"
-
-#: authentication/templates/authentication/login.html:609
-msgid ""
-"One-stop operations management platform to make server access secure, "
-"controllable, and operations efficient and transparent.<br />Easily manage "
-"user permissions and audit operation records to protect critical assets."
-msgstr ""
-"一站式运维管理平台，让您的服务器访问安全可控，操作高效透明。<br />轻松管理用"
-"户权限、审计操作记录，保障核心资产安全。"
-
-#: authentication/templates/authentication/login.html:629
-msgid "Support"
-msgstr "支持"
-
-#: authentication/templates/authentication/login.html:660
-msgid "Please enter your username"
-msgstr "请输入您的用户名"
-
-#: authentication/templates/authentication/login.html:667
-msgid "Please enter your password"
-msgstr "请输入您的密码"
-
-#: authentication/templates/authentication/login.html:693
-msgid "I have read and agree to the"
-msgstr "我已阅读并同意"
-
-#: authentication/templates/authentication/login.html:694
-msgid "User Agreement"
-msgstr "用户协议"
-
-#: authentication/templates/authentication/login.html:695
-msgid "Privacy Policy"
-msgstr "隐私协议"
-
-#: authentication/templates/authentication/login.html:715
-msgid "More login methods"
+#: authentication/templates/authentication/login.html:422
+#, fuzzy
+#| msgid "More login methods"
+msgid "More login options"
 msgstr "更多登录方式"
 
 #: authentication/templates/authentication/login_mfa.html:6
@@ -5601,7 +5577,7 @@ msgid "Data"
 msgstr "数据"
 
 #: common/drf/reporting.py:25 common/drf/reporting.py:180 rbac/tree.py:71
-#: reports/models.py:40
+#: reports/models.py:24
 msgid "Report"
 msgstr "报表"
 
@@ -5625,7 +5601,7 @@ msgstr "生成时间"
 msgid "Exported rows"
 msgstr "导出条数"
 
-#: common/drf/reporting.py:183 reports/models.py:35
+#: common/drf/reporting.py:183 reports/models.py:20
 msgid "Filters"
 msgstr "过滤条件"
 
@@ -7065,7 +7041,7 @@ msgid "Appearance"
 msgstr "界面"
 
 #: rbac/tree.py:68 xpack/plugins/license/meta.py:10
-#: xpack/plugins/license/models.py:153
+#: xpack/plugins/license/models.py:161
 msgid "License"
 msgstr "许可证"
 
@@ -7106,13 +7082,9 @@ msgstr "查看访问令牌"
 msgid "Revoke access token"
 msgstr "撤销访问令牌"
 
-#: reports/models.py:34
+#: reports/models.py:19
 msgid "Range days"
 msgstr "范围天数"
-
-#: reports/models.py:145
-msgid "Periodic report"
-msgstr "周期报表"
 
 #: reports/views.py:20
 msgid "User login report"
@@ -9594,8 +9566,10 @@ msgid "Level"
 msgstr "级别"
 
 #: terminal/notifications.py:172 terminal/notifications.py:239
-msgid "Privacy"
-msgstr "隐私"
+#, fuzzy
+#| msgid "Privacy Policy"
+msgid "Policy"
+msgstr "隐私协议"
 
 #: terminal/notifications.py:263
 msgid "Command and replay storage"
@@ -12342,21 +12316,76 @@ msgstr "注销登录"
 msgid "Footer content"
 msgstr "页脚内容"
 
-#: xpack/plugins/interface/serializers/interface.py:38
+#: xpack/plugins/interface/serializers/interface.py:39
+msgid "Product name"
+msgstr "产品名称"
+
+#: xpack/plugins/interface/serializers/interface.py:40
 msgid "Wide logo on top"
 msgstr "顶部宽 Logo"
 
-#: xpack/plugins/interface/serializers/interface.py:39
+#: xpack/plugins/interface/serializers/interface.py:41
 msgid "Small logo without text"
 msgstr "方形小 Logo"
 
-#: xpack/plugins/license/api.py:52
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:9
+msgid "Secure, Efficient, Controlled"
+msgstr "安全 · 高效 · 可控"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:11
+msgid ""
+"One-stop operations management platform to make server access secure, "
+"controllable, and operations efficient and transparent.<br />Easily manage "
+"user permissions and audit operation records to protect critical assets."
+msgstr ""
+"一站式运维管理平台，让您的服务器访问安全可控，操作高效透明。<br />轻松管理用"
+"户权限、审计操作记录，保障核心资产安全。"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:17
+msgid "Support"
+msgstr "支持"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:18
+msgid "Please enter your username"
+msgstr "请输入您的用户名"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:19
+msgid "Please enter your password"
+msgstr "请输入您的密码"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:22
+msgid "I have read and agree to the"
+msgstr "我已阅读并同意"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:23
+msgid "User Agreement"
+msgstr "用户协议"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:24
+msgid "Privacy Policy"
+msgstr "隐私协议"
+
+#: xpack/plugins/interface/templates/sxf_login_i18n.html:29
+msgid "More login methods"
+msgstr "更多登录方式"
+
+#: xpack/plugins/jdmc/meta.py:9
+msgid "JDMC"
+msgstr ""
+
+#: xpack/plugins/license/api.py:57
 msgid "License import successfully"
 msgstr "许可证导入成功"
 
-#: xpack/plugins/license/api.py:53
+#: xpack/plugins/license/api.py:58
 msgid "Invalid license"
 msgstr "许可证无效"
+
+#~ msgid "Periodic report"
+#~ msgstr "周期报表"
+
+#~ msgid "Privacy"
+#~ msgstr "隐私"
 
 #~ msgid "Closed"
 #~ msgstr "关闭的"
