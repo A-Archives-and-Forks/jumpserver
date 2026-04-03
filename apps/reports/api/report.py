@@ -201,6 +201,9 @@ class ReportViewSet(viewsets.ModelViewSet):
         is_builtin = self.request.query_params.get('is_builtin')
         if is_builtin is not None:
             queryset = queryset.filter(is_builtin=str(is_builtin).lower() in ('1', 'true', 'yes'))
+        name = self.request.query_params.get('name')
+        if name is not None:
+            queryset = queryset.filter(name=name)
         return queryset
 
     def perform_update(self, serializer):
