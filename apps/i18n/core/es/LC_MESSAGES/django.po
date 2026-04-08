@@ -9737,9 +9737,9 @@ msgstr ""
 "y SSH, Telnet se admitirá en el futuro."
 
 #: templates/resource_download.html:22
-msgid "JumpServerClient, currently used to launch the client"
+msgid "Client, currently used to launch the client"
 msgstr ""
-"Cliente JumpServer, actualmente utilizado para invocar un programa cliente "
+"Cliente, actualmente utilizado para invocar un programa cliente "
 "específico para conectar activos"
 
 #: templates/resource_download.html:36

@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from openpyxl import Workbook
 from rest_framework.request import Request
 
-from accounts.const import AutomationTypes, Source
+from accounts.const import AutomationTypes, Source as AccountSource
 from accounts.models import (
     Account,
     AccountTemplate,
@@ -512,7 +512,7 @@ def build_account_statistics_report(filters=None, days=30):
     stats['template_total'] = AccountTemplate.objects.count()
 
     source_pie_data = [
-        {'name': str(Source(source).label), 'value': total}
+        {'name': str(AccountSource(source).label), 'value': total}
         for source, total in qs.values('source').annotate(total=Count(1)).values_list('source', 'total')
     ]
 

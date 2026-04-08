@@ -8816,7 +8816,7 @@ msgid "Client"
 msgstr ""
 
 #: templates/resource_download.html:22
-msgid "JumpServerClient, currently used to launch the client"
+msgid "Client, currently used to launch the client"
 msgstr ""
 
 #: templates/resource_download.html:36

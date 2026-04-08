@@ -8983,8 +8983,8 @@ msgid "Client"
 msgstr "客户端"
 
 #: templates/resource_download.html:22
-msgid "JumpServerClient, currently used to launch the client"
-msgstr "JumpServer 客户端，目前用来唤起 特定客户端程序 连接资产"
+msgid "Client, currently used to launch the client"
+msgstr "客户端，目前用来唤起 特定客户端程序 连接资产"
 
 #: templates/resource_download.html:36
 msgid "Microsoft"

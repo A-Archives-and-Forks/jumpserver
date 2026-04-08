@@ -9137,8 +9137,8 @@ msgid "Client"
 msgstr "用戶端"
 
 #: templates/resource_download.html:22
-msgid "JumpServerClient, currently used to launch the client"
-msgstr "JumpServer 客戶端，目前用來喚起特定客戶端程式連接資產"
+msgid "Client, currently used to launch the client"
+msgstr "客戶端，目前用來喚起特定客戶端程式連接資產"
 
 #: templates/resource_download.html:36
 msgid "Microsoft"

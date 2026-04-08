@@ -9366,9 +9366,9 @@ msgid "Client"
 msgstr "클라이언트"
 
 #: templates/resource_download.html:22
-msgid "JumpServerClient, currently used to launch the client"
+msgid "Client, currently used to launch the client"
 msgstr ""
-"JumpServer 클라이언트, 현재 특정 클라이언트 프로그램을 호출하여 자산에 연결하"
+"클라이언트, 현재 특정 클라이언트 프로그램을 호출하여 자산에 연결하"
 "고 있습니다"
 
 #: templates/resource_download.html:36

@@ -9371,9 +9371,9 @@ msgid "Client"
 msgstr "クライアント"
 
 #: templates/resource_download.html:22
-msgid "JumpServerClient, currently used to launch the client"
+msgid "Client, currently used to launch the client"
 msgstr ""
-"JumpServerクライアントは、特定のクライアントプログラムを呼び起こして資産に接"
+"クライアントは、特定のクライアントプログラムを呼び起こして資産に接"
 "続するために使用されます"
 
 #: templates/resource_download.html:36

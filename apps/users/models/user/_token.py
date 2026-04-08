@@ -7,7 +7,8 @@ from django.utils import timezone
 from common.utils import (
     get_logger,
     random_string,
-    text_hmac_sha256
+    text_hmac_sha256,
+    get_request_ip
 )
 
 logger = get_logger(__file__)
@@ -40,7 +41,7 @@ class TokenMixin:
     def create_bearer_token(self, request=None, age=None):
         expiration = age or settings.TOKEN_EXPIRATION or 3600
         if request:
-            remote_addr = request.META.get("REMOTE_ADDR", "")
+            remote_addr = get_request_ip(request)
         else:
             remote_addr = "0.0.0.0"
         if not isinstance(remote_addr, bytes):

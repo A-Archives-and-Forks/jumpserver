@@ -9482,9 +9482,9 @@ msgid "Client"
 msgstr "Khách hàng"
 
 #: templates/resource_download.html:22
-msgid "JumpServerClient, currently used to launch the client"
+msgid "Client, currently used to launch the client"
 msgstr ""
-"Khách hàng JumpServer, hiện đang được sử dụng để khởi động chương trình "
+"Khách hàng, hiện đang được sử dụng để khởi động chương trình "
 "khách hàng cụ thể kết nối với tài sản"
 
 #: templates/resource_download.html:36

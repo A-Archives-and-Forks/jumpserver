@@ -166,7 +166,7 @@ def get_request_ip(request):
 
 
 def get_trusted_request_ip(request):
-    trusted_ip = request.META.get(settings.TRUSTED_IP_SOURCE_HEADER, '')
+    trusted_ip = request.headers.get(settings.TRUSTED_IP_SOURCE_HEADER, '')
     if not trusted_ip:
         logger.warning(
             f"Trusted IP verification enabled but no source header '{settings.TRUSTED_IP_SOURCE_HEADER}' "
@@ -175,7 +175,7 @@ def get_trusted_request_ip(request):
         return '0.0.0.0'
 
     signature_header_name = settings.TRUSTED_IP_SIGN_HEADER
-    received_signature = request.META.get(signature_header_name, '')
+    received_signature = request.headers.get(signature_header_name, '')
     if not received_signature:
         logger.warning(
             f"Trusted IP verification enabled but no signature header '{signature_header_name}' "
