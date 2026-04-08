@@ -37,12 +37,11 @@ def get_license_asset_limit():
         return 0
 
     try:
-        from xpack.models import License
+        from xpack.utils import get_license_asset_count
+        count = get_license_asset_count()
+        return count
     except ImportError:
         return 0
-
-    detail = License.get_license_detail() or {}
-    return detail.get('asset_count', 0)
 
 
 class AssetFilterSet(BaseFilterSet):
