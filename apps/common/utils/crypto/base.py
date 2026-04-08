@@ -7,8 +7,14 @@ class BaseCrypto:
             self._encrypt(bytes(text, encoding='utf8'))
         ).decode('utf8')
 
+    def encrypt_bin(self, data: bytes) -> bytes:
+        return self._encrypt(data)
+
     def _encrypt(self, data: bytes) -> bytes:
         raise NotImplementedError
+
+    def decrypt_bin(self, data: bytes) -> bytes:
+        return self._decrypt(data)
 
     def decrypt(self, text):
         return self._decrypt(
