@@ -75,7 +75,11 @@ class UserViewSet(CommonApiMixin, UserQuerysetMixin, SuggestionMixin, BulkModelV
         """重写 get_serializer, 用于设置用户的角色缓存
         放到 paginate_queryset 里面会导致 导出有问题, 因为导出的时候，没有 pager
         """
-        if len(args) == 1 and kwargs.get('many'):
+        if self.request.method.lower() in ['get'] \
+            and self.request.query_params.get('fields_size') not in ['mini'] \
+            and len(args) == 1 \
+            and kwargs.get('many'):
+            # 批量更新一些用户时，args[0] 是全量 queryset 速度极慢，所以只在 get list 的时候设置缓存
             queryset = self.set_users_roles_for_cache(args[0])
             queryset = self.set_users_orgs_roles(args[0])
             args = (queryset,)
