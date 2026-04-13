@@ -12,9 +12,11 @@ DEFAULT_THEME = "classic_green"
 
 VENDOR_THEMES_DIR = settings.VENDOR_TEMPLATES_DIR / "themes"
 
+VENDOR_LOWER = settings.VENDOR.lower()
+
 
 def is_default_vendor() -> bool:
-    return settings.VENDOR.lower() == DEFAULT_VENDOR
+    return VENDOR_LOWER == DEFAULT_VENDOR
 
 
 def find_theme_path(theme_dirs, theme_name: str) -> Path | None:
@@ -31,7 +33,7 @@ def _default_theme_dir() -> Path:
 
 
 def _build_theme() -> str:
-    return DEFAULT_THEME if is_default_vendor() else settings.VENDOR
+    return DEFAULT_THEME if is_default_vendor() else VENDOR_LOWER
 
 
 def _build_theme_info() -> dict:
@@ -41,7 +43,7 @@ def _build_theme_info() -> dict:
         settings.VENDOR_TEMPLATES_DIR / 'themes',
         _default_theme_dir(),
     ]
-    theme_name = DEFAULT_THEME if is_default_vendor() else settings.VENDOR
+    theme_name = DEFAULT_THEME if is_default_vendor() else VENDOR_LOWER
 
     theme_path = find_theme_path(search_dirs, theme_name) or default_theme_path
     if not theme_path:
@@ -89,7 +91,7 @@ def _build_asset(filename: str) -> str:
     if is_default_vendor():
         return static(filename)
 
-    vendor_path = f"{settings.VENDOR}/{filename}"
+    vendor_path = f"{VENDOR_LOWER}/{filename}"
     if finders.find(vendor_path):
         return static(vendor_path)
     return static(filename)
@@ -97,7 +99,7 @@ def _build_asset(filename: str) -> str:
 
 def _build_optional_asset(filename: str, default=None):
     if not is_default_vendor():
-        vendor_path = f"{settings.VENDOR}/{filename}"
+        vendor_path = f"{VENDOR_LOWER}/{filename}"
         if finders.find(vendor_path):
             return static(vendor_path)
 
