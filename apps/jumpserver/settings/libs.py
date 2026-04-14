@@ -64,18 +64,9 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'JumpServer API Docs',
-    'DESCRIPTION': 'JumpServer Restful api docs',
+    'TITLE': f'{CONFIG.VENDOR} API Docs',
+    'DESCRIPTION': f'{CONFIG.VENDOR} Restful api docs',
     'VERSION': 'v1',
-    'LICENSE': {
-        'name': 'GPLv3 License',
-        'url': 'https://www.gnu.org/licenses/gpl-3.0.html',
-    },
-    'CONTACT': {
-        'name': 'JumpServer',
-        'url': 'https://jumpserver.org',
-        'email': 'support@jumpserver.org',
-    },
     "SERVE_INCLUDE_SCHEMA": False,
     'SERVE_PUBLIC': True,
     'BASE_PATH': '/api/v1/',
@@ -98,6 +89,21 @@ SPECTACULAR_SETTINGS = {
     ],
     'SECURITY': [{'Bearer': []}],
 }
+
+if CONFIG.VENDOR.lower() == 'jumpserver':
+    SPECTACULAR_SETTINGS.update({
+        'LICENSE': {
+            'name': 'GPLv3 License',
+            'url': 'https://www.gnu.org/licenses/gpl-3.0.html',
+        },
+        'CONTACT': {
+            'name': 'JumpServer',
+            'url': 'https://jumpserver.org',
+            'email': 'support@jumpserver.org',
+        },
+    })
+
+
 # Captcha settings, more see https://django-simple-captcha.readthedocs.io/en/latest/advanced.html
 CAPTCHA_IMAGE_SIZE = (180, 38)
 CAPTCHA_FOREGROUND_COLOR = '#001100'
