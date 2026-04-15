@@ -16,7 +16,6 @@ from common.serializers.fields import EncryptedField
 from common.utils import get_logger
 from .mixins import LogMixin
 
-
 logger = get_logger(__file__)
 
 
@@ -297,9 +296,9 @@ class BaseFileRenderer(LogMixin, BaseRenderer):
         contents_io = io.BytesIO()
         secret_key = request.user.secret_key
         if not secret_key:
-            content = _("{} - The encryption password has not been set - "
-                        "please go to personal information -> file encryption password "
-                        "to set the encryption password").format(request.user.name)
+            content = _(
+                "{} - Encryption password not set - Please go to Personal Settings → Preferences → File Encryption "
+                "Password to set it.").format(request.user.name)
 
             response['Content-Disposition'] = content_disposition.replace(self.format, 'txt')
             contents_io.write(content.encode('utf-8'))
