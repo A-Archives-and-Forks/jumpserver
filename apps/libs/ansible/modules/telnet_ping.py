@@ -28,7 +28,7 @@ is_available:
   sample: true
 '''
 
-import telnetlib3
+import telnetlib
 
 from ansible.module_utils.basic import AnsibleModule
 
@@ -57,9 +57,9 @@ def main():
     port = module.params['login_port']
     timeout = module.params['timeout']
     try:
-        client = telnetlib3.Telnet(host, port, timeout=timeout)
+        client = telnetlib.Telnet(host, port, timeout=timeout)
         client.close()
-    except Exception as err:  # noqa
+    except Exception as err: # noqa
         result['is_available'] = False
         module.fail_json(msg='Unable to connect to asset: %s' % err)
 

@@ -92,7 +92,7 @@ def on_request_finished_logging_db_query(sender, **kwargs):
 
 
 def on_request_finished_release_local(sender, **kwargs):
-    thread_local.clear()
+    thread_local.__release_local__()
 
 
 def _get_request_user_name():
