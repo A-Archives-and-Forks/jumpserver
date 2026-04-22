@@ -17,7 +17,7 @@ class CommonConfig(AppConfig):
 
         excludes = [
             'migrate', 'compilemessages', 'makemigrations', 
-            'check', 'makemessages',
+            'check', 'makemessages', 'upgrade_db', 'collect_static',
         ]
         for i in excludes:
             if i in sys.argv:

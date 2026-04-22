@@ -12,8 +12,6 @@ ARG TOOLS="                           \
         netcat-openbsd                \
         nmap                          \
         telnet                        \
-        vim                           \
-        postgresql-client         \
         wget                          \
         poppler-utils"
 
