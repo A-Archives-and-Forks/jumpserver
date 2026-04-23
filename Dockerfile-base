@@ -43,7 +43,7 @@ RUN set -ex \
 WORKDIR /opt/jumpserver
 
 ARG PIP_MIRROR=https://pypi.org/simple
-ENV ANSIBLE_COLLECTIONS_PATHS=/opt/py3/lib/python3.11/site-packages/ansible_collections
+ENV ANSIBLE_COLLECTIONS_PATHS=/opt/py3/lib/python3.14/site-packages/ansible_collections
 ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
     PATH=/opt/py3/bin:$PATH
