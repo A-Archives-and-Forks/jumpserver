@@ -208,16 +208,6 @@ dependencies = [
 sdist = { url = "http://mirrors.aliyun.com/pypi/packages/a7/43/f1a1876b04c45ba0b63852795102199c0356b1ddbed24dde7db7c89e1607/aliyun-python-sdk-core-2.15.2.tar.gz", hash = "sha256:54f66a53e193c61c5e16ea4505a0cab43543f8ad2ef22833f69c4d5e5151c17d" }
 
 [[package]]
-name = "aliyun-python-sdk-core-v3"
-version = "2.13.33"
-source = { registry = "http://mirrors.aliyun.com/pypi/simple/" }
-dependencies = [
-    { name = "cryptography" },
-    { name = "jmespath" },
-]
-sdist = { url = "http://mirrors.aliyun.com/pypi/packages/50/31/bdf3eba750e9d7213248efea30ad29a62f2d449607e03f538d4d9455d952/aliyun-python-sdk-core-v3-2.13.33.tar.gz", hash = "sha256:d7df820fa31193be3f0a3a991c4126051900b3d2f09c0fc5ff7af43cf36ac245" }
-
-[[package]]
 name = "aliyun-python-sdk-ecs"
 version = "4.24.64"
 source = { registry = "http://mirrors.aliyun.com/pypi/simple/" }
@@ -2219,7 +2209,6 @@ dependencies = [
 xpack = [
     { name = "alibabacloud-dysmsapi20170525" },
     { name = "aliyun-python-sdk-core" },
-    { name = "aliyun-python-sdk-core-v3" },
     { name = "aliyun-python-sdk-ecs" },
     { name = "aliyun-python-sdk-rds" },
     { name = "azure-mgmt-compute" },
@@ -2400,7 +2389,6 @@ requires-dist = [
 xpack = [
     { name = "alibabacloud-dysmsapi20170525", specifier = "==2.0.24" },
     { name = "aliyun-python-sdk-core", specifier = "==2.15.2" },
-    { name = "aliyun-python-sdk-core-v3", specifier = "==2.13.33" },
     { name = "aliyun-python-sdk-ecs", specifier = "==4.24.64" },
     { name = "aliyun-python-sdk-rds", specifier = "==2.7.49" },
     { name = "azure-mgmt-compute", specifier = "==30.0.0" },

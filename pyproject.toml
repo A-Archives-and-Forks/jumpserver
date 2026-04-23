@@ -180,7 +180,6 @@ xpack = [
     'python-keystoneclient==5.1.0',
     'bce-python-sdk==0.8.87',
     'tencentcloud-sdk-python==3.0.941',
-    'aliyun-python-sdk-core-v3==2.13.33',
     'aliyun-python-sdk-core==2.15.2',
     'aliyun-python-sdk-ecs==4.24.64',
     'keystoneauth1==5.2.1',
