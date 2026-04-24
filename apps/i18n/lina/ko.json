@@ -628,7 +628,7 @@
     "FileSizeExceedsLimit": "파일 크기 초과 제한",
     "FileTransfer": "파일 전송",
     "FileTransferBootStepHelpTips1": "자산 또는 노드를 선택해 주세요",
-    "FileTransferBootStepHelpTips2": "실행 계정을 선택하고 명령을 입력하세요",
+    "FileTransferBootStepHelpTips2": "실행 계정을 선택하고, 필요한 경우 업로드 경로를 입력한 후 파일을 업로드하세요",
     "FileTransferBootStepHelpTips3": "전송, 출력 결과 표시",
     "FileTransferNum": "파일 전송 수",
     "FileType": "파일 유형",

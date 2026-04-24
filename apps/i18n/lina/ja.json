@@ -633,7 +633,7 @@
     "FileSizeExceedsLimit": "ファイルサイズが制限を超えています",
     "FileTransfer": "ファイル転送",
     "FileTransferBootStepHelpTips1": "Assetまたはノードを選択",
-    "FileTransferBootStepHelpTips2": "実行アカウントを選択し、コマンドを入力",
+    "FileTransferBootStepHelpTips2": "実行アカウントを選択し、必要に応じてアップロード先パスを入力してファイルをアップロードします",
     "FileTransferBootStepHelpTips3": "転送、結果の表示",
     "FileTransferNum": "ファイル転送数",
     "FileType": "ファイルタイプ",

@@ -628,7 +628,7 @@
     "FileSizeExceedsLimit": "El tamaño del archivo excede el límite",
     "FileTransfer": "Transferencia de archivos",
     "FileTransferBootStepHelpTips1": "Seleccionar un activo o nodo",
-    "FileTransferBootStepHelpTips2": "Seleccionar cuenta de ejecución e introducir el comando",
+    "FileTransferBootStepHelpTips2": "Seleccione una cuenta de ejecución, introduzca opcionalmente una ruta de carga y suba archivos",
     "FileTransferBootStepHelpTips3": "Transferencia, mostrar resultado de salida",
     "FileTransferNum": "Número de transferencias de archivos",
     "FileType": "Tipo de archivo",

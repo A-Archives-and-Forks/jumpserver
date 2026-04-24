@@ -628,7 +628,7 @@
     "FileSizeExceedsLimit": "Kích thước tệp vượt quá giới hạn",
     "FileTransfer": "Chuyển file",
     "FileTransferBootStepHelpTips1": "Sau khi tạo hoặc cập nhật thành công, thêm thông tin chi tiết",
-    "FileTransferBootStepHelpTips2": "Chọn tài khoản chạy và nhập lệnh",
+    "FileTransferBootStepHelpTips2": "Chọn tài khoản chạy, có thể nhập đường dẫn tải lên và tải tệp lên",
     "FileTransferBootStepHelpTips3": "Truyền tải, hiển thị kết quả đầu ra",
     "FileTransferNum": "Truyền tải tài liệu",
     "FileType": "Loại tệp",

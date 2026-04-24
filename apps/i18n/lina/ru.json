@@ -628,7 +628,7 @@
     "FileSizeExceedsLimit": "Размер файла превышает лимит",
     "FileTransfer": "Передача файлов",
     "FileTransferBootStepHelpTips1": "Выберите актив или папку",
-    "FileTransferBootStepHelpTips2": "Выберите учетную запись запуска и введите команду",
+    "FileTransferBootStepHelpTips2": "Выберите учетную запись выполнения, при необходимости укажите путь загрузки и загрузите файлы",
     "FileTransferBootStepHelpTips3": "Передача, отображение результатов вывода",
     "FileTransferNum": "Количество передач файлов",
     "FileType": "Тип файла",
