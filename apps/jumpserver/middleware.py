@@ -244,7 +244,8 @@ class HmacSignAuthMiddleware:
 
         if request.user.is_authenticated:
             session_id = request.session.session_key
-            username = request.user.username
+            # request.user 可能为 IntegrationApplication对象
+            username = getattr(request.user, 'username', None) or getattr(request.user, 'name', None)
             sign_data = f'{username}|{session_id}'
         elif request.path == '/api/v1/authentication/tokens/' \
                             and response.status_code == 201:
