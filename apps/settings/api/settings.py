@@ -74,7 +74,7 @@ class SettingsApi(generics.RetrieveUpdateAPIView):
     }
 
     rbac_category_permissions = {
-        'basic': 'settings.view_setting',
+        'basic': 'settings.change_basic',
         'tool': 'rbac.view_systemtools',
         'terminal': 'settings.change_terminal',
         'ops': 'settings.change_ops',
