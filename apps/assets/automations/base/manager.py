@@ -259,6 +259,7 @@ class PlaybookPrepareMixin:
     def write_cert_to_file(filename, content):
         with open(filename, "w") as f:
             f.write(content)
+        os.chmod(filename, 0o600)
         return filename
 
     def convert_cert_to_file(self, host, path_dir):
