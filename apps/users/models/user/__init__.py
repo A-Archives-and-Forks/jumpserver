@@ -166,6 +166,11 @@ class User(
             queryset = current_org.get_members()
         queryset = queryset.exclude(is_service_account=True)
         return queryset
+    
+
+    @property
+    def has_jdmc(self):
+        return self.has_perm("rbac.view_jdmc")
 
     @property
     def secret_key(self):
