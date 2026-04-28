@@ -1698,5 +1698,6 @@
     "ReportRecipientsTip": "當前僅支持郵件發送",
     "ReportSchedulePriorityTip": "如果同時設置了 interval 和 crontab，則優先考慮 crontab",
     "FooterContentTooLong200": "頁腳內容過長，請限制在 200 字以內",
-    "ImageFileCorruptedOrUnreadable": "影像檔案已損壞或無法讀取，請檢查檔案並重試。"
+    "ImageFileCorruptedOrUnreadable": "影像檔案已損壞或無法讀取，請檢查檔案並重試。",
+    "DeviceManager": "設備管理"
 }

@@ -1690,5 +1690,6 @@
     "ReportRecipientsTip": "Currently only supports email sending",
     "ReportSchedulePriorityTip": "If both interval and crontab are set, crontab takes priority",
     "FooterContentTooLong200": "Footer content is too long, please limit it to 200 characters",
-    "ImageFileCorruptedOrUnreadable": "The image file is corrupted or unreadable, please check the file and try again"
+    "ImageFileCorruptedOrUnreadable": "The image file is corrupted or unreadable, please check the file and try again",
+    "DeviceManager": "Device manager"
 }
