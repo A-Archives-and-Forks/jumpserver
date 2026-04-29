@@ -10,10 +10,30 @@ class AsyncLocal:
     """
 
     def __init__(self, context_var_name: str = "_async_local_storage"):
-        self._storage: contextvars.ContextVar[Dict[str, Any]] = contextvars.ContextVar(
+        object.__setattr__(self, "_storage", contextvars.ContextVar(
             context_var_name,
             default={}
-        )
+        ))
+
+    def __setattr__(self, key: str, value: Any) -> None:
+        if key.startswith("_"):
+            object.__setattr__(self, key, value)
+            return
+        self.set(key, value)
+
+    def __getattr__(self, key: str) -> Any:
+        value = self.get(key, default=None)
+        if value is None:
+            raise AttributeError(f"{self.__class__.__name__!s} has no attribute {key!r}")
+        return value
+
+    def __delattr__(self, key: str) -> None:
+        if key.startswith("_"):
+            object.__delattr__(self, key)
+            return
+        if key not in self._storage.get():
+            raise AttributeError(f"{self.__class__.__name__!s} has no attribute {key!r}")
+        self.delete(key)
 
     def set(self, key: str, value: Any) -> None:
         current_data = self._storage.get().copy()

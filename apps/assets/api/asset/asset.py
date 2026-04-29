@@ -51,7 +51,9 @@ class AssetFilterSet(BaseFilterSet):
     exclude_platform = drf_filters.CharFilter(field_name="platform__name", lookup_expr='exact', exclude=True)
     zone = drf_filters.CharFilter(method='filter_zone')
     type = drf_filters.CharFilter(field_name="platform__type", lookup_expr="exact")
+    exclude_type = drf_filters.CharFilter(field_name="platform__type", lookup_expr="exact", exclude=True)
     category = drf_filters.CharFilter(field_name="platform__category", lookup_expr="exact")
+    exclude_category = drf_filters.CharFilter(field_name="platform__category", lookup_expr="exact", exclude=True)
     protocols = drf_filters.CharFilter(method='filter_protocols')
     gateway_enabled = drf_filters.BooleanFilter(
         field_name="platform__gateway_enabled", lookup_expr="exact"

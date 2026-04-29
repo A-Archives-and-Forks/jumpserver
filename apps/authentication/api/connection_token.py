@@ -173,7 +173,7 @@ class RDPFileClientProtocolURLMixin:
         return name
 
     def get_connect_filename(self, prefix_name):
-        filename = f'{prefix_name}-jumpserver'
+        filename = prefix_name
         filename = self.escape_name(filename)
         return filename
 
