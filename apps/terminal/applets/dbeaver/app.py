@@ -2,8 +2,8 @@ import os
 import shutil
 import subprocess
 import time
-from xml.etree import ElementTree
-from xml.sax import SAXException
+from defusedxml import ElementTree
+from defusedxml.common import DefusedXmlException
 
 import win32api
 
@@ -85,7 +85,7 @@ class AppletApplication(BaseApplication):
         driver_yml_file = os.path.join(driver_yml_path, 'drivers.xml')
         try:
             self._merge_driver_xml('./config/drivers.xml', driver_yml_file)
-        except (SAXException, FileNotFoundError):
+        except (DefusedXmlException, FileNotFoundError):
             os.makedirs(driver_yml_path, exist_ok=True)
             shutil.copy('./config/drivers.xml', driver_yml_file)
 
