@@ -198,7 +198,11 @@ MIDDLEWARE = [
 ]
 
 if DEBUG or DEBUG_DEV:
-    INSTALLED_APPS.insert(0, 'daphne')
+    try:
+        import daphne  # noqa
+        INSTALLED_APPS.insert(0, 'daphne')
+    except ImportError:
+        pass
 
 ROOT_URLCONF = 'jumpserver.urls'
 

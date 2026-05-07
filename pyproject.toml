@@ -111,14 +111,10 @@ dependencies = [
     'redis',
     'pymongo==4.6.3',
     'pyfreerdp==0.0.4',
-    'forgerypy3==0.3.1',
-    'django-debug-toolbar==4.1.0',
-    'pympler==1.0.1',
     'hvac==1.1.1',
     'pyhcl==0.4.4',
     'ipy==1.1',
     'netifaces>=00.11.0',
-    'daphne==4.0.0',
     'channels>=04.0.0',
     'channels-redis==4.1.0',
     'fido2>=01.1.2',
@@ -155,7 +151,6 @@ dependencies = [
     'drf-spectacular-sidecar==2025.8.1',
     "django-oauth-toolkit==2.4.0",
     "pyhttpsig==1.3.0",
-    "requests-unixsocket==0.4.1",
     "telnetlib3==4.0.2",
     "defusedxml>=0.7.1",
 ]
@@ -165,13 +160,21 @@ Homepage = "https://www.jumpserver.com"
 Documentation = "https://www.jumpserver.com/docs"
 
 [tool.uv]
-default-groups = ["xpack"]
+default-groups = ["xpack", "dev"]
 
 
 [dependency-groups]
 
-xpack = [
+dev = [
     'ipython==8.30.0',
+    'daphne==4.0.0',
+    'django-debug-toolbar==4.1.0',
+    'pympler==1.0.1',
+    'forgerypy3==0.3.1',
+]
+
+xpack = [
+    "requests-unixsocket==0.4.1",
     'qingcloud-sdk==1.2.15',
     'azure-mgmt-subscription==3.1.1',
     'azure-mgmt-compute==30.0.0',
