@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage
 from django.db.models import F
-from django.http import HttpResponse
+from django.http import FileResponse, HttpResponse
 from django.shortcuts import get_object_or_404, reverse
 from django.utils.encoding import escape_uri_path
 from django.utils.translation import gettext_noop, gettext as _
@@ -110,24 +110,22 @@ class SessionViewSet(ReportExportMixin, OrgBulkModelViewSet):
     @staticmethod
     def prepare_offline_file(session, local_path):
         replay_path = default_storage.path(local_path)
-        current_dir = os.getcwd()
         dir_path = os.path.dirname(replay_path)
         replay_filename = os.path.basename(replay_path)
         meta_filename = '{}.json'.format(session.id)
         offline_filename = '{}.tar'.format(session.id)
-        os.chdir(dir_path)
+        offline_path = os.path.join(dir_path, offline_filename)
 
-        with open(meta_filename, 'wt') as f:
+        meta_path = os.path.join(dir_path, meta_filename)
+        with open(meta_path, 'wt') as f:
             serializer = serializers.SessionDisplaySerializer(session)
             data = data_to_json(serializer.data)
             f.write(data)
 
-        with tarfile.open(offline_filename, 'w') as f:
-            f.add(replay_filename)
-            f.add(meta_filename)
-        file = open(offline_filename, 'rb')
-        os.chdir(current_dir)
-        return file, offline_filename
+        with tarfile.open(offline_path, 'w') as f:
+            f.add(replay_path, arcname=replay_filename)
+            f.add(meta_path, arcname=meta_filename)
+        return offline_path
 
     @action(methods=[GET], detail=True, renderer_classes=(PassthroughRenderer,), url_path='replay/download',
             throttle_classes=[FileTransferThrottle],
@@ -144,19 +142,19 @@ class SessionViewSet(ReportExportMixin, OrgBulkModelViewSet):
         if url.endswith('.replay.json'):
             # part 的方式录像存储, 通过 part_storage 的方式下载
             part_storage = SessionPartReplayStorageHandler(session)
-            file, filepath = part_storage.prepare_offline_tar_file()
+            offline_abs_path = part_storage.prepare_offline_tar_file()
         else:
-            file, filepath = self.prepare_offline_file(session, local_path)
-
-        filename = filepath.replace(settings.MEDIA_ROOT, '')
+            offline_abs_path = self.prepare_offline_file(session, local_path)
+        media_root = default_storage.base_location
+        relative_path = os.path.relpath(offline_abs_path, media_root)
+        internal_url = os.path.join(settings.PRIVATE_STORAGE_INTERNAL_URL, relative_path)
+        internal_url = escape_uri_path(internal_url)
         response = HttpResponse()
-        response["Content-Type"] = "application/octet-stream"
-        response["Content-Disposition"] = (
-            f"attachment; filename*=UTF-8''{escape_uri_path(filename)}"
-        )
-        # 注意：这里不是文件真实路径，而是给 Nginx 内部 location 用的 URI
-        response["X-Accel-Redirect"] = f"/private-media/{filename}"
-
+        response['X-Accel-Redirect'] = internal_url
+        response['Content-Type'] = 'application/octet-stream'
+        filename = escape_uri_path('{}.tar'.format(session.id))
+        disposition = "attachment; filename*=UTF-8''{}".format(filename)
+        response["Content-Disposition"] = disposition
         detail = i18n_fmt(
             REPLAY_OP, self.request.user, _('Download'), str(session)
         )
