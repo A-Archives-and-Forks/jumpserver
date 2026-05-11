@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage
 from django.db.models import F
-from django.http import FileResponse
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, reverse
 from django.utils.encoding import escape_uri_path
 from django.utils.translation import gettext_noop, gettext as _
@@ -127,7 +127,7 @@ class SessionViewSet(ReportExportMixin, OrgBulkModelViewSet):
             f.add(meta_filename)
         file = open(offline_filename, 'rb')
         os.chdir(current_dir)
-        return file
+        return file, offline_filename
 
     @action(methods=[GET], detail=True, renderer_classes=(PassthroughRenderer,), url_path='replay/download',
             throttle_classes=[FileTransferThrottle],
@@ -144,16 +144,18 @@ class SessionViewSet(ReportExportMixin, OrgBulkModelViewSet):
         if url.endswith('.replay.json'):
             # part 的方式录像存储, 通过 part_storage 的方式下载
             part_storage = SessionPartReplayStorageHandler(session)
-            file = part_storage.prepare_offline_tar_file()
+            file, filepath = part_storage.prepare_offline_tar_file()
         else:
-            file = self.prepare_offline_file(session, local_path)
-        response = FileResponse(file)
-        response['Content-Type'] = 'application/octet-stream'
-        # 这里要注意哦，网上查到的方法都是response['Content-Disposition']='attachment;filename="filename.py"',
-        # 但是如果文件名是英文名没问题，如果文件名包含中文，下载下来的文件名会被改为url中的path。
-        filename = escape_uri_path('{}.tar'.format(session.id))
-        disposition = "attachment; filename*=UTF-8''{}".format(filename)
-        response["Content-Disposition"] = disposition
+            file, filepath = self.prepare_offline_file(session, local_path)
+
+        filename = filepath.replace(settings.MEDIA_ROOT, '')
+        response = HttpResponse()
+        response["Content-Type"] = "application/octet-stream"
+        response["Content-Disposition"] = (
+            f"attachment; filename*=UTF-8''{escape_uri_path(filename)}"
+        )
+        # 注意：这里不是文件真实路径，而是给 Nginx 内部 location 用的 URI
+        response["X-Accel-Redirect"] = f"/private-media/{filename}"
 
         detail = i18n_fmt(
             REPLAY_OP, self.request.user, _('Download'), str(session)
