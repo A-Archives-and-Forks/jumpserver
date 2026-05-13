@@ -90,6 +90,7 @@ class PrivateSettingSerializer(PublicSettingSerializer):
     JDMC_ENABLED = serializers.BooleanField()
     FLOWER_ENABLED = serializers.BooleanField()
     REMOTE_APP_STORE_URL = serializers.CharField()
+    VENDOR = serializers.CharField()
 
 
 class ServerInfoSerializer(serializers.Serializer):
