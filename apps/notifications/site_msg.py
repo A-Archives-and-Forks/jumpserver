@@ -1,9 +1,11 @@
+from datetime import timedelta
+
 from django.db import transaction
 
 from common.utils import get_logger
 from common.utils.timezone import local_now
 from users.models import User
-from .models import MessageContent as SiteMessageModel, SiteMessage
+from .models import MessageContent, SiteMessage
 
 logger = get_logger(__file__)
 
@@ -12,19 +14,22 @@ class SiteMessageUtil:
 
     @classmethod
     def send_msg(cls, subject, message, user_ids=(), group_ids=(),
-                 sender=None, is_broadcast=False, display_mode=SiteMessageModel.DisplayMode.default):
+                 sender=None, is_broadcast=False, display_mode=MessageContent.DisplayMode.default):
         if not any((user_ids, group_ids, is_broadcast)):
             raise ValueError('No recipient is specified')
 
         with transaction.atomic():
-            site_msg = SiteMessageModel(
+            site_msg = MessageContent(
                 subject=subject, message=message,
                 is_broadcast=is_broadcast, sender=sender,
                 display_mode=display_mode
             )
 
             if is_broadcast:
-                user_ids = User.objects.all().values_list('id', flat=True)
+                # 广播消息时只为在线用户创建，未登录的用户不创建消息，
+                # 等用户登录后在 SiteMessage.create_site_msg_for_user_if_need 按需创建
+                from audits.models import UserSession
+                user_ids = UserSession.objects.all().values_list('user_id', flat=True).distinct()
             elif group_ids:
                 site_msg.groups.add(*group_ids)
 
@@ -66,10 +71,32 @@ class SiteMessageUtil:
     
     @classmethod
     def get_user_display_msgs(cls, user_id):
+        # 获取用户未读的且需要展示的消息
         msgs = SiteMessage.objects.filter(user_id=user_id, has_read=False).exclude(
-            content__display_mode=SiteMessageModel.DisplayMode.default
+            content__display_mode=MessageContent.DisplayMode.default
         ).prefetch_related('content')
         return msgs
+    
+    @classmethod
+    def create_site_msgs_for_user_if_need(cls, user_id):
+        '''
+        创建用户未读的且需要展示的消息
+        广播消息时只为在线用户创建，未登录的用户不创建消息，等用户登录后在这里按需创建
+        只创建用户没有的、最近24小时内的、需要广播的消息
+        '''
+        contents = MessageContent.objects.filter(
+            is_broadcast=True,
+            date_created__gt=local_now() - timedelta(hours=24)
+        ).exclude(display_mode=MessageContent.DisplayMode.default)
+        content_ids = set(contents.values_list('id', flat=True))
+        has_content_ids = SiteMessage.objects.filter(
+            user_id=user_id, content_id__in=content_ids
+        ).values_list('content_id', flat=True)
+        to_create_content_ids = set(content_ids) - set(has_content_ids)
+        site_msgs = [
+            SiteMessage(user_id=user_id, content_id=cid) for cid in to_create_content_ids
+        ]
+        SiteMessage.objects.bulk_create(site_msgs)
 
     @classmethod
     def mark_msgs_as_read(cls, user_id, msg_ids=None):

@@ -66,6 +66,7 @@ class SiteMsgWebsocket(JsonWebsocketConsumer):
 
         # 先发一个消息再说
         with safe_db_connection():
+            SiteMessageUtil.create_site_msgs_for_user_if_need(user_id)
             self.send_site_msg()
 
         def handle_new_site_msg_recv(msg):
