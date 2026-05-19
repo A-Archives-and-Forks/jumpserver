@@ -9,6 +9,59 @@
     <link rel="shortcut icon" href="{{ INTERFACE.favicon }}" type="image/x-icon">
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static "js/jumpserver.js" %}?v=10"></script>
+    <script>
+        (function () {
+            var pathname = window.location.pathname || '/'
+            var marker = '/core/'
+            var idx = pathname.indexOf(marker)
+            var prefix = ''
+            if (idx > 0) {
+                prefix = pathname.slice(0, idx)
+            }
+            prefix = prefix.replace(/\/+$/, '')
+            window.__BASE_PATH__ = prefix
+        })()
+
+        function createWsUrl(path) {
+            if (/^wss?:\/\//i.test(path)) {
+                return path
+            }
+            const scheme = location.protocol === 'https:' ? 'wss' : 'ws'
+            const port = location.port ? ':' + location.port : ''
+            return scheme + '://' + location.hostname + port + addBasePath(path)
+        }
+
+        function addBasePath(path = '') {
+            if (!path || /^https?:\/\//i.test(path)) {
+                return path
+            }
+
+            const basePath = getBasePath()
+            const normalizedPath = path.startsWith('/') ? path : `/${path}`
+
+            if (!basePath) {
+                return normalizedPath
+            }
+
+            if (
+                normalizedPath === basePath ||
+                normalizedPath.startsWith(basePath + '/') ||
+                normalizedPath.startsWith(basePath + '?') ||
+                normalizedPath.startsWith(basePath + '#')
+            ) {
+                return normalizedPath
+            }
+
+            return `${basePath}${normalizedPath}`
+        }
+
+        function getBasePath() {
+            if (typeof window === 'undefined') {
+                return ''
+            }
+            return window.__BASE_PATH__ || ''
+        }
+    </script>
     <style>
         body {
             overflow: hidden;
@@ -107,11 +160,12 @@
     </div>
 </div>
 <script>
+
     var scheme = document.location.protocol === "https:" ? "wss" : "ws";
     var port = document.location.port ? ":" + document.location.port : "";
     var taskId = "{{ task_id }}";
     var url = "/ws/ops/tasks/log/";
-    var wsURL = scheme + "://" + document.location.hostname + port + url;
+    var wsURL = createWsUrl(url)
     var failOverPort = "{{ ws_port }}";
     var failOverWsURL = scheme + "://" + document.location.hostname + ':' + failOverPort + url;
     var term;
