@@ -279,8 +279,8 @@ msgid "Random generate"
 msgstr "Случайно созданный"
 
 #: accounts/const/automation.py:59 ops/const.py:17
-msgid "Replace (Replace only keys pushed by JumpServer) "
-msgstr "Сменить (только опубликованные с JumpServer ключи можно сменить) "
+msgid "Replace (Replace only keys pushed by system) "
+msgstr "Сменить (только опубликованные системой ключи можно сменить) "
 
 #: accounts/const/automation.py:60 ops/const.py:16
 msgid "Empty and append SSH KEY"
@@ -6856,7 +6856,7 @@ msgstr "Журнал задач"
 
 #: ops/variables.py:24
 msgid "The current user`s username of JumpServer"
-msgstr "Имя текущего пользователя JumpServer"
+msgstr "Имя текущего пользователя системы"
 
 #: ops/variables.py:25
 msgid "The id of the asset in the JumpServer"
@@ -7812,10 +7812,10 @@ msgstr "Атрибуты пользователя"
 #: settings/serializers/auth/cas.py:36
 msgid ""
 "User attribute mapping, where the `key` is the CAS service user attribute "
-"name and the `value` is the JumpServer user attribute name"
+"name and the `value` is this system user attribute name"
 msgstr ""
 "Сопоставление атрибутов пользователя, где \"ключ\" — это название атрибута "
-"пользователя CAS, а \"значение\" — название атрибута пользователя JumpServer"
+"пользователя CAS, а \"значение\" — название атрибута пользователя системы"
 
 #: settings/serializers/auth/dingtalk.py:16
 msgid "Dingtalk"
@@ -7823,20 +7823,20 @@ msgstr "Dingtalk"
 
 #: settings/serializers/auth/dingtalk.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the DingTalk service user attribute name"
 msgstr ""
 "Сопоставление атрибутов пользователя, где \"ключ\" — это название атрибута "
-"пользователя JumpServer, а \"значение\" — название атрибута пользователя "
+"пользователя системы, а \"значение\" — название атрибута пользователя "
 "службы DingTalk"
 
 #: settings/serializers/auth/feishu.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the FeiShu service user attribute name"
 msgstr ""
 "Сопоставление атрибутов пользователя, где \"ключ\" — это название атрибута "
-"пользователя JumpServer, а \"значение\" — название атрибута пользователя "
+"пользователя системы, а \"значение\" — название атрибута пользователя "
 "службы Feishu"
 
 #: settings/serializers/auth/lark.py:13 users/models/user/_source.py:24
@@ -7845,11 +7845,11 @@ msgstr "Lark"
 
 #: settings/serializers/auth/lark.py:19
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the Lark service user attribute name"
 msgstr ""
 "Сопоставление атрибутов пользователя, где \"ключ\" — это имя атрибута "
-"пользователя JumpServer, а \"значение\" — это имя атрибута пользователя "
+"пользователя системы, а \"значение\" — это имя атрибута пользователя "
 "службы Lark"
 
 #: settings/serializers/auth/ldap.py:42 settings/serializers/auth/ldap.py:108
@@ -7896,11 +7896,11 @@ msgstr "Возможные варианты: (cn или uid или sAMAccountNam
 
 #: settings/serializers/auth/ldap.py:69 settings/serializers/auth/ldap_ha.py:51
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the LDAP service user attribute name"
 msgstr ""
 "Сопоставление атрибутов пользователя, где \"ключ\" — это имя атрибута "
-"пользователя JumpServer, а \"значение\" — это имя атрибута пользователя "
+"пользователя системы, а \"значение\" — это имя атрибута пользователя "
 "службы LDAP"
 
 #: settings/serializers/auth/ldap.py:85 settings/serializers/auth/ldap_ha.py:67
@@ -8008,11 +8008,11 @@ msgstr "При выходе пользователя из системы он т
 
 #: settings/serializers/auth/oauth2.py:62
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the OAuth2 service user attribute name"
 msgstr ""
 "Сопоставление атрибутов пользователя, где \"ключ\" - это название атрибута "
-"пользователя JumpServer, а \"значение\" - название атрибута пользователя "
+"пользователя системы, а \"значение\" - название атрибута пользователя "
 "сервиса OAuth2"
 
 #: settings/serializers/auth/oauth2.py:67 settings/serializers/auth/oidc.py:117
@@ -8046,11 +8046,11 @@ msgstr "Игнорировать проверку SSL"
 
 #: settings/serializers/auth/oidc.py:41
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the OIDC service user attribute name"
 msgstr ""
 "Сопоставление атрибутов пользователя, где \"ключ\" - это имя атрибута "
-"пользователя JumpServer, а \"значение\" - это имя атрибута пользователя OIDC "
+"пользователя системы, а \"значение\" - это имя атрибута пользователя OIDC "
 "службы"
 
 #: settings/serializers/auth/oidc.py:45
@@ -8183,10 +8183,10 @@ msgstr "Сертификат SP"
 #: settings/serializers/auth/saml2.py:37
 msgid ""
 "User attribute mapping, where the `key` is the SAML2 service user attribute "
-"name and the `value` is the JumpServer user attribute name"
+"name and the `value` is this system user attribute name"
 msgstr ""
 "Сопоставление атрибутов пользователя, где \"ключ\" — это имя атрибута "
-"пользователя SAML2, а \"значение\" — имя атрибута пользователя JumpServer"
+"пользователя SAML2, а \"значение\" — имя атрибута пользователя системы"
 
 #: settings/serializers/auth/saml2.py:43
 msgid "When the user signs out, they also be logged out from the SAML2 server"
@@ -8194,11 +8194,11 @@ msgstr "При выходе пользователя из системы он т
 
 #: settings/serializers/auth/slack.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the Slack service user attribute name"
 msgstr ""
 "Сопоставление атрибутов пользователя, где \"ключ\" — это имя атрибута "
-"пользователя JumpServer, а \"значение\" — имя атрибута пользователя Slack "
+"пользователя системы, а \"значение\" — имя атрибута пользователя Slack "
 "сервиса"
 
 #: settings/serializers/auth/sms.py:18
@@ -8306,11 +8306,11 @@ msgstr "Единицы: секунды"
 
 #: settings/serializers/auth/wecom.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the WeCom service user attribute name"
 msgstr ""
 "Сопоставление атрибутов пользователя, где \"ключ\" — это название атрибута "
-"пользователя JumpServer, а \"значение\" — это название атрибута пользователя "
+"пользователя системы, а \"значение\" — это название атрибута пользователя "
 "сервиса WeCom"
 
 #: settings/serializers/basic.py:11

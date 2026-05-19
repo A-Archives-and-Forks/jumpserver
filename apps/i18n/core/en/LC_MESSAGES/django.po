@@ -271,7 +271,7 @@ msgid "Random generate"
 msgstr ""
 
 #: accounts/const/automation.py:59 ops/const.py:17
-msgid "Replace (Replace only keys pushed by JumpServer) "
+msgid "Replace (Replace only keys pushed by system) "
 msgstr ""
 
 #: accounts/const/automation.py:60 ops/const.py:16
@@ -7317,7 +7317,7 @@ msgstr ""
 #: settings/serializers/auth/cas.py:36
 msgid ""
 "User attribute mapping, where the `key` is the CAS service user attribute "
-"name and the `value` is the JumpServer user attribute name"
+"name and the `value` is this system user attribute name"
 msgstr ""
 
 #: settings/serializers/auth/dingtalk.py:16
@@ -7326,13 +7326,13 @@ msgstr ""
 
 #: settings/serializers/auth/dingtalk.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the DingTalk service user attribute name"
 msgstr ""
 
 #: settings/serializers/auth/feishu.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the FeiShu service user attribute name"
 msgstr ""
 
@@ -7342,7 +7342,7 @@ msgstr ""
 
 #: settings/serializers/auth/lark.py:19
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the Lark service user attribute name"
 msgstr ""
 
@@ -7387,7 +7387,7 @@ msgstr ""
 
 #: settings/serializers/auth/ldap.py:69 settings/serializers/auth/ldap_ha.py:51
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the LDAP service user attribute name"
 msgstr ""
 
@@ -7486,7 +7486,7 @@ msgstr ""
 
 #: settings/serializers/auth/oauth2.py:62
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the OAuth2 service user attribute name"
 msgstr ""
 
@@ -7521,7 +7521,7 @@ msgstr ""
 
 #: settings/serializers/auth/oidc.py:41
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the OIDC service user attribute name"
 msgstr ""
 
@@ -7646,7 +7646,7 @@ msgstr ""
 #: settings/serializers/auth/saml2.py:37
 msgid ""
 "User attribute mapping, where the `key` is the SAML2 service user attribute "
-"name and the `value` is the JumpServer user attribute name"
+"name and the `value` is this system user attribute name"
 msgstr ""
 
 #: settings/serializers/auth/saml2.py:43
@@ -7655,7 +7655,7 @@ msgstr ""
 
 #: settings/serializers/auth/slack.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the Slack service user attribute name"
 msgstr ""
 
@@ -7759,7 +7759,7 @@ msgstr ""
 
 #: settings/serializers/auth/wecom.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the WeCom service user attribute name"
 msgstr ""
 

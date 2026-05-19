@@ -275,8 +275,8 @@ msgid "Random generate"
 msgstr "隨機生成"
 
 #: accounts/const/automation.py:59 ops/const.py:17
-msgid "Replace (Replace only keys pushed by JumpServer) "
-msgstr "替換 (只替換由 JumpServer 推送的金鑰)"
+msgid "Replace (Replace only keys pushed by system) "
+msgstr "替換 (只替換由本系統建立的金鑰)"
 
 #: accounts/const/automation.py:60 ops/const.py:16
 msgid "Empty and append SSH KEY"
@@ -7562,9 +7562,9 @@ msgstr "映射屬性"
 #: settings/serializers/auth/cas.py:36
 msgid ""
 "User attribute mapping, where the `key` is the CAS service user attribute "
-"name and the `value` is the JumpServer user attribute name"
+"name and the `value` is this system user attribute name"
 msgstr ""
-"使用者屬性對照，其中 `key` 是 CAS 服務使用者屬性名稱，`value` 是 JumpServer "
+"使用者屬性對照，其中 `key` 是 CAS 服務使用者屬性名稱，`value` 是本系統使用者"
 "使用者屬性名稱"
 
 #: settings/serializers/auth/dingtalk.py:16
@@ -7573,18 +7573,18 @@ msgstr "啟用釘釘認證"
 
 #: settings/serializers/auth/dingtalk.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the DingTalk service user attribute name"
 msgstr ""
-"使用者屬性對照，其中 `key` 是 JumpServer 使用者屬性名稱，`value` 是釘釘服務使"
+"使用者屬性對照，其中 `key` 是本系統使用者屬性名稱，`value` 是釘釘服務使"
 "用者屬性名稱"
 
 #: settings/serializers/auth/feishu.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the FeiShu service user attribute name"
 msgstr ""
-"使用者屬性對照，其中 `key` 是 JumpServer 使用者屬性名稱，`value` 是飛書服務使"
+"使用者屬性對照，其中 `key` 是本系統使用者屬性名稱，`value` 是飛書服務使"
 "用者屬性名稱"
 
 #: settings/serializers/auth/lark.py:13 users/models/user/_source.py:24
@@ -7593,10 +7593,10 @@ msgstr "Lark"
 
 #: settings/serializers/auth/lark.py:19
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the Lark service user attribute name"
 msgstr ""
-"使用者屬性對照，其中 `key` 是 JumpServer 使用者屬性名稱，`value` 是 Lark 服務"
+"使用者屬性對照，其中 `key` 是本系統使用者屬性名稱，`value` 是 Lark 服務"
 "使用者屬性名稱"
 
 #: settings/serializers/auth/ldap.py:42 settings/serializers/auth/ldap.py:108
@@ -7640,10 +7640,10 @@ msgstr "可能的選項是(cn或uid或sAMAccountName=%(user)s)"
 
 #: settings/serializers/auth/ldap.py:69 settings/serializers/auth/ldap_ha.py:51
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the LDAP service user attribute name"
 msgstr ""
-"使用者屬性對照，其中 `key` 是 JumpServer 使用者屬性名稱，`value` 是 LDAP 服務"
+"使用者屬性對照，其中 `key` 是本系統使用者屬性名稱，`value` 是 LDAP 服務"
 "使用者屬性名稱"
 
 #: settings/serializers/auth/ldap.py:85 settings/serializers/auth/ldap_ha.py:67
@@ -7745,10 +7745,10 @@ msgstr "當使用者退出時，他們也會從 OAuth2 伺服器退出"
 
 #: settings/serializers/auth/oauth2.py:62
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the OAuth2 service user attribute name"
 msgstr ""
-"使用者屬性對照，其中 `key` 是 JumpServer 使用者屬性名稱，`value` 是 OAuth2 服"
+"使用者屬性對照，其中 `key` 是本系統使用者屬性名稱，`value` 是 OAuth2 服"
 "務使用者屬性名稱"
 
 #: settings/serializers/auth/oauth2.py:67 settings/serializers/auth/oidc.py:117
@@ -7782,10 +7782,10 @@ msgstr "Ignore SSL certificate verification"
 
 #: settings/serializers/auth/oidc.py:41
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the OIDC service user attribute name"
 msgstr ""
-"使用者屬性映射，其中 `key` 是 JumpServer 使用者屬性名稱，`value` 是 OIDC 服務"
+"使用者屬性映射，其中 `key` 是本系統使用者屬性名稱，`value` 是 OIDC 服務"
 "使用者屬性名稱"
 
 #: settings/serializers/auth/oidc.py:45
@@ -7914,10 +7914,10 @@ msgstr "SP 證書"
 #: settings/serializers/auth/saml2.py:37
 msgid ""
 "User attribute mapping, where the `key` is the SAML2 service user attribute "
-"name and the `value` is the JumpServer user attribute name"
+"name and the `value` is this system user attribute name"
 msgstr ""
 " 使用者屬性映射，其中 `key` 是 SAML2 服務使用者屬性名稱，`value` 是 "
-"JumpServer 使用者屬性名稱"
+"本系統使用者屬性名稱"
 
 #: settings/serializers/auth/saml2.py:43
 msgid "When the user signs out, they also be logged out from the SAML2 server"
@@ -7925,10 +7925,10 @@ msgstr "當使用者登出時，他們也會從 SAML2 伺服器登出"
 
 #: settings/serializers/auth/slack.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the Slack service user attribute name"
 msgstr ""
-"使用者屬性對照，其中 `key` 是 JumpServer 使用者屬性名稱，`value` 是 Slack 服"
+"使用者屬性對照，其中 `key` 是本系統使用者屬性名稱，`value` 是 Slack 服"
 "務使用者屬性名稱"
 
 #: settings/serializers/auth/sms.py:18
@@ -8033,10 +8033,10 @@ msgstr "單位: 秒"
 
 #: settings/serializers/auth/wecom.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the WeCom service user attribute name"
 msgstr ""
-"使用者屬性映射，其中 `key` 是 JumpServer 使用者屬性名稱，`value` 是企業微信服"
+"使用者屬性映射，其中 `key` 是本系統使用者屬性名稱，`value` 是企業微信服"
 "務使用者屬性名稱"
 
 #: settings/serializers/basic.py:11

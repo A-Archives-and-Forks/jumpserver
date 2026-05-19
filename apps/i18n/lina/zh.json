@@ -1437,7 +1437,7 @@
     "TerminalUpdate": "更新终端",
     "TerminalUpdateStorage": "更新终端存储",
     "Terminate": "终断",
-    "TerminateTaskSendSuccessMsg": "终断任务已下发，请稍后刷新查看",
+    "TerminateTaskSendSuccessMsg": "中断任务已下发，请稍后刷新查看",
     "TermsAndConditions": "条款和条件",
     "Test": "测试",
     "TestAccountConnective": "测试账号可连接性",

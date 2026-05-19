@@ -275,9 +275,9 @@ msgid "Random generate"
 msgstr "Gerar Aleatoriamente"
 
 #: accounts/const/automation.py:59 ops/const.py:17
-msgid "Replace (Replace only keys pushed by JumpServer) "
+msgid "Replace (Replace only keys pushed by system) "
 msgstr ""
-"Substituir (Substituir apenas as chaves impulsionadas pelo JumpServer) "
+"Substituir (Substituir apenas as chaves impulsionadas pelo sistema) "
 
 #: accounts/const/automation.py:60 ops/const.py:16
 msgid "Empty and append SSH KEY"
@@ -7789,10 +7789,10 @@ msgstr "Mapear atributos"
 #: settings/serializers/auth/cas.py:36
 msgid ""
 "User attribute mapping, where the `key` is the CAS service user attribute "
-"name and the `value` is the JumpServer user attribute name"
+"name and the `value` is this system user attribute name"
 msgstr ""
 "Mapeamento de atributos do usuário, onde `key` é o nome do atributo do "
-"usuário do serviço CAS, e `value` é o nome do atributo do usuário JumpServer"
+"usuário do serviço CAS, e `value` é o nome do atributo do usuário do sistema"
 
 #: settings/serializers/auth/dingtalk.py:16
 msgid "Dingtalk"
@@ -7800,20 +7800,20 @@ msgstr "Habilitar autenticação DingTalk"
 
 #: settings/serializers/auth/dingtalk.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the DingTalk service user attribute name"
 msgstr ""
 "Mapeamento de atributos do usuário, onde `key` é o nome do atributo do "
-"usuário JumpServer, e `value` é o nome do atributo do usuário do serviço "
+"usuário do sistema, e `value` é o nome do atributo do usuário do serviço "
 "DingTalk"
 
 #: settings/serializers/auth/feishu.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the FeiShu service user attribute name"
 msgstr ""
 "Mapeamento de atributos do usuário, onde `key` é o nome do atributo do "
-"usuário JumpServer, e `value` é o nome do atributo do usuário do serviço "
+"usuário do sistema, e `value` é o nome do atributo do usuário do serviço "
 "Feishu."
 
 #: settings/serializers/auth/lark.py:13 users/models/user/_source.py:24
@@ -7822,11 +7822,11 @@ msgstr "Lark"
 
 #: settings/serializers/auth/lark.py:19
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the Lark service user attribute name"
 msgstr ""
 "Mapeamento de atributos do usuário, onde `key` é o nome do atributo do "
-"usuário JumpServer e `value` é o nome do atributo do usuário do serviço Lark"
+"usuário do sistema e `value` é o nome do atributo do usuário do serviço Lark"
 
 #: settings/serializers/auth/ldap.py:42 settings/serializers/auth/ldap.py:108
 msgid "LDAP"
@@ -7871,11 +7871,11 @@ msgstr "As opções possíveis são (cn ou uid ou sAMAccountName=%(user)s)"
 
 #: settings/serializers/auth/ldap.py:69 settings/serializers/auth/ldap_ha.py:51
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the LDAP service user attribute name"
 msgstr ""
 "Mapeamento de atributos do usuário, onde `key` é o nome do atributo do "
-"usuário JumpServer e `value` é o nome do atributo do usuário do serviço LDAP"
+"usuário do sistema e `value` é o nome do atributo do usuário do serviço LDAP"
 
 #: settings/serializers/auth/ldap.py:85 settings/serializers/auth/ldap_ha.py:67
 msgid "Connect timeout (s)"
@@ -7982,11 +7982,11 @@ msgstr "Quando os usuários saem, eles também sairão do servidor OAuth2"
 
 #: settings/serializers/auth/oauth2.py:62
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the OAuth2 service user attribute name"
 msgstr ""
 "Mapeamento de atributos do usuário, onde `key` é o nome do atributo do "
-"usuário JumpServer, e `value` é o nome do atributo do usuário do serviço "
+"usuário do sistema, e `value` é o nome do atributo do usuário do serviço "
 "OAuth2."
 
 #: settings/serializers/auth/oauth2.py:67 settings/serializers/auth/oidc.py:117
@@ -8020,11 +8020,11 @@ msgstr "Ignorar validação do certificado SSL"
 
 #: settings/serializers/auth/oidc.py:41
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the OIDC service user attribute name"
 msgstr ""
 "Mapeamento de atributos do usuário, onde `key` é o nome do atributo do "
-"usuário JumpServer e `value` é o nome do atributo do usuário do serviço OIDC"
+"usuário do sistema e `value` é o nome do atributo do usuário do serviço OIDC"
 
 #: settings/serializers/auth/oidc.py:45
 msgid "Enable PKCE"
@@ -8157,7 +8157,7 @@ msgstr "Certificado SP"
 #: settings/serializers/auth/saml2.py:37
 msgid ""
 "User attribute mapping, where the `key` is the SAML2 service user attribute "
-"name and the `value` is the JumpServer user attribute name"
+"name and the `value` is this system user attribute name"
 msgstr ""
 "Mapeamento de atributos do usuário, onde `key` é o nome do atributo do "
 "usuário do serviço SAML2, `value` é o nome do atributo do usuário do "
@@ -8170,11 +8170,11 @@ msgstr ""
 
 #: settings/serializers/auth/slack.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the Slack service user attribute name"
 msgstr ""
 "Mapeamento de atributos do usuário, onde `key` é o nome do atributo do "
-"usuário do JumpServer, `value` é o nome do atributo do usuário do serviço "
+"usuário do sistema, `value` é o nome do atributo do usuário do serviço "
 "Slack"
 
 #: settings/serializers/auth/sms.py:18
@@ -8283,11 +8283,11 @@ msgstr "Unidade: segundos"
 
 #: settings/serializers/auth/wecom.py:20
 msgid ""
-"User attribute mapping, where the `key` is the JumpServer user attribute "
+"User attribute mapping, where the `key` is this system user attribute "
 "name and the `value` is the WeCom service user attribute name"
 msgstr ""
 "Mapeamento de atributos do usuário, onde `key` é o nome do atributo do "
-"usuário JumpServer e `value` é o nome do atributo do usuário do serviço "
+"usuário do sistema e `value` é o nome do atributo do usuário do serviço "
 "corporativo WeChat"
 
 #: settings/serializers/basic.py:11
