@@ -12128,7 +12128,7 @@ msgstr "Passphrase"
 
 #: xpack/plugins/interface/templates/login_i18n.html:15
 msgid "I have read and agree to the"
-msgstr ""
+msgstr "I agree to"
 
 #: xpack/plugins/interface/templates/login_i18n.html:16
 msgid "User Agreement"
