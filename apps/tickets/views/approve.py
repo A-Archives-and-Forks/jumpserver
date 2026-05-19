@@ -75,7 +75,7 @@ class TicketDirectApproveView(TemplateView):
     def get(self, request, *args, **kwargs):
         if not (settings.TICKETS_DIRECT_APPROVE or request.user.is_authenticated):
             direct_url = reverse('tickets:direct-approve', kwargs={'token': kwargs['token']})
-            redirect_url = f'{reverse('authentication:login') + '?admin=1'}&{self.redirect_field_name}={direct_url}'
+            redirect_url = f"{reverse('authentication:login') + '?admin=1'}&{self.redirect_field_name}={direct_url}"
             message_data = {
                 'title': _('Ticket approval'),
                 'message': _('After successful authentication, this ticket can be approved directly'),
