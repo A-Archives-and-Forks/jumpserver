@@ -269,6 +269,9 @@ class Config(dict):
         'AUTH_CUSTOM_SSO_FILE_MD5': '',
         'AUTH_CUSTOM_SSO_QUERY_PARAMS': 'token',
 
+        'AUTH_CERT': False,
+        'CA_KEY_PASS': '',
+
         # 临时密码
         'AUTH_TEMP_TOKEN': False,
 

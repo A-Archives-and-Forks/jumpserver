@@ -6,6 +6,7 @@ from rest_framework.routers import DefaultRouter
 
 from .. import api
 from ..backends.passkey.urls import urlpatterns as passkey_urlpatterns
+from ..backends.cert.api_urls import urlpatterns as cert_api_urlpatterns
 
 app_name = 'authentication'
 router = DefaultRouter()
@@ -53,6 +54,7 @@ if settings.AUTH_CUSTOM_SSO:
         path('custom-sso/login/', api.CustomSSOLoginAPIView.as_view(), name='custom-sso-login'),
     ]
 
-
+if settings.AUTH_CERT:
+    urlpatterns += cert_api_urlpatterns
 
 urlpatterns += router.urls + passkey_urlpatterns

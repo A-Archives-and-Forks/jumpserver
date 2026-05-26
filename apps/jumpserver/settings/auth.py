@@ -5,6 +5,7 @@ import os
 import ldap
 
 from ..const import CONFIG, PROJECT_DIR, BASE_DIR
+from . import exist_or_default
 
 # OTP settings
 OTP_ISSUER_NAME = CONFIG.OTP_ISSUER_NAME
@@ -290,6 +291,7 @@ AUTH_BACKEND_OAUTH2 = 'authentication.backends.oauth2.OAuth2Backend'
 AUTH_BACKEND_TEMP_TOKEN = 'authentication.backends.token.TempTokenAuthBackend'
 AUTH_BACKEND_CUSTOM = 'authentication.backends.custom.CustomAuthBackend'
 AUTH_BACKEND_PASSKEY = 'authentication.backends.passkey.PasskeyAuthBackend'
+AUTH_BACKEND_CERT = 'authentication.backends.cert.CertBackend'
 AUTHENTICATION_BACKENDS = [
     # 只做权限校验
     RBAC_BACKEND,
@@ -302,7 +304,9 @@ AUTHENTICATION_BACKENDS = [
     AUTH_BACKEND_WECOM, AUTH_BACKEND_DINGTALK, AUTH_BACKEND_FEISHU, AUTH_BACKEND_LARK, AUTH_BACKEND_SLACK,
     # Token模式
     AUTH_BACKEND_AUTH_TOKEN, AUTH_BACKEND_SSO, AUTH_BACKEND_CUSTOM_SSO, AUTH_BACKEND_TEMP_TOKEN,
-    AUTH_BACKEND_PASSKEY
+    AUTH_BACKEND_PASSKEY,
+    # Cert模式
+    AUTH_BACKEND_CERT
 ]
 
 
@@ -379,3 +383,25 @@ if AUTH_CUSTOM_SSO and AUTH_CUSTOM_SSO_FILE_MD5:
         # 如果启用了自定义 SSO 认证，但文件 MD5 不匹配，则不启用自定义 SSO 认证
         AUTH_CUSTOM_SSO = False
 AUTH_CUSTOM_SSO_QUERY_PARAMS = [q.strip() for q in CONFIG.AUTH_CUSTOM_SSO_QUERY_PARAMS.split(',')]
+
+
+# 开启证书认证
+AUTH_CERT = CONFIG.AUTH_CERT
+# 证书认证前端 SDK 文件路径
+AUTH_CERT_VENDOR_DRIVER_JS_FILE = exist_or_default(
+    os.path.join(PROJECT_DIR, 'data', 'auth', 'cert_driver.js'), None
+)
+# 抽象方法名 → 厂商 SDK 实际方法名
+AUTH_CERT_VENDOR_DRIVER_CONFIG_FILE = exist_or_default(
+    os.path.join(PROJECT_DIR, 'data', 'auth', 'cert_driver_config.yaml'), None
+)
+# CA 根证书私钥文件路径
+CA_KEY_FILE = exist_or_default(
+    os.path.join(PROJECT_DIR, 'data', 'certs', 'ca_root.key'), None
+)
+# CA 根证书文件路径，可用于认证时验证客户端证书，签发用户证书
+CA_CERT_FILE = exist_or_default(
+    os.path.join(PROJECT_DIR, 'data', 'certs', 'ca_root.crt'), None
+)
+# CA 私鑰密码（若私鑰带密码保护，不含密码则留空）
+CA_KEY_PASS = CONFIG.CA_KEY_PASS
