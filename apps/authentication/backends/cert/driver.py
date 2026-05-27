@@ -36,19 +36,19 @@ class CertVendorDriverConfig:
     # ── CA / 证书链（只读系统设置，不允许在 YAML 中配置）────────────────────────
 
     @property
-    def ca_cert_file(self):
-        """CA 根证书路径，只从系统设置读取。"""
-        return getattr(settings, 'CA_CERT_FILE', None)
+    def ca_cert_content(self):
+        """CA 根证书 PEM 内容，只从系统设置读取。"""
+        return getattr(settings, 'AUTH_CERT_CA_CERT_CONTENT', '') or ''
 
     @property
-    def ca_key_file(self):
-        """CA 私钥路径，只从系统设置读取。"""
-        return getattr(settings, 'CA_KEY_FILE', None)
+    def ca_key_content(self):
+        """CA 私钥 PEM 内容，只从系统设置读取。"""
+        return getattr(settings, 'AUTH_CERT_CA_KEY_CONTENT', '') or ''
 
     @property
     def ca_key_pass(self):
         """CA 私钥密码，只从系统设置读取。"""
-        return str(getattr(settings, 'CA_KEY_PASS', ''))
+        return str(getattr(settings, 'AUTH_CERT_CA_KEY_PASS', ''))
 
     @property
     def driver_js_file(self):

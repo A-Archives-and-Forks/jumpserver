@@ -100,13 +100,21 @@ class CertBackend(JMSBaseAuthBackend):
         """调用 Sm2Certificate.verify_by_ca_certificate 验证证书链。"""
         from common.utils.gmssl_python import SM2_DEFAULT_ID
 
-        ca_cert_path = cert_vd_cfg.ca_cert_file
-        if not ca_cert_path or not os.path.isfile(ca_cert_path):
-            raise FileNotFoundError('CA_CERT_FILE not configured or not found')
+        ca_cert_content = cert_vd_cfg.ca_cert_content
+        if not ca_cert_content:
+            raise ValueError('AUTH_CERT_CA_CERT_CONTENT not configured')
 
         from common.utils.gmssl_python import Sm2Certificate
-        ca_cert = Sm2Certificate()
-        ca_cert.import_pem(ca_cert_path)
+        fd, ca_cert_file = tempfile.mkstemp(suffix='.crt')
+        try:
+            os.close(fd)
+            with open(ca_cert_file, 'w', encoding='utf-8') as f:
+                f.write(ca_cert_content)
+            ca_cert = Sm2Certificate()
+            ca_cert.import_pem(ca_cert_file)
+        finally:
+            if os.path.exists(ca_cert_file):
+                os.unlink(ca_cert_file)
 
         if not sm2_cert.verify_by_ca_certificate(ca_cert, SM2_DEFAULT_ID):
             raise ValueError('SM2 cert chain verification failed')
@@ -211,13 +219,12 @@ class CertBackend(JMSBaseAuthBackend):
             return None
 
         # Step 2: 校验证书链，是否由 CA 根证书签发
-        ca_cert_path = cert_vd_cfg.ca_cert_file
-        if not ca_cert_path or not os.path.isfile(ca_cert_path):
-            logger.warning('CertBackend: CA_CERT_FILE not configured or not found')
+        ca_cert_content = cert_vd_cfg.ca_cert_content
+        if not ca_cert_content:
+            logger.warning('CertBackend: AUTH_CERT_CA_CERT_CONTENT not configured')
             return None
         try:
-            with open(ca_cert_path, 'rb') as f:
-                ca_cert = x509.load_pem_x509_certificate(f.read())
+            ca_cert = x509.load_pem_x509_certificate(ca_cert_content.encode())
             ca_cert.public_key().verify(
                 cert.signature,
                 cert.tbs_certificate_bytes,

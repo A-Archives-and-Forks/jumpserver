@@ -399,13 +399,7 @@ AUTH_CERT_VENDOR_DRIVER_JS_FILE = exist_or_default(
 AUTH_CERT_VENDOR_DRIVER_CONFIG_FILE = exist_or_default(
     os.path.join(PROJECT_DIR, 'data', 'auth', 'cert_driver_config.yaml'), None
 )
-# CA 根证书私钥文件路径
-CA_KEY_FILE = exist_or_default(
-    os.path.join(PROJECT_DIR, 'data', 'certs', 'ca_root.key'), None
-)
-# CA 根证书文件路径，可用于认证时验证客户端证书，签发用户证书
-CA_CERT_FILE = exist_or_default(
-    os.path.join(PROJECT_DIR, 'data', 'certs', 'ca_root.crt'), None
-)
-# CA 私鑰密码（若私鑰带密码保护，不含密码则留空）
-CA_KEY_PASS = CONFIG.CA_KEY_PASS
+AUTH_CERT_CA_KEY_CONTENT = CONFIG.AUTH_CERT_CA_KEY_CONTENT
+AUTH_CERT_CA_CERT_CONTENT = CONFIG.AUTH_CERT_CA_CERT_CONTENT
+AUTH_CERT_CA_KEY_PASS = CONFIG.AUTH_CERT_CA_KEY_PASS
+AUTH_CERT_CA_CERT_ALGORITHM = ''

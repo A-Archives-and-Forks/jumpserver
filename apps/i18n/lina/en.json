@@ -1754,5 +1754,6 @@
     "CertExecutionFailed": "Execution failed",
     "CertMethodNotFound": "Method not found in driver instance: {method}",
     "CertMethodMappingNotFound": "Method mapping not found in driver config: {name}",
-    "CertEnrollStepNotFound": "Step not found in enroll config: {key}"
+    "CertEnrollStepNotFound": "Step not found in enroll config: {key}",
+    "Enrollment": "Enrollment"
 }

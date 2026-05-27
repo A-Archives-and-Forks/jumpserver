@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-26 16:01+0800\n"
+"POT-Creation-Date: 2026-05-27 14:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2405,6 +2405,7 @@ msgstr ""
 #: assets/const/automation.py:6 audits/const.py:6 audits/const.py:48
 #: audits/signal_handlers/activity_log.py:63 common/utils/ip/geoip/utils.py:42
 #: common/utils/ip/geoip/utils.py:48 common/utils/ip/utils.py:104
+#: settings/serializers/auth/cert.py:31
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -5340,7 +5341,7 @@ msgstr "Código de error"
 #: authentication/templates/authentication/_msg_oauth_bind.html:3
 #: authentication/templates/authentication/_msg_reset_password.html:3
 #: authentication/templates/authentication/_msg_reset_password_code.html:9
-#: jumpserver/conf.py:562
+#: jumpserver/conf.py:565
 #: perms/templates/perms/_msg_item_permissions_expire.html:3
 #: tickets/templates/tickets/approve_check_password.html:32
 #: users/templates/users/_msg_account_expire_reminder.html:4
@@ -6342,16 +6343,16 @@ msgstr "No se encontró el Código"
 msgid "The message code provided is invalid or has expired"
 msgstr "El código de mensaje proporcionado es inválido o ha expirado"
 
-#: jumpserver/conf.py:556
+#: jumpserver/conf.py:559
 #, python-brace-format
 msgid "The verification code is: {code}"
 msgstr "El código de verificación es: {code}"
 
-#: jumpserver/conf.py:561
+#: jumpserver/conf.py:564
 msgid "Create account successfully"
 msgstr "Creación de cuenta exitosa"
 
-#: jumpserver/conf.py:563
+#: jumpserver/conf.py:566
 msgid "Your account has been created successfully"
 msgstr "Tu cuenta ha sido creada con éxito"
 
@@ -8075,45 +8076,83 @@ msgstr ""
 "usuario del servicio CAS, y `value` es el nombre del atributo de usuario de "
 "JumpServer"
 
-#: settings/serializers/auth/cert.py:9 settings/serializers/auth/cert.py:12
+#: settings/serializers/auth/cert.py:37 settings/serializers/auth/cert.py:40
 #: users/models/user/_source.py:27
 #, fuzzy
 #| msgid "Authenticate"
 msgid "Certificate"
 msgstr "Verificar identidad"
 
-#: settings/serializers/auth/cert.py:15
-msgid "Enrollment"
-msgstr ""
-
-#: settings/serializers/auth/cert.py:16
-msgid "Whether to enable user certificate enrollment"
-msgstr ""
-
-#: settings/serializers/auth/cert.py:19
-msgid "Enrollment Validity Days"
-msgstr ""
-
-#: settings/serializers/auth/cert.py:20
-msgid "Validity period (days) for issued certificates"
-msgstr ""
-
-#: settings/serializers/auth/cert.py:23
+#: settings/serializers/auth/cert.py:43
 #, fuzzy
 #| msgid "Verify code TTL (second)"
 msgid "Challenge TTL (seconds)"
 msgstr "Tiempo de validez del código de verificación (min)"
 
-#: settings/serializers/auth/cert.py:24
+#: settings/serializers/auth/cert.py:44
 msgid "Time-to-live (seconds) for authentication challenge codes"
 msgstr ""
 
-#: settings/serializers/auth/cert.py:27
+#: settings/serializers/auth/cert.py:47
 msgid "USB-Key Default PIN"
 msgstr ""
 
-#: settings/serializers/auth/cert.py:28
+#: settings/serializers/auth/cert.py:48
 msgid "Default USB Key PIN used for administrator reset"
+msgstr ""
+
+#: settings/serializers/auth/cert.py:52
+msgid "Enrollment"
+msgstr ""
+
+#: settings/serializers/auth/cert.py:53
+msgid "Whether to enable user certificate enrollment"
+msgstr ""
+
+#: settings/serializers/auth/cert.py:56
+msgid "Enrollment Validity Days"
+msgstr ""
+
+#: settings/serializers/auth/cert.py:57
+msgid "Validity period (days) for issued certificates"
+msgstr ""
+
+#: settings/serializers/auth/cert.py:60
+#, fuzzy
+#| msgid "Content"
+msgid "CA Key"
+msgstr "Contenido"
+
+#: settings/serializers/auth/cert.py:61
+msgid "PEM content of CA private key used for certificate enrollment"
+msgstr ""
+
+#: settings/serializers/auth/cert.py:64
+#, fuzzy
+#| msgid "Content"
+msgid "CA Cert"
+msgstr "Contenido"
+
+#: settings/serializers/auth/cert.py:65
+msgid ""
+"PEM content of CA certificate used for certificate enrollment and "
+"authentication"
+msgstr ""
+
+#: settings/serializers/auth/cert.py:68
+#, fuzzy
+#| msgid "Password"
+msgid "CA Key Password"
+msgstr "Contraseña"
+
+#: settings/serializers/auth/cert.py:69
+msgid ""
+"Password for CA private key used for certificate enrollment (leave blank if "
+"not set)"
+msgstr ""
+
+#: settings/serializers/auth/cert.py:72
+msgid "CA Cert Algorithm"
 msgstr ""
 
 #: settings/serializers/auth/dingtalk.py:16

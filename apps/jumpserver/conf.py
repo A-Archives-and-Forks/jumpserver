@@ -270,11 +270,13 @@ class Config(dict):
         'AUTH_CUSTOM_SSO_QUERY_PARAMS': 'token',
 
         'AUTH_CERT': False,
-        'CA_KEY_PASS': '',
         'AUTH_CERT_ENROLL_ENABLED': True,
         'AUTH_CERT_ENROLL_VALIDITY_DAYS': 365,
         'AUTH_CERT_CHALLENGE_TTL': 300,
         'AUTH_CERT_DEFAULT_PIN': '',
+        'AUTH_CERT_CA_KEY_CONTENT': '',
+        'AUTH_CERT_CA_CERT_CONTENT': '',
+        'AUTH_CERT_CA_KEY_PASS': '',
 
         # 临时密码
         'AUTH_TEMP_TOKEN': False,

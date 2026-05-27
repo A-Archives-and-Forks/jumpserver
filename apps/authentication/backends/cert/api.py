@@ -144,19 +144,17 @@ class CertEnrollAPIView(APIView):
         if not isinstance(pub_key, rsa.RSAPublicKey):
             raise ValueError('Unsupported key type: {}'.format(type(pub_key).__name__))
 
-        ca_key_path = cert_vd_cfg.ca_key_file
-        ca_cert_path = cert_vd_cfg.ca_cert_file
+        ca_key_content = cert_vd_cfg.ca_key_content
+        ca_cert_content = cert_vd_cfg.ca_cert_content
         ca_key_pass = cert_vd_cfg.ca_key_pass
-        if not ca_key_path or not os.path.isfile(ca_key_path):
-            raise FileNotFoundError('CA_KEY_FILE not configured or not found')
-        if not ca_cert_path or not os.path.isfile(ca_cert_path):
-            raise FileNotFoundError('CA_CERT_FILE not configured or not found')
+        if not ca_key_content:
+            raise ValueError('AUTH_CERT_CA_KEY_CONTENT not configured')
+        if not ca_cert_content:
+            raise ValueError('AUTH_CERT_CA_CERT_CONTENT not configured')
 
-        with open(ca_cert_path, 'rb') as f:
-            ca_cert = x509.load_pem_x509_certificate(f.read())
-        with open(ca_key_path, 'rb') as f:
-            password = ca_key_pass.encode() if ca_key_pass else None
-            ca_key = serialization.load_pem_private_key(f.read(), password=password)
+        ca_cert = x509.load_pem_x509_certificate(ca_cert_content.encode())
+        password = ca_key_pass.encode() if ca_key_pass else None
+        ca_key = serialization.load_pem_private_key(ca_key_content.encode(), password=password)
 
         validity_days = cert_vd_cfg.enroll_validity_days
         now = datetime.datetime.now(datetime.timezone.utc)
@@ -180,23 +178,35 @@ class CertEnrollAPIView(APIView):
           gmssl reqsign -in user.csr -days 365 -cacert root.crt -key root.key -pass 123456 -out user.crt
         """
         gmssl_bin = cert_vd_cfg.gmssl_bin
-        ca_key_path = cert_vd_cfg.ca_key_file
-        ca_cert_path = cert_vd_cfg.ca_cert_file
+        ca_key_content = cert_vd_cfg.ca_key_content
+        ca_cert_content = cert_vd_cfg.ca_cert_content
         ca_key_pass = cert_vd_cfg.ca_key_pass
-        if not ca_key_path or not os.path.isfile(ca_key_path):
-            raise FileNotFoundError('CA_KEY_FILE not configured or not found')
-        if not ca_cert_path or not os.path.isfile(ca_cert_path):
-            raise FileNotFoundError('CA_CERT_FILE not configured or not found')
+        if not ca_key_content:
+            raise ValueError('AUTH_CERT_CA_KEY_CONTENT not configured')
+        if not ca_cert_content:
+            raise ValueError('AUTH_CERT_CA_CERT_CONTENT not configured')
 
         validity_days = str(cert_vd_cfg.enroll_validity_days)
 
-        csr_file = cert_file = None
+        csr_file = ca_cert_file = ca_key_file = cert_file = None
         try:
             with tempfile.NamedTemporaryFile(
                 suffix='.csr', mode='w', delete=False, encoding='utf-8'
             ) as f:
                 f.write(csr_pem)
                 csr_file = f.name
+
+            with tempfile.NamedTemporaryFile(
+                suffix='.crt', mode='w', delete=False, encoding='utf-8'
+            ) as f:
+                f.write(ca_cert_content)
+                ca_cert_file = f.name
+
+            with tempfile.NamedTemporaryFile(
+                suffix='.key', mode='w', delete=False, encoding='utf-8'
+            ) as f:
+                f.write(ca_key_content)
+                ca_key_file = f.name
 
             fd, cert_file = tempfile.mkstemp(suffix='.crt')
             os.close(fd)
@@ -209,8 +219,8 @@ class CertEnrollAPIView(APIView):
                 gmssl_bin, 'reqsign',
                 '-in', csr_file,
                 '-days', validity_days,
-                '-cacert', ca_cert_path,
-                '-key', ca_key_path,
+                '-cacert', ca_cert_file,
+                '-key', ca_key_file,
                 '-out', cert_file,
             ]
             if ca_key_pass:
@@ -228,6 +238,6 @@ class CertEnrollAPIView(APIView):
             with open(cert_file, 'r', encoding='utf-8') as f:
                 return f.read()
         finally:
-            for path in (csr_file, cert_file):
+            for path in (csr_file, ca_cert_file, ca_key_file, cert_file):
                 if path and os.path.exists(path):
                     os.unlink(path)

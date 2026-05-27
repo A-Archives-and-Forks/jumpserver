@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JumpServer 0.3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-26 16:05+0800\n"
+"POT-Creation-Date: 2026-05-27 14:34+0800\n"
 "PO-Revision-Date: 2021-05-20 10:54+0800\n"
 "Last-Translator: ibuler <ibuler@qq.com>\n"
 "Language-Team: JumpServer team<ibuler@qq.com>\n"
@@ -2296,6 +2296,7 @@ msgstr ">>> 開始執行測試網關可連接性任務"
 #: assets/const/automation.py:6 audits/const.py:6 audits/const.py:48
 #: audits/signal_handlers/activity_log.py:63 common/utils/ip/geoip/utils.py:42
 #: common/utils/ip/geoip/utils.py:48 common/utils/ip/utils.py:104
+#: settings/serializers/auth/cert.py:31
 msgid "Unknown"
 msgstr "未知"
 
@@ -5113,7 +5114,7 @@ msgstr "代碼錯誤"
 #: authentication/templates/authentication/_msg_oauth_bind.html:3
 #: authentication/templates/authentication/_msg_reset_password.html:3
 #: authentication/templates/authentication/_msg_reset_password_code.html:9
-#: jumpserver/conf.py:562
+#: jumpserver/conf.py:565
 #: perms/templates/perms/_msg_item_permissions_expire.html:3
 #: tickets/templates/tickets/approve_check_password.html:32
 #: users/templates/users/_msg_account_expire_reminder.html:4
@@ -6049,16 +6050,16 @@ msgstr "未找到 Code"
 msgid "The message code provided is invalid or has expired"
 msgstr "提供的消息代碼無效或已過期"
 
-#: jumpserver/conf.py:556
+#: jumpserver/conf.py:559
 #, python-brace-format
 msgid "The verification code is: {code}"
 msgstr "驗證碼為: {code}"
 
-#: jumpserver/conf.py:561
+#: jumpserver/conf.py:564
 msgid "Create account successfully"
 msgstr "創建帳號成功"
 
-#: jumpserver/conf.py:563
+#: jumpserver/conf.py:566
 msgid "Your account has been created successfully"
 msgstr "你的帳號已創建成功"
 
@@ -7660,42 +7661,74 @@ msgstr ""
 "使用者屬性對照，其中 `key` 是 CAS 服務使用者屬性名稱，`value` 是本系統使用者"
 "使用者屬性名稱"
 
-#: settings/serializers/auth/cert.py:9 settings/serializers/auth/cert.py:12
+#: settings/serializers/auth/cert.py:37 settings/serializers/auth/cert.py:40
 #: users/models/user/_source.py:27
 msgid "Certificate"
 msgstr "憑證"
 
-#: settings/serializers/auth/cert.py:15
-msgid "Enrollment"
-msgstr "憑證簽發"
-
-#: settings/serializers/auth/cert.py:16
-msgid "Whether to enable user certificate enrollment"
-msgstr "是否啟用使用者憑證簽發"
-
-#: settings/serializers/auth/cert.py:19
-msgid "Enrollment Validity Days"
-msgstr "簽發憑證有效天數"
-
-#: settings/serializers/auth/cert.py:20
-msgid "Validity period (days) for issued certificates"
-msgstr "簽發憑證的有效期（天）"
-
-#: settings/serializers/auth/cert.py:23
+#: settings/serializers/auth/cert.py:43
 msgid "Challenge TTL (seconds)"
 msgstr "挑戰碼的有效時長（秒）"
 
-#: settings/serializers/auth/cert.py:24
+#: settings/serializers/auth/cert.py:44
 msgid "Time-to-live (seconds) for authentication challenge codes"
 msgstr "認證挑戰碼的有效時長（秒）"
 
-#: settings/serializers/auth/cert.py:27
+#: settings/serializers/auth/cert.py:47
 msgid "USB-Key Default PIN"
 msgstr "USB Key 預設 PIN 碼"
 
-#: settings/serializers/auth/cert.py:28
+#: settings/serializers/auth/cert.py:48
 msgid "Default USB Key PIN used for administrator reset"
 msgstr "管理員重置時使用的預設 PIN 碼"
+
+#: settings/serializers/auth/cert.py:52
+msgid "Enrollment"
+msgstr "憑證簽發"
+
+#: settings/serializers/auth/cert.py:53
+msgid "Whether to enable user certificate enrollment"
+msgstr "是否啟用使用者憑證簽發"
+
+#: settings/serializers/auth/cert.py:56
+msgid "Enrollment Validity Days"
+msgstr "簽發憑證有效天數"
+
+#: settings/serializers/auth/cert.py:57
+msgid "Validity period (days) for issued certificates"
+msgstr "簽發憑證的有效期（天）"
+
+#: settings/serializers/auth/cert.py:60
+msgid "CA Key"
+msgstr "CA 私鑰"
+
+#: settings/serializers/auth/cert.py:61
+msgid "PEM content of CA private key used for certificate enrollment"
+msgstr "用於憑證簽發的 CA 私鑰 PEM 內容"
+
+#: settings/serializers/auth/cert.py:64
+msgid "CA Cert"
+msgstr "CA 憑證"
+
+#: settings/serializers/auth/cert.py:65
+msgid ""
+"PEM content of CA certificate used for certificate enrollment and "
+"authentication"
+msgstr "用於憑證簽發與認證的 CA 憑證 PEM 內容"
+
+#: settings/serializers/auth/cert.py:68
+msgid "CA Key Password"
+msgstr "CA 私鑰密碼"
+
+#: settings/serializers/auth/cert.py:69
+msgid ""
+"Password for CA private key used for certificate enrollment (leave blank if "
+"not set)"
+msgstr "用於憑證簽發的 CA 私鑰加密密碼（未設定密碼請留空）"
+
+#: settings/serializers/auth/cert.py:72
+msgid "CA Cert Algorithm"
+msgstr "CA 憑證演算法"
 
 #: settings/serializers/auth/dingtalk.py:16
 msgid "Dingtalk"

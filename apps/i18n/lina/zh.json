@@ -1765,5 +1765,6 @@
     "CertExecutionFailed": "操作执行失败",
     "CertMethodNotFound": "驱动实例中未找到方法：{method}",
     "CertMethodMappingNotFound": "驱动配置中未找到方法映射：{name}",
-    "CertEnrollStepNotFound": "签发配置中未找到步骤：{key}"
+    "CertEnrollStepNotFound": "签发配置中未找到步骤：{key}",
+    "Enrollment": "证书签发"
 }
