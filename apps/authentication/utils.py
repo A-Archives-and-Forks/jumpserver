@@ -147,9 +147,9 @@ def get_auth_methods():
             'logo': static('img/login_passkey.png')
         },
         {
-            'name': _('CERT'),
+            'name': _('UKey'),
             'enabled': settings.AUTH_CERT,
             'url': reverse('authentication:cert:cert-login'),
-            'logo': static('img/login_cert.png')
+            'logo': static('img/login_ukey.png')
         }
     ]
