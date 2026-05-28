@@ -74,4 +74,5 @@ class CertSettingSerializer(serializers.Serializer):
 
     def get_AUTH_CERT_CA_CERT_ALGORITHM(self, obj):
         content = obj.get('AUTH_CERT_CA_CERT_CONTENT', '')
-        return _detect_cert_algorithm(content)
+        algo = _detect_cert_algorithm(content)
+        return algo or '-'
