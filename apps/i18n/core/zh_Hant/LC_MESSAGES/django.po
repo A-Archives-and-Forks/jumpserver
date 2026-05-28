@@ -5211,8 +5211,8 @@ msgid "Cancel"
 msgstr "取消"
 
 #: authentication/templates/authentication/cert_login.html:194
-msgid "Certificate Authentication"
-msgstr "憑證認證"
+msgid "UKey Authentication"
+msgstr "UKey 認證"
 
 #: authentication/templates/authentication/cert_login.html:199
 #: authentication/templates/authentication/cert_login.html:254

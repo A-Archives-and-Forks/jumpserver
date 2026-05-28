@@ -5400,10 +5400,8 @@ msgid "Cancel"
 msgstr "Hủy bỏ"
 
 #: authentication/templates/authentication/cert_login.html:194
-#, fuzzy
-#| msgid "Multi-Factor Authentication"
-msgid "Certificate Authentication"
-msgstr "Xác thực"
+msgid "UKey Authentication"
+msgstr ""
 
 #: authentication/templates/authentication/cert_login.html:199
 #: authentication/templates/authentication/cert_login.html:254

@@ -5336,10 +5336,8 @@ msgid "Cancel"
 msgstr "キャンセル"
 
 #: authentication/templates/authentication/cert_login.html:194
-#, fuzzy
-#| msgid "Multi-Factor Authentication"
-msgid "Certificate Authentication"
-msgstr "認証"
+msgid "UKey Authentication"
+msgstr "UKey 認証"
 
 #: authentication/templates/authentication/cert_login.html:199
 #: authentication/templates/authentication/cert_login.html:254

@@ -5053,10 +5053,8 @@ msgid "Cancel"
 msgstr ""
 
 #: authentication/templates/authentication/cert_login.html:194
-#, fuzzy
-#| msgid "App Authentication"
-msgid "Certificate Authentication"
-msgstr "Authentication"
+msgid "UKey Authentication"
+msgstr ""
 
 #: authentication/templates/authentication/cert_login.html:199
 #: authentication/templates/authentication/cert_login.html:254
