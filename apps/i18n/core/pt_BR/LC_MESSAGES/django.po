@@ -8469,11 +8469,11 @@ msgid "Time-to-live (seconds) for authentication challenge codes"
 msgstr ""
 
 #: settings/serializers/auth/ukey.py:21
-msgid "USB-Key Default PIN"
+msgid "UKey Default User PIN"
 msgstr ""
 
 #: settings/serializers/auth/ukey.py:22
-msgid "Default USB Key PIN used for administrator reset"
+msgid "UKey default user PIN used for administrator reset"
 msgstr ""
 
 #: settings/serializers/auth/ukey.py:26

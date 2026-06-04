@@ -8028,12 +8028,12 @@ msgid "Time-to-live (seconds) for authentication challenge codes"
 msgstr "認證挑戰碼的有效時長（秒）"
 
 #: settings/serializers/auth/ukey.py:21
-msgid "USB-Key Default PIN"
-msgstr "USB Key 預設 PIN 碼"
+msgid "UKey Default User PIN"
+msgstr "UKey 預設的使用者 PIN 碼"
 
 #: settings/serializers/auth/ukey.py:22
-msgid "Default USB Key PIN used for administrator reset"
-msgstr "管理員重置時使用的預設 PIN 碼"
+msgid "UKey default user PIN used for administrator reset"
+msgstr "管理員重置時使用的預設使用者 PIN 碼"
 
 #: settings/serializers/auth/ukey.py:26
 msgid "Enrollment"

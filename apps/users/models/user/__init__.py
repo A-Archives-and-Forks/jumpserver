@@ -150,6 +150,7 @@ class User(
         null=True, blank=True, max_length=2048, verbose_name=_("Face vector")
     )
     ukey_sn = models.CharField(
+        unique=True, blank=True,
         null=True, default=None, max_length=128, verbose_name=_('UKey SN')
     )
     date_api_key_last_used = models.DateTimeField(

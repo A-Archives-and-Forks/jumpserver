@@ -8017,12 +8017,12 @@ msgid "Time-to-live (seconds) for authentication challenge codes"
 msgstr "认证挑战码的有效时长（秒）"
 
 #: settings/serializers/auth/ukey.py:21
-msgid "USB-Key Default PIN"
-msgstr "USB Key 默认 PIN 码"
+msgid "UKey Default User PIN"
+msgstr "UKey 默认的用户 PIN 码"
 
 #: settings/serializers/auth/ukey.py:22
-msgid "Default USB Key PIN used for administrator reset"
-msgstr "管理员重置时使用的默认 PIN 码"
+msgid "UKey default user PIN used for administrator reset"
+msgstr "管理员重置时使用的用户默认 PIN 码"
 
 #: settings/serializers/auth/ukey.py:26
 msgid "Enrollment"

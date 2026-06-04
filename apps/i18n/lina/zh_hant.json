@@ -1740,5 +1740,7 @@
     "PleaseInput": "請輸入",
     "ReturnValidationFailed": "返回值校驗失敗",
     "SdkScriptLoadFailed": "驅動腳本載入失敗，請檢查網路或驅動服務",
-    "SdkStatus": "SDK 狀態"
+    "SdkStatus": "SDK 狀態",
+    "OperationUnavailableWhenMismatch": "因為 Ukey 與用戶不匹配，無可用操作",
+    "InfoHiddenWhenMismatch": "因為 Ukey 與用戶不匹配，證書資訊被隱藏"
 }

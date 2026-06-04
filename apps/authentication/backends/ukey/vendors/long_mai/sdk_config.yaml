@@ -110,6 +110,14 @@ sdk:
           - "{{ config.keySpec }}"  # keySpec
         register: ukey.cert
 
+      - name: getUserCertCN
+        label: "{{ '证书拥有者 CN' | trans }}"
+        call: SOF_GetCertInfo
+        args:
+          - "{{ ukey.cert }}"  # cert
+          - "{{ instance.SGD_CERT_SUBJECT_CN }}" # OID for Subject CN
+        register: ukey.certCN
+
 #═══════════════════════════════════════════════════════════════════════════════
 # info: 展示信息字段定义（只读，不修改设备状态）
 #
@@ -138,6 +146,7 @@ sdk:
 #   user  — 仅用户可见
 #═══════════════════════════════════════════════════════════════════════════════
 info:
+  when: "{{ mode === 'admin' || (mode === 'user' && ukey.devSN.0 === user.ukey_sn && ukey.certCN === user.username) }}"  # 仅当检测到设备时显示信息区域
 
   # 左上「设备驱动状态」区域的动态字段（固定字段由页面内置）
   device:
@@ -199,6 +208,7 @@ info:
           - "{{ ukey.cert }}"  # cert
           - "{{ instance.SGD_CERT_SUBJECT_CN }}" # OID for Subject CN
         compare: "{{ user.username }}"
+        register: ukey.certCN
       
       - key: CERT_SUBJECT_O
         label: "{{ '证书拥有者 O' | trans }}"
@@ -306,244 +316,268 @@ info:
 #   { type: json, value: { key1: tpl, ... } }  →  '{"key1":"val1"}'
 #═══════════════════════════════════════════════════════════════════════════════
 operations:
+  when: "{{ mode === 'admin' || (mode === 'user' && ukey.devSN.0 === user.ukey_sn && ukey.certCN === user.username) }}"  # 仅当检测到设备时显示信息区域
 
-  - key: bindUserUKeySN
-    label: "{{ '绑定设备' | trans }}"
-    hint: "{{ '为当前用户绑定 UKey 设备的序列号，一个用户仅能绑定一个 UKey，绑定后当前用户只能使用绑定的 UKey 登录' | trans }}"
-    btnType: primary
-    scope: admin
-    event: refresh.info.device
-    steps:
-      - name: inputUKeySN
-        label: "{{ '输入设备序列号' | trans }}"
-        input:
-          title: "{{ '绑定用户设备序列号' | trans }}"
-          fields:
-            - key: ukeySN
-              label: "{{ '设备序列号' | trans }}"
-              type: text
-              value: "{{ ukey.devSN.0 }}"
-              required: true
+  items:
+    - key: bindUserUKeySN
+      label: "{{ '绑定设备' | trans }}"
+      hint: "{{ '为当前用户绑定 UKey 设备的序列号，一个用户仅能绑定一个 UKey，绑定后当前用户只能使用绑定的 UKey 登录' | trans }}"
+      btnType: primary
+      scope: admin
+      event: refresh.info.device
+      steps:
+        - name: inputUKeySN
+          label: "{{ '输入设备序列号' | trans }}"
+          input:
+            title: "{{ '绑定用户设备序列号' | trans }}"
+            fields:
+              - key: ukeySN
+                label: "{{ '设备序列号' | trans }}"
+                type: text
+                value: "{{ ukey.devSN.0 }}"
+                required: true
 
-      - name: bindUserUKeySN
-        label: "{{ '绑定设备' | trans }}"
-        type: api
-        method: patch
-        url: "{{ config.api.user_detail_url }}"
-        url_format: 
-          user_id: "{{ user.id }}"
-        body:
-          ukey_sn: "{{ input.ukeySN }}"
-        register: user
+        - name: bindUserUKeySN
+          label: "{{ '绑定设备' | trans }}"
+          type: api
+          method: patch
+          url: "{{ config.api.user_detail_url }}"
+          url_format: 
+            user_id: "{{ user.id }}"
+          body:
+            ukey_sn: "{{ input.ukeySN }}"
+          register: user
+
+    - key: bindUserUKeySN
+      label: "{{ '解绑设备' | trans }}"
+      hint: "{{ '解绑后用户将无法使用 UKey 登录' | trans }}"
+      btnType: danger
+      scope: admin
+      confirm:
+        title: "{{ '解绑设备确认' | trans }}"
+        message: "{{ '确认要解绑 UKey 设备吗？' | trans }}"
+        type: warning
+      event: refresh.info.device
+      steps:
+        - name: confirmUnbind
+          label: "{{ '解绑后用户将无法使用 UKey 登录，确认要解绑吗？' | trans }}"
+          type: api
+          method: patch
+          url: "{{ config.api.user_detail_url }}"
+          url_format: 
+            user_id: "{{ user.id }}"
+          body:
+            ukey_sn: null
+          register: user
+        
+    - key: issueCert
+      label: "{{ '签发证书' | trans }}"
+      hint: "{{ '为 UKey 生成密钥对并签发数字证书' | trans }}"
+      btnType: primary
+      scope: admin    
+      hidden: "{{ !config.enroll.enabled }}"  # config.enroll.enabled 为 false 时隐藏此按鈕
+      disabled: "{{ !ukey.connected }}"
+      event: refresh.info.cert
+      steps:
+        - name: BindAppInstance
+          label: "{{ '绑定应用实例' | trans }}"
+          call: SOF_GetDeviceInstance
+          args:
+            - "{{ ukey.devSN.0 }}"
+            - "" # 绑定第一个应用
+
+        - name: verifyUKeyUserPIN
+          label: "{{ '验证用户 PIN' | trans }}"
+          input: 
+            title: "{{ '验证用户 PIN' | trans }}"
+            fields:
+              - key: userPIN
+                label: "{{ '用户 PIN' | trans }}"
+                type: password
+          call: SOF_Login
+          args:
+            - "{{ input.userPIN }}"
+          check:
+            expr: "{{ result === 0 }}"
+            message: "{{ '用户认证失败，错误码: {{ result }}' | trans }}"
+
+        - name: createContainer 
+          label: "{{ '创建容器' | trans }}"
+          call: SOF_CreateContainer
+          args:
+            - '{{ settings.VENDOR }}'
+
+        - name: genKeyPair
+          label: "{{ '生成密钥对' | trans }}"
+          call: SOF_CreateKeyPair
+          args:
+            - "{{ settings.VENDOR }}"  # containerName
+            - "{{ config.keySpec }}"  # keySpec
+            - "{{ config.asymAlg }}" # asymAlg SM2
+            - "{{ config.keyLength }}"  # keyLength
+          check:
+            expr: "{{ result === 0 }}"
+            message: "{{ '生成密钥对失败，错误码: {{ result }}' | trans }}"
+
+        - name: genCSR
+          label: "{{ '生成证书申请' | trans }}"
+          call: SOF_GenerateP10Request
+          args:
+            - "{{ settings.VENDOR }}"  # containerName
+            - type: csv  # dn
+              value:
+                CN: "{{ user.username }}"
+                O: "{{ settings.VENDOR }}"
+            - "{{ config.asymAlg }}" # asymAlg SM2
+            - "{{ config.keySpec }}"  # keySpec
+            - "{{ config.keyLength }}"  # keyLength
+          register: vars.csr
+          check:
+            expr: "{{ result !== null }}"
+            message: "{{ '生成证书申请失败，错误码: {{ result }}' | trans }}"
+
+        - name: signCert
+          label: "{{ '服务器签发证书' | trans }}"
+          type: api
+          method: post
+          url: "{{ config.api.enroll_cert_url }}"
+          body:
+            user_id: "{{ user.id }}"
+            csr: "{{ vars.csr }}"
+          register: vars.certData
+
+        - name: importCert
+          label: "{{ '导入证书到设备' | trans }}"
+          call: SOF_ImportCert
+          args: 
+            - "{{ settings.VENDOR }}"  # containerName
+            - "{{ vars.certData.signed_cert }}"  # cert base64
+            - "{{ config.keySpec }}" # keySpec 签名证书
+          check:
+            expr: "{{ result === 0 }}"
+            message: "{{ '导入证书失败，错误码: {{ result }}' | trans }}"
+        
+        - name: getUserCert
+          label: "{{ '获取证书' | trans }}"
+          call: SOF_ExportUserCert
+          args:
+            - "{{ settings.VENDOR }}"  # containerName
+            - "{{ config.keySpec }}"  # keySpec
+          register: ukey.cert
+          check:
+            expr: "{{ result != null && result != '' }}"
+            message: "{{ '获取证书失败' | trans }}"
+
+    - key: deleteCert
+      label: "{{ '删除证书' | trans }}"
+      hint: "{{ '永久删除 UKey 中的数字证书，操作不可逆' | trans }}"
+      btnType: danger
+      scope: admin
+      hidden: "{{ !config.enroll.enabled }}"
+      disabled: "{{ !ukey.connected }}"
+      event: refresh.info.cert
+      confirm:
+        title: "{{ '删除证书确认' | trans }}"
+        message: "{{ '确认要删除 UKey 中的证书吗？此操作不可逆。' | trans }}"
+        type: warning
+      steps:
+        - name: verifyUKeyUserPIN
+          label: "{{ '验证用户 PIN' | trans }}"
+          input: 
+            title: "{{ '验证用户 PIN' | trans }}"
+            fields:
+              - key: userPIN
+                label: "{{ '用户 PIN' | trans }}"
+                type: password
+          call: SOF_Login
+          args:
+            - "{{ input.userPIN }}"
+          check:
+            expr: "{{ result === 0 }}"
+            message: "{{ '用户认证失败，错误码: {{ result }}' | trans }}"
+
+        - name: getCertSN
+          label: "{{ '获取证书序列号' | trans }}"
+          call: SOF_GetCertInfo
+          args:
+            - "{{ ukey.cert }}"  # cert
+            - "{{ instance.SGD_CERT_SERIAL }}" # OID for Certificate Serial
+          register: vars.certSN
+
+        - name: deleteContainer
+          label: "{{ '删除证书所在容器' | trans }}"
+          call: SOF_DeleteContainer
+          args:
+            - "{{ vars.certSN }}"  # cert
+
+        - name: deleteCert
+          label: "{{ '删除设备证书' | trans }}"
+          call: SOF_DeleteCert
+          args: 
+            - "{{ vars.certSN }}"  # cert
+        
+        - name: getUserCert
+          label: "{{ '获取证书' | trans }}"
+          call: SOF_ExportUserCert
+          args:
+            - "{{ settings.VENDOR }}"  # containerName
+            - "{{ config.keySpec }}"  # keySpec
+          register: ukey.cert
+
+    - key: resetPin
+      label: "{{ '重置 PIN' | trans }}"
+      hint: "{{ '使用管理员权限将 PIN 码重置为系统默认值' | trans }}"
+      btnType: warning
+      disabled: "{{ !ukey.connected }}"
+      scope: admin
+      steps:
+        - name: resetPin
+          label: "{{ '重置 PIN' | trans }}"
+          input:
+            title: "{{ '验证管理员 PIN' | trans }}"
+            fields:
+              - key: adminPIN
+                label: "{{ '管理员 PIN' | trans }}"
+                type: password
+          call: SOF_UnblockUserPin
+          args:
+            - "{{ input.adminPIN }}"
+            - "{{ config.pin.default }}"
+          check:
+            expr: "{{ result === 0 }}"
+            message: "{{ '验证管理员 PIN 失败，错误码: {{ result }}' | trans }}"
       
-  - key: issueCert
-    label: "{{ '签发证书' | trans }}"
-    hint: "{{ '为 UKey 生成密钥对并签发数字证书' | trans }}"
-    btnType: primary
-    scope: admin    
-    hidden: "{{ !config.enroll.enabled }}"  # config.enroll.enabled 为 false 时隐藏此按鈕
-    disabled: "{{ !ukey.connected }}"
-    event: refresh.info.cert
-    steps:
-      - name: BindAppInstance
-        label: "{{ '绑定应用实例' | trans }}"
-        call: SOF_GetDeviceInstance
-        args:
-          - "{{ ukey.devSN.0 }}"
-          - "" # 绑定第一个应用
-
-      - name: verifyUKeyUserPassword
-        label: "{{ '验证 UKey 用户密码' | trans }}"
-        input: 
-          title: "{{ '验证 UKey 用户密码' | trans }}"
-          fields:
-            - key: userPassWd
-              label: "{{ 'UKey 用户密码' | trans }}"
-              type: password
-        call: SOF_Login
-        args:
-          - "{{ input.userPassWd }}"
-        check:
-          expr: "{{ result === 0 }}"
-          message: "{{ '用户认证失败，错误码: {{ result }}' | trans }}"
-
-      - name: createContainer 
-        label: "{{ '创建容器' | trans }}"
-        call: SOF_CreateContainer
-        args:
-          - '{{ settings.VENDOR }}'
-
-      - name: genKeyPair
-        label: "{{ '生成密钥对' | trans }}"
-        call: SOF_CreateKeyPair
-        args:
-          - "{{ settings.VENDOR }}"  # containerName
-          - "{{ config.keySpec }}"  # keySpec
-          - "{{ config.asymAlg }}" # asymAlg SM2
-          - "{{ config.keyLength }}"  # keyLength
-        check:
-          expr: "{{ result === 0 }}"
-          message: "{{ '生成密钥对失败，错误码: {{ result }}' | trans }}"
-
-      - name: genCSR
-        label: "{{ '生成证书申请' | trans }}"
-        call: SOF_GenerateP10Request
-        args:
-          - "{{ settings.VENDOR }}"  # containerName
-          - type: csv  # dn
-            value:
-              CN: "{{ user.username }}"
-              O: "{{ settings.VENDOR }}"
-          - "{{ config.asymAlg }}" # asymAlg SM2
-          - "{{ config.keySpec }}"  # keySpec
-          - "{{ config.keyLength }}"  # keyLength
-        register: vars.csr
-        check:
-          expr: "{{ result !== null }}"
-          message: "{{ '生成证书申请失败，错误码: {{ result }}' | trans }}"
-
-      - name: signCert
-        label: "{{ '服务器签发证书' | trans }}"
-        type: api
-        method: post
-        url: "{{ config.api.enroll_cert_url }}"
-        body:
-          user_id: "{{ user.id }}"
-          csr: "{{ vars.csr }}"
-        register: vars.certData
-
-      - name: importCert
-        label: "{{ '导入证书到设备' | trans }}"
-        call: SOF_ImportCert
-        args: 
-          - "{{ settings.VENDOR }}"  # containerName
-          - "{{ vars.certData.signed_cert }}"  # cert base64
-          - "{{ config.keySpec }}" # keySpec 签名证书
-        check:
-          expr: "{{ result === 0 }}"
-          message: "{{ '导入证书失败，错误码: {{ result }}' | trans }}"
-      
-      - name: getUserCert
-        label: "{{ '获取证书' | trans }}"
-        call: SOF_ExportUserCert
-        args:
-          - "{{ settings.VENDOR }}"  # containerName
-          - "{{ config.keySpec }}"  # keySpec
-        register: ukey.cert
-        check:
-          expr: "{{ result != null && result != '' }}"
-          message: "{{ '获取证书失败' | trans }}"
-
-  - key: deleteCert
-    label: "{{ '删除证书' | trans }}"
-    hint: "{{ '永久删除 UKey 中的数字证书，操作不可逆' | trans }}"
-    btnType: danger
-    scope: admin
-    hidden: "{{ !config.enroll.enabled }}"
-    disabled: "{{ !ukey.connected }}"
-    event: refresh.info.cert
-    confirm:
-      title: "{{ '删除证书确认' | trans }}"
-      message: "{{ '确认要删除 UKey 中的证书吗？此操作不可逆。' | trans }}"
-      type: warning
-    steps:
-      - name: verifyUKeyUserPassword
-        label: "{{ '验证 UKey 用户密码' | trans }}"
-        input: 
-          title: "{{ '验证 UKey 用户密码' | trans }}"
-          fields:
-            - key: userPassWd
-              label: "{{ 'UKey 用户密码' | trans }}"
-              type: password
-        call: SOF_Login
-        args:
-          - "{{ input.userPassWd }}"
-        check:
-          expr: "{{ result === 0 }}"
-          message: "{{ '用户认证失败，错误码: {{ result }}' | trans }}"
-
-      - name: getCertSN
-        label: "{{ '获取证书序列号' | trans }}"
-        call: SOF_GetCertInfo
-        args:
-          - "{{ ukey.cert }}"  # cert
-          - "{{ instance.SGD_CERT_SERIAL }}" # OID for Certificate Serial
-        register: vars.certSN
-
-      - name: deleteContainer
-        label: "{{ '删除证书所在容器' | trans }}"
-        call: SOF_DeleteContainer
-        args:
-          - "{{ vars.certSN }}"  # cert
-
-      - name: deleteCert
-        label: "{{ '删除设备证书' | trans }}"
-        call: SOF_DeleteCert
-        args: 
-          - "{{ vars.certSN }}"  # cert
-      
-      - name: getUserCert
-        label: "{{ '获取证书' | trans }}"
-        call: SOF_ExportUserCert
-        args:
-          - "{{ settings.VENDOR }}"  # containerName
-          - "{{ config.keySpec }}"  # keySpec
-        register: ukey.cert
-
-  - key: resetPin
-    label: "{{ '重置 PIN' | trans }}"
-    hint: "{{ '使用管理员权限将 PIN 码重置为系统默认值' | trans }}"
-    btnType: warning
-    disabled: "{{ !ukey.connected }}"
-    scope: admin
-    steps:
-      - name: resetPin
-        label: "{{ '重置 PIN' | trans }}"
-        input:
-          title: "{{ '管理员认证' | trans }}"
-          fields:
-            - key: adminPin
-              label: "{{ '管理员 PIN' | trans }}"
-              type: password
-        call: SOF_UnblockUserPin
-        args:
-          - "{{ input.adminPin }}"
-          - "{{ config.pin.default }}"
-        check:
-          expr: "{{ result === 0 }}"
-          message: "{{ '管理员认证失败，错误码: {{ result }}' | trans }}"
-    
-  - key: changePin
-    label: "{{ '修改 PIN' | trans }}"
-    hint: "{{ '修改 UKey 的用户 PIN 码' | trans }}"
-    btnType: info
-    scope: both
-    disabled: "{{ !ukey.connected }}"
-    steps:
-      - name: changePin
-        label: "{{ '修改 PIN' | trans }}"
-        input:
-          title: "{{ '修改 UKey PIN 码' | trans }}"
-          fields:
-            - key: oldPin
-              label: "{{ '旧 PIN' | trans }}"
-              type: password
-            - key: newPin
-              label: "{{ '新 PIN' | trans }}"
-              type: password
-            - key: newPin2
-              label: "{{ '确认 PIN' | trans }}"
-              type: password
-              validate:
-                equals: newPin              # 必须与 newPin 字段值相同
-                message: "{{ '两次输入的 PIN 码不一致' | trans }}"
-        call: SOF_ChangePassWd
-        args:
-          - "{{ input.oldPin }}"
-          - "{{ input.newPin }}"
-        check:
-          expr: "{{ result === 0 }}"
-          message: "{{ '修改 PIN 失败，错误码: {{ result }}' | trans }}"
+    - key: changePin
+      label: "{{ '修改 PIN' | trans }}"
+      hint: "{{ '修改 UKey 的用户 PIN 码' | trans }}"
+      btnType: info
+      scope: both
+      disabled: "{{ !ukey.connected }}"
+      steps:
+        - name: changePin
+          label: "{{ '修改 PIN' | trans }}"
+          input:
+            title: "{{ '修改用户 PIN' | trans }}"
+            fields:
+              - key: oldPIN
+                label: "{{ '旧 PIN' | trans }}"
+                type: password
+              - key: newPIN
+                label: "{{ '新 PIN' | trans }}"
+                type: password
+              - key: newPIN2
+                label: "{{ '确认 PIN' | trans }}"
+                type: password
+                validate:
+                  equals: newPIN              # 必须与 newPIN 字段值相同
+                  message: "{{ '两次输入的 PIN 码不一致' | trans }}"
+          call: SOF_ChangePassWd
+          args:
+            - "{{ input.oldPIN }}"
+            - "{{ input.newPIN }}"
+          check:
+            expr: "{{ result === 0 }}"
+            message: "{{ '修改 PIN 失败，错误码: {{ result }}' | trans }}"
 
 
 #═══════════════════════════════════════════════════════════════════════════════
@@ -760,6 +794,26 @@ i18n:
     zh: "绑定用户设备序列号"
     zh_hant: "綁定使用者設備序列號"
     en: "Bind User Device Serial Number"
+  "解绑设备":
+    zh: "解绑设备"
+    zh_hant: "解除綁定設備"
+    en: "Unbind Device"
+  "解绑后用户将无法使用 UKey 登录":
+    zh: "解绑后用户将无法使用 UKey 登录"
+    zh_hant: "解除綁定後使用者將無法使用 UKey 登入"
+    en: "After unbinding, the user will not be able to log in with UKey"
+  "解绑设备确认":
+    zh: "解绑设备确认"
+    zh_hant: "解除綁定設備確認"
+    en: "Confirm Device Unbinding"
+  "确认要解绑 UKey 设备吗？":
+    zh: "确认要解绑 UKey 设备吗？"
+    zh_hant: "確認要解除綁定 UKey 設備嗎？"
+    en: "Are you sure you want to unbind the UKey device?"
+  "解绑后用户将无法使用 UKey 登录，确认要解绑吗？":
+    zh: "解绑后用户将无法使用 UKey 登录，确认要解绑吗？"
+    zh_hant: "解除綁定後使用者將無法使用 UKey 登入，確認要解除綁定嗎？"
+    en: "After unbinding, the user will not be able to log in with UKey. Are you sure you want to unbind?"
   "签发证书":
     zh: "签发证书"
     zh_hant: "簽發證書"
@@ -768,14 +822,14 @@ i18n:
     zh: "为 UKey 生成密钥对并签发数字证书"
     zh_hant: "為 UKey 生成金鑰對並簽發數位證書"
     en: "Generate a key pair for UKey and issue a digital certificate"
-  "验证 UKey 用户密码":
-    zh: "验证 UKey 用户密码"
-    zh_hant: "驗證 UKey 使用者密碼"
-    en: "Verify UKey User Password"
-  "UKey 用户密码":
-    zh: "UKey 用户密码"
-    zh_hant: "UKey 使用者密碼"
-    en: "UKey User Password"
+  "验证用户 PIN":
+    zh: "验证用户 PIN"
+    zh_hant: "驗證使用者 PIN" 
+    en: "Verify User PIN"
+  "用户 PIN":
+    zh: "用户 PIN"
+    zh_hant: "使用者 PIN"
+    en: "User PIN"
   "用户认证失败，错误码: {{ result }}":
     zh: "用户认证失败，错误码: {{ result }}"
     zh_hant: "使用者認證失敗，錯誤碼: {{ result }}"
@@ -852,18 +906,18 @@ i18n:
     zh: "使用管理员权限将 PIN 码重置为系统默认值"
     zh_hant: "使用管理員權限將 PIN 碼重設為系統預設值"
     en: "Use administrator privileges to reset the PIN code to the system default"
-  "管理员认证":
-    zh: "管理员认证"
-    zh_hant: "管理員認證"
-    en: "Administrator Authentication"
+  "验证管理员 PIN":
+    zh: "验证管理员 PIN"
+    zh_hant: "驗證管理員 PIN"
+    en: "Verify Administrator PIN"
   "管理员 PIN":
     zh: "管理员 PIN"
     zh_hant: "管理員 PIN"
     en: "Administrator PIN"
-  "管理员认证失败，错误码: {{ result }}":
-    zh: "管理员认证失败，错误码: {{ result }}"
-    zh_hant: "管理員認證失敗，錯誤碼: {{ result }}"
-    en: "Administrator authentication failed, error code: {{ result }}"
+  "验证管理员 PIN 失败，错误码: {{ result }}":
+    zh: "验证管理员 PIN 失败，错误码: {{ result }}"
+    zh_hant: "驗證管理員 PIN 失敗，錯誤碼: {{ result }}"
+    en: "Administrator PIN verification failed, error code: {{ result }}"
   "修改 PIN":
     zh: "修改 PIN"
     zh_hant: "修改 PIN"
@@ -872,10 +926,10 @@ i18n:
     zh: "修改 UKey 的用户 PIN 码"
     zh_hant: "修改 UKey 的使用者 PIN 碼"
     en: "Change the user PIN code of UKey"
-  "修改 UKey PIN 码":
-    zh: "修改 UKey PIN 码"
-    zh_hant: "修改 UKey PIN 碼"
-    en: "Change UKey PIN Code"
+  "修改用户 PIN":
+    zh: "修改用户 PIN"
+    zh_hant: "修改使用者 PIN"
+    en: "Change User PIN"
   "旧 PIN":
     zh: "旧 PIN"
     zh_hant: "舊 PIN"
