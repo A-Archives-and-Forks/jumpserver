@@ -1758,6 +1758,7 @@
     "MissingUkeySdkScriptUrl": "Missing api.ukey_sdk_script_url in config",
     "NoAvailableActions": "No available actions",
     "NoCertificateIssued": "No certificate issued",
+    "NoCertificateInfo": "No certificate information",
     "NotExist": "does not exist",
     "NotFoundOnWindow": "is not found on window",
     "NotLoaded": "Not Loaded",

@@ -1769,6 +1769,7 @@
     "MissingUkeySdkScriptUrl": "配置中缺少 api.ukey_sdk_script_url",
     "NoAvailableActions": "暂无可用操作",
     "NoCertificateIssued": "暂未签发证书",
+    "NoCertificateInfo": "暂无证书信息",
     "NotExist": "不存在",
     "NotFoundOnWindow": "在 window 上不存在",
     "NotLoaded": "未加载",
