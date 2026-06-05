@@ -48,7 +48,7 @@ class UKeyBackend(JMSBaseAuthBackend):
                 return self._authenticate_sm2(cert_pem, username, signature, challenge, user)
             else:
                 return self._authenticate_other(cert_pem, username, signature, challenge, user)
-        except UKeyAuthError as e:
+        except Exception as e:
             if request:
                 request.error_message = str(e)
             raise PermissionDenied(str(e))
@@ -60,10 +60,11 @@ class UKeyBackend(JMSBaseAuthBackend):
         ukey_sn = (ukey_sn or '').strip()
         user = User.objects.filter(username=username).first()
         if user is None:
-            logger.warning('UKeyBackend: user %r not found', username)
+            logger.error('UKeyBackend: user %r not found', username)
             raise UKeyUserNotFoundError()
-        if user.ukey_sn and ukey_sn != user.ukey_sn:
-            logger.warning('UKeyBackend: ukey_sn mismatch for user %r', username)
+        user_ukey_sn = (user.ukey_sn or '').strip()
+        if not user_ukey_sn or not ukey_sn or ukey_sn != user_ukey_sn:
+            logger.error('UKeyBackend: ukey_sn mismatch for user %r', username)
             raise UkeySNMismatchError()
         return user
 
@@ -91,7 +92,7 @@ class UKeyBackend(JMSBaseAuthBackend):
             sm2_cert = Sm2Certificate()
             sm2_cert.import_pem(cert_file)
         except Exception as e:
-            logger.warning('UKeyBackend: failed to load SM2 cert: %s', e)
+            logger.error('UKeyBackend: failed to load SM2 cert: %s', e)
             raise UKeyCertNormalizationError()
         finally:
             if os.path.exists(cert_file):
@@ -104,7 +105,7 @@ class UKeyBackend(JMSBaseAuthBackend):
         try:
             validity = sm2_cert.get_validity()
         except Exception as e:
-            logger.warning('UKeyBackend: failed to get SM2 cert validity: %s', e)
+            logger.error('UKeyBackend: failed to get SM2 cert validity: %s', e)
             raise UKeyCertExpiredError()
         UKeyBackend._check_validity_period(validity.not_before, validity.not_after, 'SM2')
 
@@ -128,14 +129,14 @@ class UKeyBackend(JMSBaseAuthBackend):
         except UKeyAuthError:
             raise
         except Exception as e:
-            logger.warning('UKeyBackend: SM2 cert chain verification error: %s', e)
+            logger.error('UKeyBackend: SM2 cert chain verification error: %s', e)
             raise UKeyCertChainError()
         finally:
             if os.path.exists(ca_cert_file):
                 os.unlink(ca_cert_file)
 
         if not ok:
-            logger.warning('UKeyBackend: SM2 cert chain verification failed')
+            logger.error('UKeyBackend: SM2 cert chain verification failed')
             raise UKeyCertChainError()
 
     @staticmethod
@@ -150,10 +151,10 @@ class UKeyBackend(JMSBaseAuthBackend):
             verifier.update(signed_data)
             ok = bool(verifier.verify(sig_bytes))
         except Exception as e:
-            logger.warning('UKeyBackend: SM2 signature verification error: %s', e)
+            logger.error('UKeyBackend: SM2 signature verification error: %s', e)
             raise UKeySignatureError()
         if not ok:
-            logger.warning('UKeyBackend: SM2 signature mismatch')
+            logger.error('UKeyBackend: SM2 signature mismatch')
             raise UKeySignatureError()
 
     # ── Part 3: RSA / 其他证书校验流程 ───────────────────────────────────────
@@ -176,15 +177,15 @@ class UKeyBackend(JMSBaseAuthBackend):
         try:
             cert = x509.load_pem_x509_certificate(cert_pem.encode())
         except Exception as e:
-            logger.warning('UKeyBackend: failed to load certificate: %s', e)
+            logger.error('UKeyBackend: failed to load certificate: %s', e)
             raise UKeyCertNormalizationError()
 
         pub_key = cert.public_key()
         if isinstance(pub_key, ec.EllipticCurvePublicKey):
-            logger.warning('UKeyBackend: ECDSA certificate verification is not supported')
+            logger.error('UKeyBackend: ECDSA certificate verification is not supported')
             raise UKeyCertUnsupportedAlgorithmError()
         if not isinstance(pub_key, rsa.RSAPublicKey):
-            logger.warning('UKeyBackend: unsupported key type: %s', type(pub_key).__name__)
+            logger.error('UKeyBackend: unsupported key type: %s', type(pub_key).__name__)
             raise UKeyCertUnsupportedAlgorithmError()
         return cert, pub_key
 
@@ -204,7 +205,7 @@ class UKeyBackend(JMSBaseAuthBackend):
 
         ca_cert_content = ukey_sdk_config.ca_cert_content
         if not ca_cert_content:
-            logger.warning('UKeyBackend: AUTH_UKEY_CA_CERT_CONTENT not configured')
+            logger.error('UKeyBackend: AUTH_UKEY_CA_CERT_CONTENT not configured')
             raise UKeyCertChainError()
         try:
             ca_cert = x509.load_pem_x509_certificate(ca_cert_content.encode())
@@ -215,12 +216,12 @@ class UKeyBackend(JMSBaseAuthBackend):
                 cert.signature_hash_algorithm,
             )
         except InvalidSignature:
-            logger.warning('UKeyBackend: RSA cert chain verification failed')
+            logger.error('UKeyBackend: RSA cert chain verification failed')
             raise UKeyCertChainError()
         except UKeyAuthError:
             raise
         except Exception as e:
-            logger.warning('UKeyBackend: RSA cert chain verification error: %s', e)
+            logger.error('UKeyBackend: RSA cert chain verification error: %s', e)
             raise UKeyCertChainError()
 
     @staticmethod
@@ -245,12 +246,12 @@ class UKeyBackend(JMSBaseAuthBackend):
         try:
             pub_key.verify(sig_bytes, signed_data, padding.PKCS1v15(), hashes.SHA256())
         except InvalidSignature:
-            logger.warning('UKeyBackend: RSA signature mismatch')
+            logger.error('UKeyBackend: RSA signature mismatch')
             raise UKeySignatureError()
         except UKeyAuthError:
             raise
         except Exception as e:
-            logger.warning('UKeyBackend: RSA signature verification error: %s', e)
+            logger.error('UKeyBackend: RSA signature verification error: %s', e)
             raise UKeySignatureError()
 
     # ── 公共工具方法 ──────────────────────────────────────────────────────────
@@ -270,12 +271,12 @@ class UKeyBackend(JMSBaseAuthBackend):
             now = datetime.datetime.now()
 
         if now < not_before:
-            logger.warning(
+            logger.error(
                 'UKeyBackend: %s certificate not yet valid, valid from %s', label, not_before
             )
             raise UKeyCertExpiredError()
         if now > not_after:
-            logger.warning(
+            logger.error(
                 'UKeyBackend: %s certificate has expired at %s', label, not_after
             )
             raise UKeyCertExpiredError()
@@ -284,7 +285,7 @@ class UKeyBackend(JMSBaseAuthBackend):
     def _verify_cert_cn(cert_cn, username):
         """校验证书 CN 与 username 是否匹配（SM2 和 RSA 流程共用）。"""
         if cert_cn != username:
-            logger.warning(
+            logger.error(
                 'UKeyBackend: cert CN %r does not match username %r', cert_cn, username
             )
             raise UKeyCertCNMismatchError()
@@ -300,7 +301,7 @@ class UKeyBackend(JMSBaseAuthBackend):
         try:
             return UKeyBackend._normalize_cert_to_pem(cert_data)
         except Exception as e:
-            logger.warning('UKeyBackend: cert normalization failed: %s', e)
+            logger.error('UKeyBackend: cert normalization failed: %s', e)
             raise UKeyCertNormalizationError()
 
     @staticmethod

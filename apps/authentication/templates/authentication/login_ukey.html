@@ -202,36 +202,26 @@
     <form id="ukey-login-form" autocomplete="off" action="" method="post" role="form" novalidate="novalidate">
         {% csrf_token %}
 
-        {% if form.non_field_errors %}
+        {% if messages %}
             <div style="margin-bottom: 16px;">
-                <p class="help-block red-fonts">{{ form.non_field_errors.as_text }}</p>
+                {% for message in messages %}
+                    <p class="help-block red-fonts">{% trans "Error" %}: {{ message }}</p>
+                {% endfor %}
             </div>
         {% endif %}
 
-        {# username is auto-filled from UKey cert, display input is readonly, actual value submitted via hidden field #}
-        <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+        {# username is auto-filled from UKey cert, display input is readonly #}
+        <div class="form-group">
             <input type="text" id="username-display" class="form-control"
                    placeholder="{% trans 'Insert UKey to auto-fetch' %}"
                    readonly tabindex="-1"
                    style="background-color:#f7f7f7; cursor:default; color:#555;">
-            {{ form.username }}
-            {% if form.username.errors %}
-                <p class="help-block red-fonts">{{ form.username.errors.as_text }}</p>
-            {% endif %}
         </div>
         {# PIN is only used for client-side UKey verification, not submitted to backend #}
         <div class="form-group">
             <input type="password" id="id_pin" class="form-control"
                    placeholder="PIN" autocomplete="off">
         </div>
-        {# ukey cert is fetched and filled by JS after PIN verification, not shown to user #}
-        {{ form.cert }}
-        {# signature is filled by JS after signing challenge code, not shown to user #}
-        {{ form.signature }}
-        {# ukey_sn is filled by JS after detecting cert, not shown to user #}
-        {{ form.ukey_sn }}
-
-        <div id="ukey-challenge-box" data-challenge="{{ challenge }}" data-challenge-length="{{ challenge|length }}" style="display:none;"></div>
 
         <div class="form-group">
             <button type="submit" id="ukey-login-btn" class="btn btn-transparent" disabled>
@@ -381,7 +371,7 @@
        step types:
          (default)  — call UKey SDK method (step.call)
          api        — HTTP request (step.url / step.method / step.body)
-         submit     — fill form fields by id_<name> and submit form
+         submit     — submit only YAML-declared fields
     ─────────────────────────────────────────────────────────────── */
     function runStep(step, api, ctx) {
         /* when: skip step if condition is false */
@@ -412,13 +402,35 @@
 
         /* submit: fill form fields and submit */
         if (step.type === 'submit') {
-            if (step.fields) {
-                Object.keys(step.fields).forEach(function (k) {
-                    var el = document.getElementById('id_' + k);
-                    if (el) el.value = resolve(step.fields[k], ctx);
-                });
+            var submitFields = step.fields || {};
+
+            // Build a strict payload form: csrf + fields declared in YAML only.
+            var sourceForm = document.getElementById('ukey-login-form');
+            var submitForm = document.createElement('form');
+            submitForm.method = sourceForm.method || 'post';
+            submitForm.action = sourceForm.action || window.location.href;
+            submitForm.style.display = 'none';
+
+            var csrf = sourceForm.querySelector('input[name="csrfmiddlewaretoken"]');
+            if (csrf) {
+                var csrfInput = document.createElement('input');
+                csrfInput.type = 'hidden';
+                csrfInput.name = 'csrfmiddlewaretoken';
+                csrfInput.value = csrf.value;
+                submitForm.appendChild(csrfInput);
             }
-            document.getElementById('ukey-login-form').submit();
+
+            Object.keys(submitFields).forEach(function (k) {
+                var resolved = resolve(submitFields[k], ctx);
+                var payloadInput = document.createElement('input');
+                payloadInput.type = 'hidden';
+                payloadInput.name = k;
+                payloadInput.value = (resolved === null || resolved === undefined) ? '' : String(resolved);
+                submitForm.appendChild(payloadInput);
+            });
+
+            document.body.appendChild(submitForm);
+            submitForm.submit();
             return Promise.resolve(null);
         }
 
@@ -531,12 +543,10 @@
                 config:    sdkConfig.config || {},
                 settings:  settings,
                 challenge: (function () {
-                    var el = document.getElementById('ukey-challenge-box');
-                    if (!el) return { code: '', code_base64: '', length: 0 };
-                    var code = el.dataset.challenge || '';
-                    var length = parseInt(el.dataset.challengeLength, 10) || code.length;
+                    var code = '{{ challenge|default:""|escapejs }}';
+                    if (!code) return { code: '', code_base64: '', length: 0 };
                     var code_base64 = btoa(unescape(encodeURIComponent(code)));
-                    return { code: code, code_base64: code_base64, length: length };
+                    return { code: code, code_base64: code_base64, length: code.length };
                 }())
             };
 
@@ -552,14 +562,12 @@
             var ctx         = state.ctx;
 
             var usernameDisplay = document.getElementById('username-display');
-            var usernameHidden  = document.getElementById('id_username');
             var lastCN = null;
 
             function setUsername(cn) {
                 if (cn === lastCN) return;
                 lastCN = cn;
                 usernameDisplay.value = cn || '';
-                usernameHidden.value  = cn || '';
             }
 
             // 5. Poll: run login.detect.steps → read ukey.certCN → update UI
