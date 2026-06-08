@@ -205,6 +205,13 @@ info:
         - "{{ config.certType }}"  # 证书类型参数
         - 8
 
+    - key: CERT_ALG_TYPE
+      label: "{{ '证书算法类型' | trans }}"
+      call: UKey_GetCertInfo
+      args:
+        - "{{ config.certType }}"  # 证书类型参数
+        - 13
+
 #═══════════════════════════════════════════════════════════════════════════════
 # operations: 操作按钮列表（顺序即按钮排列顺序）
 #
@@ -604,6 +611,10 @@ i18n:
     zh: "证书颁发者 OU"
     zh_hant: "證書頒發者 OU"
     en: "Issuer OU"
+  "证书算法类型":
+    zh: "证书算法类型"
+    zh_hant: "證書算法類型"
+    en: "Certificate Algorithm Type"
   "绑定设备":
     zh: "绑定设备"
     zh_hant: "綁定設備"
