@@ -325,6 +325,14 @@ class UserSerializer(
                 attrs.pop(field, None)
         return attrs
 
+    @staticmethod
+    def clean_ukey_fields(attrs):
+        for field in ("ukey_sn",):
+            value = attrs.get(field)
+            if value is None:
+                attrs.pop(field, None)
+        return attrs
+
     def check_disallow_self_update_fields(self, attrs):
         request = self.context.get("request")
         if not request or not request.user.is_authenticated:
@@ -348,6 +356,7 @@ class UserSerializer(
         attrs = self.check_disallow_self_update_fields(attrs)
         attrs = self.change_password_to_raw(attrs)
         attrs = self.clean_auth_fields(attrs)
+        attrs = self.clean_ukey_fields(attrs)
         password_strategy = attrs.pop("password_strategy", None)
         request = get_current_request()
         if request:
