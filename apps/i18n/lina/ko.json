@@ -200,6 +200,7 @@
     "Audits": "감사 대시보드",
     "AuditsDashboard": "감사 대시보드",
     "Auth": "인증 설정",
+    "Author": "작성자",
     "AuthConfig": "인증 구성",
     "AuthIntegration": "인증 통합",
     "AuthLimit": "로그인 제한",

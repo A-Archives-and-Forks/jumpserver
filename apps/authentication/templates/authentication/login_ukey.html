@@ -202,11 +202,9 @@
     <form id="ukey-login-form" autocomplete="off" action="" method="post" role="form" novalidate="novalidate">
         {% csrf_token %}
 
-        {% if messages %}
+        {% if error_msg %}
             <div style="margin-bottom: 16px;">
-                {% for message in messages %}
-                    <p class="help-block red-fonts">{% trans "Error" %}: {{ message }}</p>
-                {% endfor %}
+                <p class="help-block red-fonts">{% trans "Error" %}: {{ error_msg }}</p>
             </div>
         {% endif %}
 

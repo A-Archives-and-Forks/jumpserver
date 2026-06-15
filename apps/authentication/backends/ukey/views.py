@@ -5,7 +5,6 @@ from urllib.parse import urlencode
 
 from django.conf import settings
 from django.contrib.auth import authenticate
-from django.contrib import messages
 from django.core.cache import cache
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
@@ -27,6 +26,7 @@ from .sdk import ukey_sdk_config
 __all__ = ['UKeyLoginView']
 
 _CHALLENGE_CACHE_KEY_PREFIX = 'ukey_login_challenge'
+_UKEY_ERROR_SESSION_KEY = 'ukey_login_error'
 
 @method_decorator(sensitive_post_parameters(), name='dispatch')
 @method_decorator(csrf_protect, name='dispatch')
@@ -79,6 +79,7 @@ class UKeyLoginView(AuthMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['challenge'] = self._generate_and_store_challenge()
+        context['error_msg'] = self.request.session.pop(_UKEY_ERROR_SESSION_KEY, '')
         return context
 
     def form_valid(self, form):
@@ -155,7 +156,7 @@ class UKeyLoginView(AuthMixin, FormView):
         return field_name
 
     def get_failed_response(self, form, username, error_msg):
-        messages.error(self.request, error_msg)
+        self.request.session[_UKEY_ERROR_SESSION_KEY] = str(error_msg or _('Unknown'))
         self.send_auth_signal(success=False, reason=error_msg, username=username)
         return redirect(self._build_login_redirect_url())
     

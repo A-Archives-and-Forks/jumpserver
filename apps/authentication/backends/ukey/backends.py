@@ -7,6 +7,7 @@ import tempfile
 
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from django.utils.translation import gettext_lazy as _
 
 from users.models import User
 from common.utils import get_logger
@@ -24,6 +25,7 @@ from .exceptions import (
     UKeyCertUnsupportedAlgorithmError,
 )
 from .utils import is_sm2_pem
+from authentication.errors.const import reason_user_inactive, reason_choices
 
 
 __all__ = ['UKeyBackend']
@@ -45,9 +47,14 @@ class UKeyBackend(JMSBaseAuthBackend):
             user = self._check_user_and_ukey_sn(username, ukey_sn)
             cert_pem = self._load_cert_pem(cert)
             if self._is_sm2_cert(cert_pem):
-                return self._authenticate_sm2(cert_pem, username, signature, challenge, user)
+                user = self._authenticate_sm2(cert_pem, username, signature, challenge, user)
             else:
-                return self._authenticate_other(cert_pem, username, signature, challenge, user)
+                user = self._authenticate_other(cert_pem, username, signature, challenge, user)
+            if self.user_can_authenticate(user):
+                return user
+            else:
+                error = reason_choices[reason_user_inactive]
+                raise PermissionDenied(error)
         except Exception as e:
             if request:
                 request.error_message = str(e)
