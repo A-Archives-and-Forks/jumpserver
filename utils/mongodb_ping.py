@@ -49,7 +49,6 @@ conn_err_msg:
   sample: ''
 '''
 
-
 from pymongo.errors import PyMongoError
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils._text import to_native
@@ -116,11 +115,14 @@ def main():
 
     try:
         client.close()
-    except Exception: # noqa
+    except Exception:  # noqa
         pass
 
     return module.exit_json(**result)
 
 
+'''
+python3 mongodb_ping.py --host 172.16.10.180 --port 27017 --user root --password 'Calong@2015' --database root
+'''
 if __name__ == '__main__':
     main()
