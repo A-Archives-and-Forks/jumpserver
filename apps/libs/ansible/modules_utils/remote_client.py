@@ -64,9 +64,9 @@ def raise_timeout(name=''):
                     signal.signal(signal.SIGALRM, handler)
                     signal.alarm(timeout)
                 return func(self, *args, **kwargs)
-            except Exception as error:
-                signal.alarm(0)
-                raise error
+            finally:
+                if timeout > 0:
+                    signal.alarm(0)
 
         return wrapper
 
@@ -122,13 +122,22 @@ class SSHClient:
 
     def get_connect_params(self):
         p = self.module.params
+        connect_timeout = p.get('recv_timeout', 60)
         params = {
             'allow_agent': False,
             'look_for_keys': False,
             'hostname': p['login_host'],
             'port': p['login_port'],
-            'key_filename': p['login_private_key_path'] or None
+            'key_filename': p['login_private_key_path'] or None,
         }
+        if connect_timeout:
+            # Keep Paramiko connect/auth/banner waits bounded by the same
+            # timeout budget as command receive so a bad host returns promptly.
+            params.update(
+                timeout=connect_timeout,
+                auth_timeout=connect_timeout,
+                banner_timeout=connect_timeout,
+            )
 
         if p['become']:
             params['username'] = p['become_user']
