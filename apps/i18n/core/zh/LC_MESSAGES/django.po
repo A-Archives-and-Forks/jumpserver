@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JumpServer 0.3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:19+0800\n"
+"POT-Creation-Date: 2026-06-26 10:17+0800\n"
 "PO-Revision-Date: 2021-05-20 10:54+0800\n"
 "Last-Translator: ibuler <ibuler@qq.com>\n"
 "Language-Team: JumpServer team<ibuler@qq.com>\n"
@@ -33,6 +33,7 @@ msgid "Account not found"
 msgstr "账号未找到"
 
 #: accounts/api/automations/base.py:88 tickets/api/ticket.py:134
+#, python-brace-format
 msgid "The parameter 'action' must be [{}]"
 msgstr "参数 'action' 必须是 [{}]"
 
@@ -115,10 +116,12 @@ msgid "Success: %s, Failed: %s, Total: %s"
 msgstr "成功: %s, 失败: %s, 总数: %s"
 
 #: accounts/automations/check_account/manager.py:277
+#, python-brace-format
 msgid "Check account report of {}"
 msgstr "风险检测报告 {}"
 
 #: accounts/automations/check_account/manager.py:283
+#, python-brace-format
 msgid ""
 "---\n"
 "Summary: \n"
@@ -152,6 +155,8 @@ msgstr ">>> 开始执行测试网关账号可连接性任务"
 #: users/templates/users/_msg_user_created.html:13
 #: users/templates/users/user_password_verify.html:18
 #: xpack/plugins/cloud/serializers/account_attrs.py:43
+#: xpack/plugins/cloud/serializers/account_attrs.py:105
+#: xpack/plugins/cloud/serializers/account_attrs.py:112
 msgid "Password"
 msgstr "密码"
 
@@ -443,7 +448,7 @@ msgid ""
 "Vault."
 msgstr "Vault 操作失败，请重试，或者检查 Vault 上的账号信息。"
 
-#: accounts/models/account.py:85
+#: accounts/models/account.py:89
 #: accounts/models/automations/check_account.py:59
 #: accounts/models/automations/gather_account.py:17
 #: accounts/serializers/account/account.py:228
@@ -475,7 +480,7 @@ msgstr "Vault 操作失败，请重试，或者检查 Vault 上的账号信息�
 msgid "Asset"
 msgstr "资产"
 
-#: accounts/models/account.py:89 accounts/models/template.py:16
+#: accounts/models/account.py:93 accounts/models/template.py:16
 #: accounts/serializers/account/account.py:235
 #: accounts/serializers/account/account.py:306
 #: accounts/serializers/account/template.py:35
@@ -483,46 +488,46 @@ msgstr "资产"
 msgid "Su from"
 msgstr "切换自"
 
-#: accounts/models/account.py:91 assets/const/protocol.py:195
+#: accounts/models/account.py:95 assets/const/protocol.py:195
 #: settings/serializers/auth/cas.py:25 terminal/models/applet/applet.py:36
 #: terminal/models/virtualapp/virtualapp.py:21
 msgid "Version"
 msgstr "版本"
 
-#: accounts/models/account.py:94
+#: accounts/models/account.py:98
 msgid "historical Account"
 msgstr "历史账号"
 
-#: accounts/models/account.py:96
+#: accounts/models/account.py:100
 msgid "Secret reset"
 msgstr "可改密"
 
-#: accounts/models/account.py:97 accounts/serializers/account/account.py:230
+#: accounts/models/account.py:101 accounts/serializers/account/account.py:230
 #: users/models/user/__init__.py:132
 msgid "Source"
 msgstr "来源"
 
-#: accounts/models/account.py:98
+#: accounts/models/account.py:102
 msgid "Source ID"
 msgstr "来源 ID"
 
-#: accounts/models/account.py:99
+#: accounts/models/account.py:103
 msgid "Date last access"
 msgstr "上次访问日期"
 
-#: accounts/models/account.py:100
+#: accounts/models/account.py:104
 msgid "Access by"
 msgstr "访问方式"
 
-#: accounts/models/account.py:101
+#: accounts/models/account.py:105
 msgid "Date change secret"
 msgstr "密码日期"
 
-#: accounts/models/account.py:103
+#: accounts/models/account.py:107
 msgid "Change secret status"
 msgstr "改密状态"
 
-#: accounts/models/account.py:107
+#: accounts/models/account.py:111
 #: accounts/models/automations/check_account.py:64
 #: accounts/serializers/account/account.py:296
 #: accounts/serializers/account/service.py:13
@@ -543,35 +548,35 @@ msgstr "改密状态"
 msgid "Account"
 msgstr "账号"
 
-#: accounts/models/account.py:113
+#: accounts/models/account.py:117
 msgid "Can view asset account secret"
 msgstr "可以查看资产账号密码"
 
-#: accounts/models/account.py:114
+#: accounts/models/account.py:118
 msgid "Can view asset history account"
 msgstr "可以查看资产历史账号"
 
-#: accounts/models/account.py:115
+#: accounts/models/account.py:119
 msgid "Can view asset history account secret"
 msgstr "可以查看资产历史账号密码"
 
-#: accounts/models/account.py:116
+#: accounts/models/account.py:120
 msgid "Can verify account"
 msgstr "可以验证账号"
 
-#: accounts/models/account.py:117
+#: accounts/models/account.py:121
 msgid "Can push account"
 msgstr "可以推送账号"
 
-#: accounts/models/account.py:118
+#: accounts/models/account.py:122
 msgid "Can remove account"
 msgstr "可以移除账号"
 
-#: accounts/models/account.py:119
+#: accounts/models/account.py:123
 msgid "Can view session"
 msgstr "账号会话"
 
-#: accounts/models/account.py:120
+#: accounts/models/account.py:124
 msgid "Can view activity"
 msgstr "账号活动"
 
@@ -585,7 +590,7 @@ msgstr "账号活动"
 #: assets/models/asset/common.py:166 assets/models/cmd_filter.py:21
 #: assets/models/label.py:18 assets/models/platform.py:15
 #: assets/models/platform.py:94 assets/models/zone.py:19
-#: assets/serializers/asset/common.py:174 assets/serializers/platform.py:159
+#: assets/serializers/asset/common.py:175 assets/serializers/platform.py:159
 #: assets/serializers/platform.py:284
 #: authentication/backends/passkey/models.py:10
 #: authentication/models/ssh_key.py:12 authentication/notifications.py:17
@@ -633,8 +638,8 @@ msgstr "密文"
 
 #: accounts/models/application.py:21 acls/models/base.py:98
 #: assets/models/automations/base.py:22 assets/models/cmd_filter.py:38
-#: assets/serializers/asset/common.py:148
-#: assets/serializers/asset/common.py:424 perms/serializers/permission.py:67
+#: assets/serializers/asset/common.py:149
+#: assets/serializers/asset/common.py:425 perms/serializers/permission.py:67
 #: perms/serializers/user_permission.py:87 rbac/tree.py:36 rbac/tree.py:51
 msgid "Accounts"
 msgstr "账号"
@@ -904,6 +909,8 @@ msgstr "重复密码"
 #: users/notifications.py:20 users/serializers/profile.py:190
 #: users/templates/users/_msg_user_created.html:12
 #: xpack/plugins/cloud/serializers/account_attrs.py:41
+#: xpack/plugins/cloud/serializers/account_attrs.py:103
+#: xpack/plugins/cloud/serializers/account_attrs.py:110
 msgid "Username"
 msgstr "用户名"
 
@@ -1109,12 +1116,14 @@ msgid "Notification of account backup route task results"
 msgstr "账号备份任务结果通知"
 
 #: accounts/notifications.py:23 accounts/notifications.py:48
+#, python-brace-format
 msgid ""
 "{} - The account backup passage task has been completed. See the attachment "
 "for details"
 msgstr "{} - 账号备份任务已完成, 详情见附件"
 
 #: accounts/notifications.py:26
+#, python-brace-format
 msgid ""
 "{} - The account backup passage task has been completed: the encryption "
 "password has not been set - please go to personal information -> Basic file "
@@ -1128,12 +1137,14 @@ msgid "Notification of implementation result of encryption change plan"
 msgstr "改密计划任务结果通知"
 
 #: accounts/notifications.py:69
+#, python-brace-format
 msgid ""
 "{} - The encryption change task has been completed. See the attachment for "
 "details"
 msgstr "{} - 改密任务已完成, 详情见附件"
 
 #: accounts/notifications.py:73
+#, python-brace-format
 msgid ""
 "{} - The encryption change task has been completed: the encryption password "
 "has not been set - please go to personal information -> set encryption "
@@ -1187,6 +1198,7 @@ msgid "Change password and Add"
 msgstr "改密并添加"
 
 #: accounts/risk_handlers.py:127
+#, python-brace-format
 msgid "Execution failed: {}"
 msgstr "执行失败：{}"
 
@@ -1203,7 +1215,7 @@ msgid "Exist policy"
 msgstr "账号存在策略"
 
 #: accounts/serializers/account/account.py:207 assets/models/label.py:21
-#: assets/models/platform.py:95 assets/serializers/asset/common.py:145
+#: assets/models/platform.py:95 assets/serializers/asset/common.py:146
 #: assets/serializers/cagegory.py:12 assets/serializers/platform.py:174
 #: assets/serializers/platform.py:285 perms/serializers/user_permission.py:27
 #: settings/models.py:40 tickets/models/ticket/apply_application.py:13
@@ -1216,7 +1228,7 @@ msgstr "类别"
 #: accounts/serializers/account/account.py:208 acls/models/command_acl.py:24
 #: acls/serializers/command_acl.py:19 assets/models/automations/base.py:27
 #: assets/models/automations/base.py:146 assets/models/cmd_filter.py:74
-#: assets/models/platform.py:96 assets/serializers/asset/common.py:146
+#: assets/models/platform.py:96 assets/serializers/asset/common.py:147
 #: assets/serializers/platform.py:161 assets/serializers/platform.py:173
 #: audits/reporting.py:221 audits/reporting.py:492 audits/serializers.py:76
 #: audits/serializers.py:211 authentication/models/connection_token.py:67
@@ -1238,7 +1250,7 @@ msgstr "资产不存在"
 
 #: accounts/serializers/account/account.py:237 assets/const/category.py:15
 #: assets/models/asset/common.py:180 assets/models/asset/ds.py:14
-#: assets/serializers/asset/common.py:181
+#: assets/serializers/asset/common.py:182
 msgid "Directory service"
 msgstr "目录服务"
 
@@ -1281,7 +1293,7 @@ msgstr "必须指定至少一个资产或节点"
 #: accounts/serializers/account/account.py:490
 #: accounts/serializers/account/base.py:75
 #: accounts/serializers/account/base.py:94
-#: assets/serializers/asset/common.py:425
+#: assets/serializers/asset/common.py:426
 msgid "Spec info"
 msgstr "特殊信息"
 
@@ -1361,7 +1373,7 @@ msgstr "备注"
 
 #: accounts/serializers/account/service.py:30
 #: accounts/templates/accounts/backup_account_report.html:33
-#: assets/serializers/asset/common.py:153
+#: assets/serializers/asset/common.py:154
 msgid "Accounts amount"
 msgstr "账号数量"
 
@@ -1933,6 +1945,7 @@ msgid "Command group"
 msgstr "命令组"
 
 #: acls/models/command_acl.py:86
+#, python-brace-format
 msgid "The generated regular expression is incorrect: {}"
 msgstr "生成的正则表达式有误: {}"
 
@@ -2072,8 +2085,8 @@ msgid ""
 "10.1.1.1-10.1.1.20, 2001:db8:2de::e13, 2001:db8:1a:1110::/64 (Domain name "
 "support)"
 msgstr ""
-"* 表示匹配所有。例如: 192.168.10.1, 192.168.1.0/24, 10.1.1.1-10.1.1.20, 2001:"
-"db8:2de::e13, 2001:db8:1a:1110::/64  (支持网域)"
+"* 表示匹配所有。例如: 192.168.10.1, 192.168.1.0/24, 10.1.1.1-10.1.1.20, "
+"2001:db8:2de::e13, 2001:db8:1a:1110::/64  (支持网域)"
 
 #: acls/serializers/base.py:41 assets/serializers/asset/host.py:19
 msgid "IP/Host"
@@ -2084,19 +2097,23 @@ msgid "Recipients"
 msgstr "接收人"
 
 #: acls/serializers/base.py:125 tickets/serializers/ticket/ticket.py:79
+#, python-brace-format
 msgid "The organization `{}` does not exist"
 msgstr "组织 `{}` 不存在"
 
 #: acls/serializers/base.py:131
+#, python-brace-format
 msgid "None of the reviewers belong to Organization `{}`"
 msgstr "所有复核人都不属于组织 `{}`"
 
 #: acls/serializers/rules/rules.py:22
 #: xpack/plugins/cloud/serializers/task.py:163
+#, python-brace-format
 msgid "IP address invalid: `{}`"
 msgstr "IP 地址无效: `{}`"
 
 #: acls/serializers/rules/rules.py:35
+#, python-brace-format
 msgid "address invalid: `{}`"
 msgstr "地址无效: `{}`"
 
@@ -2105,8 +2122,8 @@ msgid ""
 "With * indicating a match all. Such as: 192.168.10.1, 192.168.1.0/24, "
 "10.1.1.1-10.1.1.20, 2001:db8:2de::e13, 2001:db8:1a:1110::/64 "
 msgstr ""
-"* 表示匹配所有。例如: 192.168.10.1, 192.168.1.0/24, 10.1.1.1-10.1.1.20, 2001:"
-"db8:2de::e13, 2001:db8:1a:1110::/64"
+"* 表示匹配所有。例如: 192.168.10.1, 192.168.1.0/24, 10.1.1.1-10.1.1.20, "
+"2001:db8:2de::e13, 2001:db8:1a:1110::/64"
 
 #: acls/serializers/rules/rules.py:48 audits/reporting.py:246
 #: authentication/templates/authentication/_msg_oauth_bind.html:12
@@ -2190,6 +2207,7 @@ msgid "You can't update the root node name"
 msgstr "不能修改根节点名称"
 
 #: assets/api/node.py:65
+#, python-brace-format
 msgid "You can't delete the root node ({})"
 msgstr "不能删除根节点 ({})"
 
@@ -2198,6 +2216,7 @@ msgid "Deletion failed and the node contains assets"
 msgstr "删除失败，节点包含资产"
 
 #: assets/api/node.py:99
+#, python-brace-format
 msgid "Node {} is an ancestor of node {}, can't be added as its child"
 msgstr ""
 
@@ -2214,10 +2233,12 @@ msgid "App Assets"
 msgstr "资产管理"
 
 #: assets/automations/base/manager.py:139
+#, python-brace-format
 msgid "Task: {} finished"
 msgstr "任务：{} 完成"
 
 #: assets/automations/base/manager.py:341
+#, python-brace-format
 msgid "  - Platform {} ansible disabled"
 msgstr "  - 平台 {} Ansible 已禁用, 无法执行任务"
 
@@ -2249,6 +2270,7 @@ msgid "No account"
 msgstr "没有账号"
 
 #: assets/automations/ping_gateway/manager.py:36
+#, python-brace-format
 msgid "Asset, {}, using account {}"
 msgstr "资产, {}, 使用账号 {}"
 
@@ -2258,7 +2280,8 @@ msgid "Unable to connect to port {port} on {address}"
 msgstr "无法连接到 {port} 上的端口 {address}"
 
 #: assets/automations/ping_gateway/manager.py:58
-#: authentication/middleware.py:94 xpack/plugins/cloud/providers/fc.py:47
+#: authentication/middleware.py:94 terminal/api/component/storage.py:127
+#: xpack/plugins/cloud/providers/fc.py:47
 #: xpack/plugins/cloud/providers/proxmox.py:29
 msgid "Authentication failed"
 msgstr "认证失败"
@@ -2364,7 +2387,8 @@ msgstr "云服务"
 msgid "Web"
 msgstr "Web"
 
-#: assets/const/category.py:16 common/sdk/sms/endpoint.py:20
+#: assets/const/category.py:16 common/sdk/sms/custom_file.py:47
+#: common/sdk/sms/endpoint.py:20
 msgid "Custom type"
 msgstr "自定义类型"
 
@@ -2632,13 +2656,15 @@ msgstr "云服务"
 msgid "Port"
 msgstr "端口"
 
-#: assets/models/asset/common.py:167 assets/serializers/asset/common.py:175
+#: assets/models/asset/common.py:167 assets/serializers/asset/common.py:176
 #: settings/serializers/terminal.py:10 terminal/serializers/endpoint.py:69
 msgid "Address"
 msgstr "地址"
 
 #: assets/models/asset/common.py:169 assets/models/platform.py:155
-#: assets/serializers/asset/common.py:151
+#: assets/serializers/asset/common.py:152
+#: assets/serializers/asset/common.py:270
+#: assets/serializers/asset/common.py:273
 #: authentication/backends/passkey/models.py:12
 #: authentication/serializers/connect_token_secret.py:130
 #: perms/serializers/user_permission.py:26 xpack/plugins/cloud/models.py:402
@@ -2650,13 +2676,13 @@ msgstr "平台"
 msgid "Zone"
 msgstr "网域"
 
-#: assets/models/asset/common.py:176 assets/serializers/asset/common.py:177
+#: assets/models/asset/common.py:176 assets/serializers/asset/common.py:178
 #: assets/serializers/automations/base.py:21 ops/serializers/job.py:22
 #: perms/serializers/permission.py:59
 msgid "Nodes"
 msgstr "节点"
 
-#: assets/models/asset/common.py:183 assets/serializers/asset/common.py:426
+#: assets/models/asset/common.py:183 assets/serializers/asset/common.py:427
 #: assets/serializers/asset/host.py:11
 msgid "Gathered info"
 msgstr "收集资产硬件信息"
@@ -2846,7 +2872,7 @@ msgstr "值"
 #: assets/serializers/cagegory.py:17 assets/serializers/cagegory.py:23
 #: assets/serializers/platform.py:160
 #: authentication/serializers/connect_token_secret.py:136
-#: common/serializers/common.py:85 labels/serializers.py:45
+#: common/serializers/common.py:85 labels/serializers.py:56
 #: settings/serializers/msg.py:91 xpack/plugins/cloud/models.py:407
 msgid "Label"
 msgstr "标签"
@@ -3033,15 +3059,15 @@ msgid ""
 "type"
 msgstr "资产中批量更新平台，不符合平台类型跳过的资产"
 
-#: assets/serializers/asset/common.py:36 assets/serializers/platform.py:154
+#: assets/serializers/asset/common.py:37 assets/serializers/platform.py:154
 msgid "Protocols, format is [\"protocol/port\"]"
 msgstr "协议，格式为 [\"协议/端口\"]"
 
-#: assets/serializers/asset/common.py:38
+#: assets/serializers/asset/common.py:39
 msgid "Protocol, format is name/port"
 msgstr "协议，格式为 名称/端口"
 
-#: assets/serializers/asset/common.py:107
+#: assets/serializers/asset/common.py:108
 msgid ""
 "Accounts, format [{\"name\": \"x\", \"username\": \"x\", \"secret\": \"x\", "
 "\"secret_type\": \"password\"}]"
@@ -3049,13 +3075,13 @@ msgstr ""
 "账号，格式为 [{\"name\": \"x\", \"username\": \"x\", \"secret\": \"x\", "
 "\"secret_type\": \"password\"}]"
 
-#: assets/serializers/asset/common.py:135
+#: assets/serializers/asset/common.py:136
 msgid ""
 "Node path, format [\"/org_name/node_name\"], if node not exist, will create "
 "it"
 msgstr "节点路径，格式为 [\"/组织/节点名\"], 如果节点不存在，将创建它"
 
-#: assets/serializers/asset/common.py:147 assets/serializers/platform.py:175
+#: assets/serializers/asset/common.py:148 assets/serializers/platform.py:175
 #: authentication/serializers/connect_token_secret.py:30
 #: authentication/serializers/connect_token_secret.py:77
 #: perms/models/asset_permission.py:76 perms/serializers/permission.py:68
@@ -3064,31 +3090,32 @@ msgstr "节点路径，格式为 [\"/组织/节点名\"], 如果节点不存在�
 msgid "Protocols"
 msgstr "协议组"
 
-#: assets/serializers/asset/common.py:149
-#: assets/serializers/asset/common.py:176
+#: assets/serializers/asset/common.py:150
+#: assets/serializers/asset/common.py:177
 msgid "Node path"
 msgstr "节点路径"
 
-#: assets/serializers/asset/common.py:150
-#: assets/serializers/asset/common.py:173
-#: assets/serializers/asset/common.py:427
+#: assets/serializers/asset/common.py:151
+#: assets/serializers/asset/common.py:174
+#: assets/serializers/asset/common.py:428
 msgid "Auto info"
 msgstr "自动化信息"
 
-#: assets/serializers/asset/common.py:272
+#: assets/serializers/asset/common.py:273
 #: xpack/plugins/cloud/serializers/task.py:119
 msgid "Platform not exist"
 msgstr "平台不存在"
 
-#: assets/serializers/asset/common.py:308
+#: assets/serializers/asset/common.py:309
 msgid "port out of range (0-65535)"
 msgstr "端口超出范围 (0-65535)"
 
-#: assets/serializers/asset/common.py:315
+#: assets/serializers/asset/common.py:316
+#, python-brace-format
 msgid "Protocol is required: {}"
 msgstr "协议是必填的: {}"
 
-#: assets/serializers/asset/common.py:354
+#: assets/serializers/asset/common.py:355 labels/api.py:107
 msgid "Invalid data"
 msgstr "无效的数据"
 
@@ -3423,14 +3450,17 @@ msgid ""
 msgstr "当在网域详情-网关-测试连接时执行该任务"
 
 #: assets/tasks/utils.py:16
+#, python-brace-format
 msgid "Asset has been disabled, skipped: {}"
 msgstr "资产已经被禁用, 跳过: {}"
 
 #: assets/tasks/utils.py:20
+#, python-brace-format
 msgid "Asset may not be support ansible, skipped: {}"
 msgstr "资产或许不支持ansible, 跳过: {}"
 
 #: assets/tasks/utils.py:38
+#, python-brace-format
 msgid "For security, do not push user {}"
 msgstr "为了安全，禁止推送用户 {}"
 
@@ -3611,7 +3641,7 @@ msgid "Resource Type"
 msgstr "资源类型"
 
 #: audits/models.py:102 audits/models.py:105 audits/models.py:151
-#: audits/reporting.py:419 audits/serializers.py:108 labels/serializers.py:46
+#: audits/reporting.py:419 audits/serializers.py:108 labels/serializers.py:57
 msgid "Resource"
 msgstr "资源"
 
@@ -4176,6 +4206,7 @@ msgid "Permission expired"
 msgstr "授权已过期"
 
 #: authentication/api/connection_token.py:504
+#, python-brace-format
 msgid "ACL action is reject: {}({})"
 msgstr "ACL 动作是拒绝: {}({})"
 
@@ -4205,11 +4236,13 @@ msgid "Facial comparison failed"
 msgstr "人脸比对失败"
 
 #: authentication/api/mfa.py:61
+#, python-brace-format
 msgid "Current user not support mfa type: {}"
 msgstr "当前用户不支持 MFA 类型: {}"
 
 #: authentication/api/password.py:37 terminal/api/session/session.py:347
 #: users/views/profile/reset.py:63
+#, python-brace-format
 msgid "User does not exist: {}"
 msgstr "用户不存在: {}"
 
@@ -4218,6 +4251,7 @@ msgid "No user matched"
 msgstr "没有匹配到用户"
 
 #: authentication/api/password.py:41
+#, python-brace-format
 msgid ""
 "The user is from {}, please go to the corresponding system to change the "
 "password"
@@ -4234,6 +4268,7 @@ msgid "Forgot password"
 msgstr "忘记密码"
 
 #: authentication/api/password.py:73 authentication/mfa/email.py:42
+#, python-brace-format
 msgid "The validity period of the verification code is {} minute"
 msgstr "验证码有效期为 {} 分钟"
 
@@ -4357,6 +4392,7 @@ msgid "Authentication failed password incorrect"
 msgstr "认证失败 (用户名或密码不正确)"
 
 #: authentication/confirm/relogin.py:11
+#, python-brace-format
 msgid "Login time has exceeded {} minutes, please login again"
 msgstr "登录时长已超过 {} 分钟，请重新登录"
 
@@ -4445,12 +4481,14 @@ msgstr ""
 "被临时 锁定 {block_time} 分钟)"
 
 #: authentication/errors/const.py:47 authentication/errors/const.py:55
+#, python-brace-format
 msgid ""
 "The account has been locked (please contact admin to unlock it or try again "
 "after {} minutes)"
 msgstr "账号已被锁定 (请联系管理员解锁或{}分钟后重试)"
 
 #: authentication/errors/const.py:51
+#, python-brace-format
 msgid ""
 "The address has been locked (please contact admin to unlock it or try again "
 "after {} minutes)"
@@ -4481,6 +4519,7 @@ msgid "Wait login confirm ticket for accept"
 msgstr "等待登录复核处理"
 
 #: authentication/errors/const.py:67
+#, python-brace-format
 msgid "Login confirm ticket was {}"
 msgstr "登录复核: {}"
 
@@ -4662,6 +4701,7 @@ msgid "Clear phone number to disable"
 msgstr "清空手机号码禁用"
 
 #: authentication/middleware.py:95 settings/utils/ldap.py:714
+#, python-brace-format
 msgid "Authentication failed (before login check failed): {}"
 msgstr "认证失败 (登录前检查失败): {}"
 
@@ -4678,6 +4718,7 @@ msgid "User is invalid"
 msgstr "无效的用户"
 
 #: authentication/mixins.py:204
+#, python-brace-format
 msgid ""
 " The administrator has enabled 'Only allow login from user source'. \n"
 "                    The current user source is {}. Please contact the "
@@ -4685,6 +4726,7 @@ msgid ""
 msgstr "管理员已开启'仅允许从用户来源登录'，当前用户来源为 {}，请联系管理员。"
 
 #: authentication/mixins.py:391
+#, python-brace-format
 msgid "The MFA type ({}) is not enabled"
 msgstr "该 MFA ({}) 方式没有启用"
 
@@ -4754,6 +4796,7 @@ msgid "Connection token inactive"
 msgstr "连接令牌未激活"
 
 #: authentication/models/connection_token.py:174
+#, python-brace-format
 msgid "Connection token expired at: {}"
 msgstr "连接令牌过期: {}"
 
@@ -4890,6 +4933,7 @@ msgstr "组织名称"
 
 #: authentication/serializers/password_mfa.py:29
 #: users/templates/users/forgot_password.html:153
+#, python-brace-format
 msgid "The {} cannot be empty"
 msgstr "{} 不能为空"
 
@@ -4953,8 +4997,8 @@ msgid ""
 "Retention Period"
 msgstr ""
 "系统在连接资产或创建临时密码时，会生成相应的连接 Token 或临时密码记录。为了保"
-"障系统安全并控制数据存储量，系统会根据“安全设置 > 密码安全 > Token 保留时"
-"长”中的配置，每天凌晨 2 点自动清理所有已过期的 Token 记录"
+"障系统安全并控制数据存储量，系统会根据“安全设置 > 密码安全 > Token 保留时长”"
+"中的配置，每天凌晨 2 点自动清理所有已过期的 Token 记录"
 
 #: authentication/templates/authentication/_access_key_modal.html:6
 msgid "API key list"
@@ -5338,6 +5382,7 @@ msgid "Redirecting"
 msgstr "跳转中"
 
 #: authentication/views/login.py:173
+#, python-brace-format
 msgid "Redirecting to {} authentication"
 msgstr "正在跳转到 {} 认证"
 
@@ -5346,10 +5391,12 @@ msgid "Login timeout, please try again."
 msgstr "登录超时，请重新登录"
 
 #: authentication/views/login.py:245
+#, python-brace-format
 msgid "User email already exists ({})"
 msgstr "用户邮箱已存在 ({})"
 
 #: authentication/views/login.py:338
+#, python-brace-format
 msgid ""
 "Wait for <b>{}</b> confirm, You also can copy link to her/him <br/>\n"
 "                  Don't close this page"
@@ -5517,7 +5564,7 @@ msgid "Invalid ids for ids, should be a list"
 msgstr "无效的ID，应为列表"
 
 #: common/db/fields.py:589 common/db/fields.py:594
-#: common/serializers/fields.py:146 terminal/serializers/session.py:89
+#: common/serializers/fields.py:153 terminal/serializers/session.py:89
 #: tickets/serializers/ticket/common.py:58
 #: xpack/plugins/cloud/serializers/account_attrs.py:20
 #: xpack/plugins/cloud/serializers/account_attrs.py:71
@@ -5547,6 +5594,7 @@ msgid "Updated by"
 msgstr "最后更新者"
 
 #: common/db/validators.py:9
+#, python-brace-format
 msgid "Invalid port range, should be like and within {}-{}"
 msgstr "无效的端口范围，应该在 {}-{} 之内"
 
@@ -5559,10 +5607,12 @@ msgid "Org ID"
 msgstr "组织 ID"
 
 #: common/drf/parsers/base.py:21
+#, python-brace-format
 msgid "The file content overflowed (The maximum length `{}` bytes)"
 msgstr "文件内容太大 (最大长度 `{}` 字节)"
 
 #: common/drf/parsers/base.py:207
+#, python-brace-format
 msgid "Parse file error: {}"
 msgstr "解析文件错误: {}"
 
@@ -5575,6 +5625,7 @@ msgid "Yes/No"
 msgstr "是/否"
 
 #: common/drf/renders/base.py:161
+#, python-brace-format
 msgid "Number, min {} max {}"
 msgstr "数字，最小 {} 最大 {}"
 
@@ -5583,6 +5634,7 @@ msgid "Phone number, format +8612345678901"
 msgstr "手机号，格式 +8612345678901"
 
 #: common/drf/renders/base.py:170
+#, python-brace-format
 msgid "Text, max length {}"
 msgstr "文本，最大长度 {}"
 
@@ -5591,6 +5643,7 @@ msgid "Long text, no length limit"
 msgstr "长文本，无长度限制"
 
 #: common/drf/renders/base.py:175
+#, python-brace-format
 msgid "Datetime format {}"
 msgstr "日期时间格式 {}"
 
@@ -5599,12 +5652,14 @@ msgid "Label, format [\"key:value\"]"
 msgstr "标签，格式: [\"键:值\"]"
 
 #: common/drf/renders/base.py:182
+#, python-brace-format
 msgid ""
 "Choices, format name(value), name is optional for human read, value is "
 "requisite, options {}"
 msgstr "选项，格式: 名称(值)，名称是可选的，方便阅读，值是必填的，可选项有 {}"
 
 #: common/drf/renders/base.py:185
+#, python-brace-format
 msgid "Choices, options {}"
 msgstr "选项，可选项有 {}"
 
@@ -5634,13 +5689,14 @@ msgid "Objects, format [\"id\", ...]"
 msgstr "多关联项，格式是 [\"id\", ...]"
 
 #: common/drf/renders/base.py:301
+#, python-brace-format
 msgid ""
 "{} - Encryption password not set - Please go to Personal Settings → "
 "Preferences → File Encryption Password to set it."
 msgstr ""
 "{} - 未设置加密密码 - 请前往个人设置 - 偏好设置 - 文件加密密码中设置加密密码"
 
-#: common/drf/renders/mixins.py:37 labels/serializers.py:22
+#: common/drf/renders/mixins.py:37 labels/serializers.py:23
 msgid "Resource count"
 msgstr "资源数量"
 
@@ -5761,6 +5817,7 @@ msgid "sp_id is 6 bits"
 msgstr "SP_id 为6位"
 
 #: common/sdk/sms/cmpp2.py:214
+#, python-brace-format
 msgid "Failed to connect to the CMPP gateway server, err: {}"
 msgstr "连接网关服务器错误，错误：{}"
 
@@ -5772,6 +5829,10 @@ msgstr "自定义短信文件无效"
 #, python-format
 msgid "SMS sending failed[%s]: %s"
 msgstr "短信发送失败[%s]: %s"
+
+#: common/sdk/sms/custom_file.py:47 common/serializers/common.py:98
+msgid "File"
+msgstr "文件"
 
 #: common/sdk/sms/endpoint.py:16
 msgid "Alibaba cloud"
@@ -5794,6 +5855,7 @@ msgid "Custom type (File)"
 msgstr "自定义 (文件)"
 
 #: common/sdk/sms/endpoint.py:32
+#, python-brace-format
 msgid "SMS provider not support: {}"
 msgstr "短信服务商不支持：{}"
 
@@ -5810,6 +5872,7 @@ msgid "The verification code is incorrect"
 msgstr "验证码错误"
 
 #: common/sdk/sms/exceptions.py:18
+#, python-brace-format
 msgid "Please wait {} seconds before sending"
 msgstr "请在 {} 秒后发送"
 
@@ -5817,31 +5880,28 @@ msgstr "请在 {} 秒后发送"
 msgid "Children"
 msgstr "节点"
 
-#: common/serializers/common.py:98
-msgid "File"
-msgstr "文件"
-
 #: common/serializers/fields.py:139
 msgid "Invalid data type"
 msgstr "无效的数据"
 
-#: common/serializers/fields.py:147
+#: common/serializers/fields.py:154
 #, python-brace-format
 msgid "Invalid pk \"{pk_value}\" - object does not exist."
 msgstr "错误的 pk \"{pk_value}\" - 对象不存在"
 
-#: common/serializers/fields.py:148
+#: common/serializers/fields.py:155
 #, python-brace-format
 msgid "Incorrect type. Expected pk value, received {data_type}."
 msgstr "错误类型。期望 pk 值，收到 {data_type}。"
 
-#: common/serializers/fields.py:338
+#: common/serializers/fields.py:345
 msgid "Invalid data type, should be list"
 msgstr "错误的数据类型，应该是列表"
 
-#: common/serializers/fields.py:353
+#: common/serializers/fields.py:360
 #: xpack/plugins/cloud/serializers/account.py:121
 #: xpack/plugins/cloud/serializers/task.py:122
+#, python-brace-format
 msgid "Invalid choice: {}"
 msgstr "无效选项: {}"
 
@@ -5943,11 +6003,15 @@ msgstr "你的账号已创建成功"
 msgid "JumpServer - An open-source PAM"
 msgstr "JumpServer 开源堡垒机"
 
+#: jumpserver/context_processor.py:31
+msgid "FIT2CLOUD"
+msgstr ""
+
 #: jumpserver/views/celery_flower.py:22
 msgid "<h1>Flower service unavailable, check it</h1>"
 msgstr "Flower 服务不可用，请检查"
 
-#: jumpserver/views/other.py:30
+#: jumpserver/views/other.py:31
 msgid ""
 "<div>Luna is a separately deployed program, you need to deploy Luna, koko, "
 "configure nginx for url distribution,</div> </div>If you see this page, "
@@ -5956,11 +6020,12 @@ msgstr ""
 "<div>Luna是单独部署的一个程序，你需要部署luna，koko, </div><div>如果你看到了"
 "这个页面，证明你访问的不是nginx监听的端口，祝你好运</div>"
 
-#: jumpserver/views/other.py:78
+#: jumpserver/views/other.py:79
+#, python-brace-format
 msgid "Websocket server run on port: {}, you should proxy it on nginx"
 msgstr "Websocket 服务运行在端口: {}, 请检查nginx是否代理是否设置"
 
-#: jumpserver/views/other.py:92
+#: jumpserver/views/other.py:93
 msgid ""
 "<div>Koko is a separately deployed program, you need to deploy Koko, "
 "configure nginx for url distribution,</div> </div>If you see this page, "
@@ -5990,11 +6055,11 @@ msgstr "资源 ID"
 msgid "Tagged resource"
 msgstr "关联的资源"
 
-#: labels/serializers.py:28
+#: labels/serializers.py:29
 msgid "Cannot contain \":,\""
 msgstr "不能包含\"：，\""
 
-#: labels/serializers.py:43
+#: labels/serializers.py:54
 msgid "Resource type"
 msgstr "资源类型"
 
@@ -6019,6 +6084,7 @@ msgid "User message"
 msgstr "用户消息"
 
 #: notifications/models/notification.py:21
+#, python-brace-format
 msgid "{} subscription"
 msgstr "{} 订阅"
 
@@ -6055,14 +6121,17 @@ msgid "Waiting task start"
 msgstr "等待任务开始"
 
 #: ops/api/celery.py:269
+#, python-brace-format
 msgid "Task {} not found"
 msgstr "任务 {} 不存在"
 
 #: ops/api/celery.py:276
+#, python-brace-format
 msgid "Task {} args or kwargs error"
 msgstr "任务 {} 执行参数错误"
 
 #: ops/api/job.py:66
+#, python-brace-format
 msgid "Login to asset {}({}) is rejected by login asset ACL ({})"
 msgstr "登录资产 {}({}) 被拒绝，由登录资产规则 ACL ({}) 限制"
 
@@ -6336,6 +6405,7 @@ msgid "Celery Task Execution"
 msgstr "Celery 任务执行"
 
 #: ops/models/job.py:82
+#, python-brace-format
 msgid "Module {} is not suitable for this asset"
 msgstr "模块 {} 不适用于此资产"
 
@@ -6608,6 +6678,7 @@ msgid "Name of the job"
 msgstr "Job 名称"
 
 #: orgs/api.py:62
+#, python-brace-format
 msgid "The current organization ({}) cannot be deleted"
 msgstr "当前组织 ({}) 不能被删除"
 
@@ -6618,6 +6689,7 @@ msgid ""
 msgstr "LDAP 同步设置组织为当前组织，请切换其他组织后再进行删除操作"
 
 #: orgs/api.py:77
+#, python-brace-format
 msgid "The organization have resource ({}) cannot be deleted"
 msgstr "组织存在资源 ({}) 不能被删除"
 
@@ -6792,6 +6864,7 @@ msgid "Asset permissions is about to expire"
 msgstr "资产授权规则将要过期"
 
 #: perms/notifications.py:64
+#, python-brace-format
 msgid "asset permissions of organization {}"
 msgstr "组织 ({}) 的资产授权"
 
@@ -6871,6 +6944,7 @@ msgid "Internal role, can't be update"
 msgstr "内部角色，不能更新"
 
 #: rbac/api/rolebinding.py:47
+#, python-brace-format
 msgid "{} at least one system role"
 msgstr "{} 至少有一个系统角色"
 
@@ -7231,6 +7305,7 @@ msgid "Test success"
 msgstr "测试成功"
 
 #: settings/api/email.py:22
+#, python-brace-format
 msgid "Test mail sent to {}, please check"
 msgstr "邮件已经发送{}, 请检查"
 
@@ -8179,7 +8254,7 @@ msgstr "租户 ID"
 
 #: settings/serializers/feature.py:112 terminal/serializers/storage.py:68
 #: xpack/plugins/cloud/manager.py:128 xpack/plugins/cloud/manager.py:132
-#: xpack/plugins/cloud/models.py:295
+#: xpack/plugins/cloud/manager.py:169 xpack/plugins/cloud/models.py:295
 msgid "Region"
 msgstr "地域"
 
@@ -8869,19 +8944,23 @@ msgid "ldap:// or ldaps:// protocol is used."
 msgstr "使用 ldap:// 或 ldaps:// 协议"
 
 #: settings/utils/ldap.py:543
+#, python-brace-format
 msgid "Host or port is disconnected: {}"
 msgstr "主机或端口不可连接: {}"
 
 #: settings/utils/ldap.py:545
+#, python-brace-format
 msgid "The port is not the port of the LDAP service: {}"
 msgstr "端口不是LDAP服务端口: {}"
 
 #: settings/utils/ldap.py:547
+#, python-brace-format
 msgid "Please add certificate: {}"
 msgstr "请添加证书: {}"
 
 #: settings/utils/ldap.py:551 settings/utils/ldap.py:578
 #: settings/utils/ldap.py:608 settings/utils/ldap.py:636
+#, python-brace-format
 msgid "Unknown error: {}"
 msgstr "未知错误: {}"
 
@@ -8890,22 +8969,27 @@ msgid "Bind DN or Password incorrect"
 msgstr "绑定DN或密码错误"
 
 #: settings/utils/ldap.py:572
+#, python-brace-format
 msgid "Please enter Bind DN: {}"
 msgstr "请输入绑定DN: {}"
 
 #: settings/utils/ldap.py:574
+#, python-brace-format
 msgid "Please enter Password: {}"
 msgstr "请输入密码: {}"
 
 #: settings/utils/ldap.py:576
+#, python-brace-format
 msgid "Please enter correct Bind DN and Password: {}"
 msgstr "请输入正确的绑定DN和密码: {}"
 
 #: settings/utils/ldap.py:594
+#, python-brace-format
 msgid "Invalid User OU or User search filter: {}"
 msgstr "不合法的用户OU或用户过滤器: {}"
 
 #: settings/utils/ldap.py:625
+#, python-brace-format
 msgid "LDAP User attr map not include: {}"
 msgstr "LDAP属性映射没有包含: {}"
 
@@ -8918,46 +9002,57 @@ msgid "LDAP authentication is not enabled"
 msgstr "LDAP认证没有启用"
 
 #: settings/utils/ldap.py:669
+#, python-brace-format
 msgid "Error (Invalid LDAP server): {}"
 msgstr "错误  (不合法的LDAP服务器地址): {}"
 
 #: settings/utils/ldap.py:671
+#, python-brace-format
 msgid "Error (Invalid Bind DN): {}"
 msgstr "错误 (不合法的绑定DN): {}"
 
 #: settings/utils/ldap.py:673
+#, python-brace-format
 msgid "Error (Invalid LDAP User attr map): {}"
 msgstr "错误 (不合法的LDAP属性映射): {}"
 
 #: settings/utils/ldap.py:675
+#, python-brace-format
 msgid "Error (Invalid User OU or User search filter): {}"
 msgstr "错误 (不合法的用户OU或用户过滤器): {}"
 
 #: settings/utils/ldap.py:677
+#, python-brace-format
 msgid "Error (Not enabled LDAP authentication): {}"
 msgstr "错误 (没有启用LDAP认证): {}"
 
 #: settings/utils/ldap.py:679
+#, python-brace-format
 msgid "Error (Unknown): {}"
 msgstr "错误 (未知): {}"
 
 #: settings/utils/ldap.py:682
+#, python-brace-format
 msgid "Succeed: Match {} users"
 msgstr "成功匹配 {} 个用户"
 
 #: settings/utils/ldap.py:712
+#, python-brace-format
 msgid "Authentication failed (configuration incorrect): {}"
 msgstr "认证失败 (配置错误): {}"
 
 #: settings/utils/ldap.py:716
+#, python-brace-format
 msgid "Authentication failed (username or password incorrect): {}"
 msgstr "认证失败 (用户名或密码不正确): {}"
 
 #: settings/utils/ldap.py:718
+#, python-brace-format
 msgid "Authentication failed (Unknown): {}"
 msgstr "认证失败: (未知): {}"
 
 #: settings/utils/ldap.py:721
+#, python-brace-format
 msgid "Authentication success: {}"
 msgstr "认证成功: {}"
 
@@ -8966,10 +9061,12 @@ msgid "No LDAP user was found"
 msgstr "没有获取到 LDAP 用户"
 
 #: settings/ws.py:237
+#, python-brace-format
 msgid "Total {}, success {}, failure {}"
 msgstr "总共 {}，成功 {}，失败 {}"
 
 #: settings/ws.py:241
+#, python-brace-format
 msgid ", disabled {}"
 msgstr ", 禁用 {}"
 
@@ -9126,6 +9223,10 @@ msgstr "客户端，目前用来唤起 特定客户端程序 连接资产"
 msgid "More download"
 msgstr "更多下载"
 
+#: templates/resource_download.html:34
+msgid "Tools and applications"
+msgstr "工具和应用"
+
 #: terminal/api/applet/applet.py:55 terminal/api/virtualapp/virtualapp.py:43
 msgid "Invalid zip file"
 msgstr "无效的 zip 文件"
@@ -9135,6 +9236,7 @@ msgid "This is enterprise edition applet"
 msgstr "企业版远程应用，在社区版中不能使用"
 
 #: terminal/api/applet/applet.py:91
+#, python-brace-format
 msgid "Applet not found in path: {}"
 msgstr "路径中未找到远程应用: {}"
 
@@ -9147,6 +9249,7 @@ msgid "Deleting the default storage is not allowed"
 msgstr "不允许删除默认存储配置"
 
 #: terminal/api/component/storage.py:36
+#, python-brace-format
 msgid "Cannot delete storage that is being used: {}"
 msgstr "无法删除正在使用的存储: {}"
 
@@ -9158,15 +9261,33 @@ msgstr "命令存储"
 msgid "Invalid"
 msgstr "无效"
 
-#: terminal/api/component/storage.py:132 terminal/tasks.py:208
+#: terminal/api/component/storage.py:128
+msgid "Connection refused"
+msgstr "连接被拒绝"
+
+#: terminal/api/component/storage.py:129
+msgid "Connection timeout"
+msgstr "连接超时"
+
+#: terminal/api/component/storage.py:130
+msgid "Unable to resolve the address"
+msgstr "无法解析地址"
+
+#: terminal/api/component/storage.py:131
+msgid "Unable to connect to the host"
+msgstr "无法连接到主机"
+
+#: terminal/api/component/storage.py:139 terminal/api/component/storage.py:140
+#: terminal/tasks.py:208
+#, python-brace-format
 msgid "Test failure: {}"
 msgstr "测试失败: {}"
 
-#: terminal/api/component/storage.py:135
+#: terminal/api/component/storage.py:151
 msgid "Test successful"
 msgstr "测试成功"
 
-#: terminal/api/component/storage.py:137
+#: terminal/api/component/storage.py:153
 msgid "Test failure: Please check configuration"
 msgstr "测试失败：请检查配置"
 
@@ -9185,6 +9306,7 @@ msgid "Session replay"
 msgstr "会话录像"
 
 #: terminal/api/session/session.py:339
+#, python-brace-format
 msgid "Session does not exist: {}"
 msgstr "会话不存在: {}"
 
@@ -9192,7 +9314,7 @@ msgstr "会话不存在: {}"
 msgid "Session is finished or the protocol not supported"
 msgstr "会话已经完成或协议不支持"
 
-#: terminal/api/session/session.py:355
+#: terminal/api/session/session.py:355 tickets/api/ticket.py:142
 msgid "User does not have permission"
 msgstr "用户没有权限"
 
@@ -9357,10 +9479,12 @@ msgstr "主机"
 
 #: terminal/models/applet/applet.py:102
 #: terminal/models/virtualapp/virtualapp.py:66
+#, python-brace-format
 msgid "Applet pkg not valid, Missing file {}"
 msgstr "Applet pkg 无效，缺少文件 {}"
 
 #: terminal/models/applet/applet.py:121
+#, python-brace-format
 msgid "Load platform.yml failed: {}"
 msgstr "加载 platform.yml 失败: {}"
 
@@ -9784,9 +9908,9 @@ msgid ""
 "remote-desktop-services/rds-client-access-license\" "
 "target=\"_blank\">Detail</a>"
 msgstr ""
-"如果不存在，RDS 将处于试用模式，试用期为 120 天。<a href='https://learn."
-"microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-client-"
-"access-license' target='_blank'>详情</a>"
+"如果不存在，RDS 将处于试用模式，试用期为 120 天。<a href='https://"
+"learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-"
+"client-access-license' target='_blank'>详情</a>"
 
 #: terminal/serializers/applet_host.py:55
 msgid "RDS License Server"
@@ -9957,6 +10081,7 @@ msgid "No asset or invalid asset"
 msgstr "没有资产或资产未激活"
 
 #: terminal/serializers/storage.py:23
+#, python-brace-format
 msgid "Endpoint invalid: remove path `{}`"
 msgstr "端点无效: 移除路径 `{}`"
 
@@ -10005,8 +10130,8 @@ msgid ""
 "If there are multiple hosts, use a comma (,) to separate them. <br>(For "
 "example: http://www.jumpserver.a.com:9100, http://www.jumpserver.b.com:9100)"
 msgstr ""
-"如果有多个主机，请用逗号 (,) 分隔它们。<br>（例如：http://www.jumpserver.a."
-"com:9100，http://www.jumpserver.b.com:9100）"
+"如果有多个主机，请用逗号 (,) 分隔它们。<br>（例如：http://"
+"www.jumpserver.a.com:9100，http://www.jumpserver.b.com:9100）"
 
 #: terminal/serializers/storage.py:199
 msgid "Index by date"
@@ -10371,6 +10496,7 @@ msgid "Ticket already closed"
 msgstr "工单已经关闭"
 
 #: tickets/handlers/apply_asset.py:40
+#, python-brace-format
 msgid ""
 "Created by the ticket ticket title: {} ticket applicant: {} ticket "
 "processor: {} ticket ID: {}"
@@ -10390,6 +10516,7 @@ msgid "After change"
 msgstr "变更后"
 
 #: tickets/handlers/base.py:96
+#, python-brace-format
 msgid "{} {} the ticket"
 msgstr "{} {} 工单"
 
@@ -10535,18 +10662,22 @@ msgid "Ticket applied info"
 msgstr "工单申请信息"
 
 #: tickets/notifications.py:116
+#, python-brace-format
 msgid "You have a new ticket from {}"
 msgstr "你有一条来自 {} 的新工单"
 
 #: tickets/notifications.py:120
+#, python-brace-format
 msgid "{}: New Ticket - {} ({})"
 msgstr "{}: 新工单 - {} ({})"
 
 #: tickets/notifications.py:168
+#, python-brace-format
 msgid "Your ticket has been processed, processor - {}"
 msgstr "你的工单已被处理, 处理人 - {}"
 
 #: tickets/notifications.py:172
+#, python-brace-format
 msgid "Ticket has processed - {} ({})"
 msgstr "你的工单已被处理, 处理人 - {} ({})"
 
@@ -10632,6 +10763,7 @@ msgstr "申请动作"
 
 #: tickets/serializers/ticket/common.py:15
 #: tickets/serializers/ticket/common.py:74
+#, python-brace-format
 msgid "Created by ticket ({}-{})"
 msgstr "通过工单创建 ({}-{})"
 
@@ -10640,6 +10772,7 @@ msgid "The expiration date should be greater than the start date"
 msgstr "过期时间要大于开始时间"
 
 #: tickets/serializers/ticket/common.py:89
+#, python-brace-format
 msgid "Permission named `{}` already exists"
 msgstr "授权名称 `{}` 已存在"
 
@@ -10648,6 +10781,7 @@ msgid "Process map"
 msgstr "流程图"
 
 #: tickets/serializers/ticket/ticket.py:91
+#, python-brace-format
 msgid "The ticket flow `{}` does not exist"
 msgstr "工单流程 `{}` 不存在"
 
@@ -10706,6 +10840,7 @@ msgid "Can not invite self"
 msgstr "不能邀请自己"
 
 #: users/api/user.py:180
+#, python-brace-format
 msgid ""
 "This user {} is already a member of the organization. No need to invite again"
 msgstr "该用户{}已是组织成员，无需重复邀请"
@@ -11131,6 +11266,7 @@ msgid "Password does not match security rules"
 msgstr "密码不满足安全规则"
 
 #: users/serializers/profile.py:33
+#, python-brace-format
 msgid "The new password cannot be the last {} passwords"
 msgstr "新密码不能是最近 {} 次的密码"
 
@@ -11565,6 +11701,7 @@ msgid "Password invalid"
 msgstr "用户名或密码无效"
 
 #: users/views/profile/reset.py:66
+#, python-brace-format
 msgid ""
 "Non-local users can log in only from third-party platforms and cannot change "
 "their passwords: {}"
@@ -11575,6 +11712,7 @@ msgid "Token invalid or expired"
 msgstr "令牌错误或失效"
 
 #: users/views/profile/reset.py:204
+#, python-brace-format
 msgid "User auth from {}, go there change password"
 msgstr "用户认证源来自 {}, 请去相应系统修改密码"
 
@@ -11583,6 +11721,7 @@ msgid "* Your password does not meet the requirements"
 msgstr "* 您的密码不符合要求"
 
 #: users/views/profile/reset.py:217
+#, python-brace-format
 msgid "* The new password cannot be the last {} passwords"
 msgstr "* 新密码不能是最近 {} 次的密码"
 
@@ -11605,10 +11744,12 @@ msgid "Test connection successful"
 msgstr "测试成功"
 
 #: xpack/plugins/cloud/api.py:75
+#, python-brace-format
 msgid "Test connection failed: {}"
 msgstr "测试连接失败：{}"
 
 #: xpack/plugins/cloud/api.py:203
+#, python-brace-format
 msgid "User {} deleted the current resource and released the assets"
 msgstr "用户 {} 删除了当前资源已释放的资产"
 
@@ -11806,6 +11947,10 @@ msgstr "同步地区"
 msgid "Get instances of region \"%s\" error, error: %s"
 msgstr "获取区域 \"%s\" 的实例错误，错误：%s"
 
+#: xpack/plugins/cloud/manager.py:169 xpack/plugins/cloud/models.py:292
+msgid "Instance"
+msgstr "实例"
+
 #: xpack/plugins/cloud/manager.py:195
 #, python-format
 msgid "Failed to synchronize the instance \"%s\""
@@ -11947,10 +12092,6 @@ msgstr "同步任务"
 #: xpack/plugins/cloud/models.py:289
 msgid "Sync instance task history"
 msgstr "同步实例任务历史"
-
-#: xpack/plugins/cloud/models.py:292
-msgid "Instance"
-msgstr "实例"
 
 #: xpack/plugins/cloud/models.py:309
 msgid "Sync instance detail"
@@ -12272,6 +12413,10 @@ msgstr "API 端点"
 msgid "Auto node classification"
 msgstr "自动节点分类"
 
+#: xpack/plugins/cloud/serializers/account_attrs.py:108
+msgid "domain_name"
+msgstr "域名"
+
 #: xpack/plugins/cloud/serializers/account_attrs.py:124
 msgid "Auth url"
 msgstr "认证地址"
@@ -12305,6 +12450,7 @@ msgid "The file is in JSON format"
 msgstr "JSON 格式的文件"
 
 #: xpack/plugins/cloud/serializers/account_attrs.py:200
+#, python-brace-format
 msgid "IP address invalid `{}`, {}"
 msgstr "IP 地址无效: `{}`, {}"
 
@@ -12460,28 +12606,13 @@ msgstr "安全管理员"
 msgid "JDMC"
 msgstr ""
 
-#: xpack/plugins/license/api.py:55
+#: xpack/plugins/license/api.py:54
 msgid "License import successfully"
 msgstr "许可证导入成功"
 
-#: xpack/plugins/license/api.py:56
+#: xpack/plugins/license/api.py:55
 msgid "Invalid license"
 msgstr "许可证无效"
 
-msgid "Connection refused"
-msgstr "连接被拒绝"
-
-msgid "Connection timeout"
-msgstr "连接超时"
-
-msgid "Unable to resolve the address"
-msgstr "无法解析地址"
-
-msgid "Unable to connect to the host"
-msgstr "无法连接到主机"
-
 #~ msgid "Offline video player"
 #~ msgstr "离线录像播放器"
-
-#~ msgid "domain_name"
-#~ msgstr "域名"
