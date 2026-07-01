@@ -1,20 +1,14 @@
-name: Build and Push Base Image
+name: Build and Push Ansible Executor Image
 
 on:
   pull_request:
     branches:
         - 'dev'
+        - 'dev_osm'
         - 'v*'
     paths:
-        - poetry.lock
-        - pyproject.toml
-        - Dockerfile-base
-        - package.json
-        - go.mod
-        - yarn.lock
-        - pom.xml
-        - install_deps.sh
-        - utils/clean_site_packages.sh
+        - utils/ansible_executor/**
+        - apps/libs/ansible/**
     types:
         - opened
         - synchronize
@@ -22,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: '构建基础镜像所用的分支'
+        description: '构建 Ansible Executor 镜像所用的分支'
         required: true
         type: string
         default: 'main'
@@ -60,36 +54,20 @@ jobs:
         id: vars
         run: echo "IMAGE_TAG=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_ENV
 
-      - name: Extract repository name
-        id: repo
-        run: echo "REPO=$(basename ${{ github.repository }})" >> $GITHUB_ENV
+      - name: Install ansible-builder
+        run: pip install 'ansible-builder>=3.1.1'
+
+      - name: Create Executor build context
+        run: |
+          ansible-builder create \
+            -f utils/ansible_executor/execution-environment.yml \
+            -c utils/ansible_executor/context
 
       - name: Build and push multi-arch image
         uses: docker/build-push-action@v6
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          file: Dockerfile-base
-          tags: jumpserver/core-base:${{ env.IMAGE_TAG }}
-          context: .
-
-      - name: Update Dockerfile
-        run: |
-          sed -i 's|-base:.* AS stage-build|-base:${{ env.IMAGE_TAG }} AS stage-build|' Dockerfile
-
-      - name: Commit changes
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add Dockerfile
-          git commit -m "perf: Update Dockerfile with new base image tag"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Unlock Pull Request
-        if: github.event_name == 'push'
-        run: |
-          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -d '{"state":"success", "description":"Action running, merge disabled", "context":"Lock PR"}' \
-          "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }}"
+          context: utils/ansible_executor/context
+          file: utils/ansible_executor/context/Containerfile
+          tags: jumpserver/ansible-executor:${{ env.IMAGE_TAG }}
