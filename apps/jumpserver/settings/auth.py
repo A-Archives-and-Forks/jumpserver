@@ -292,7 +292,7 @@ AUTH_BACKEND_OAUTH2 = 'authentication.backends.oauth2.OAuth2Backend'
 AUTH_BACKEND_TEMP_TOKEN = 'authentication.backends.token.TempTokenAuthBackend'
 AUTH_BACKEND_CUSTOM = 'authentication.backends.custom.CustomAuthBackend'
 AUTH_BACKEND_PASSKEY = 'authentication.backends.passkey.PasskeyAuthBackend'
-AUTH_BACKEND_CERT = 'authentication.backends.cert.CertBackend'
+AUTH_BACKEND_UKEY = 'authentication.backends.ukey.UKeyBackend'
 AUTHENTICATION_BACKENDS = [
     # 只做权限校验
     RBAC_BACKEND,
@@ -306,8 +306,8 @@ AUTHENTICATION_BACKENDS = [
     # Token模式
     AUTH_BACKEND_AUTH_TOKEN, AUTH_BACKEND_SSO, AUTH_BACKEND_CUSTOM_SSO, AUTH_BACKEND_TEMP_TOKEN,
     AUTH_BACKEND_PASSKEY,
-    # Cert模式
-    AUTH_BACKEND_CERT
+    # UKey 模式
+    AUTH_BACKEND_UKEY
 ]
 
 
@@ -387,22 +387,13 @@ AUTH_CUSTOM_SSO_QUERY_PARAMS = [q.strip() for q in CONFIG.AUTH_CUSTOM_SSO_QUERY_
 
 
 # 开启证书认证
-AUTH_CERT = CONFIG.AUTH_CERT
-# 证书认证前端 SDK 文件路径
-AUTH_CERT_VENDOR_DRIVER_JS_FILE = exist_or_default(
-    os.path.join(PROJECT_DIR, 'data', 'auth', 'cert_driver.js'), None
-)
-# 抽象方法名 → 厂商 SDK 实际方法名
-AUTH_CERT_VENDOR_DRIVER_CONFIG_FILE = exist_or_default(
-    os.path.join(PROJECT_DIR, 'data', 'auth', 'cert_driver_config.yaml'), None
-)
-# CA 根证书私钥文件路径
-CA_KEY_FILE = exist_or_default(
-    os.path.join(PROJECT_DIR, 'data', 'certs', 'ca_root.key'), None
-)
-# CA 根证书文件路径，可用于认证时验证客户端证书，签发用户证书
-CA_CERT_FILE = exist_or_default(
-    os.path.join(PROJECT_DIR, 'data', 'certs', 'ca_root.crt'), None
-)
-# CA 私鑰密码（若私鑰带密码保护，不含密码则留空）
-CA_KEY_PASS = CONFIG.CA_KEY_PASS
+AUTH_UKEY = CONFIG.AUTH_UKEY
+AUTH_UKEY_VENDOR = CONFIG.AUTH_UKEY_VENDOR
+AUTH_UKEY_ENROLL_ENABLED = CONFIG.AUTH_UKEY_ENROLL_ENABLED
+AUTH_UKEY_ENROLL_VALIDITY_DAYS = CONFIG.AUTH_UKEY_ENROLL_VALIDITY_DAYS
+AUTH_UKEY_CHALLENGE_TTL = CONFIG.AUTH_UKEY_CHALLENGE_TTL
+AUTH_UKEY_DEFAULT_PIN = CONFIG.AUTH_UKEY_DEFAULT_PIN
+AUTH_UKEY_CA_KEY_CONTENT = CONFIG.AUTH_UKEY_CA_KEY_CONTENT
+AUTH_UKEY_CA_CERT_CONTENT = CONFIG.AUTH_UKEY_CA_CERT_CONTENT
+AUTH_UKEY_CA_KEY_PASS = CONFIG.AUTH_UKEY_CA_KEY_PASS
+AUTH_UKEY_CA_CERT_ALGORITHM = ''
