@@ -20,6 +20,8 @@ exclude_permissions = (
     ('sessions', '*', '*', '*'),
     ('notifications', '*', '*', '*'),
     ('common', 'setting', '*', '*'),
+    ('reports', 'report', '*', '*'),
+    ('reports', 'reportexecution', '*', '*'),
 
     ('authentication', 'privatetoken', '*', '*'),
     ('authentication', 'connectiontoken', 'delete,change', 'connectiontoken'),
@@ -145,6 +147,7 @@ only_system_permissions = (
     ('assets', 'platform', 'add,change,delete', 'platform'),
     ('users', 'user', 'delete', 'user'),
     ('rbac', 'role', 'delete,add,change', 'role'),
+    ('rbac', 'menupermission', 'view', 'jdmc'),
     ('rbac', 'systemrole', '*', '*'),
     ('rbac', 'rolebinding', '*', '*'),
     ('rbac', 'systemrolebinding', '*', '*'),

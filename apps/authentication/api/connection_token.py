@@ -17,6 +17,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from accounts.const import AliasAccount
+from accounts.utils import validate_account_username
 from acls.notifications import AssetLoginReminderMsg
 from common.api import JMSModelViewSet
 from common.exceptions import JMSException
@@ -334,7 +335,7 @@ class RDPFileClientProtocolURLMixin:
         return name
 
     def get_connect_filename(self, prefix_name):
-        filename = f'{prefix_name}-jumpserver'
+        filename = prefix_name
         filename = self.escape_name(filename)
         return filename
 
@@ -574,6 +575,10 @@ class ConnectionTokenViewSet(AuthFaceMixin, ExtraActionApiMixin, RootOrgViewMixi
         protocol = data.get('protocol')
         connect_method = data.get('connect_method')
         self.input_username = self.get_input_username(data)
+        if account_name == AliasAccount.INPUT:
+            # Manual account input can reach Luna directly, so validate before ACL/token creation.
+            self.input_username = validate_account_username(self.input_username)
+            data['input_username'] = self.input_username
         _data = self._validate(user, asset, account_name, protocol, connect_method)
         data.update(_data)
         return serializer
@@ -599,9 +604,11 @@ class ConnectionTokenViewSet(AuthFaceMixin, ExtraActionApiMixin, RootOrgViewMixi
         account = self._validate_perm(user, asset, account_alias, protocol)
         if account.has_secret:
             data['input_secret'] = ''
+            data['input_secret_type'] = account.secret_type
 
         if account.username != AliasAccount.INPUT:
             data['input_username'] = ''
+            data['input_secret_type'] = ''
 
         ticket = self._validate_acl(user, asset, account, connect_method, protocol)
         if ticket:
@@ -717,6 +724,20 @@ class ConnectionTokenViewSet(AuthFaceMixin, ExtraActionApiMixin, RootOrgViewMixi
         face_verify_token = self.create_face_verify_context(context_data)
         response.data['face_token'] = face_verify_token
 
+    @staticmethod
+    def format_validation_error(detail):
+        # Luna renders detail directly and cannot display DRF field-error dicts cleanly.
+        if isinstance(detail, dict):
+            errors = []
+            for messages in detail.values():
+                if isinstance(messages, (list, tuple)):
+                    messages = ', '.join([str(message) for message in messages])
+                errors.append(str(messages))
+            return '; '.join(errors)
+        if isinstance(detail, (list, tuple)):
+            return '; '.join([str(item) for item in detail])
+        return str(detail)
+
     def create(self, request, *args, **kwargs):
         try:
             response = super().create(request, *args, **kwargs)
@@ -724,6 +745,9 @@ class ConnectionTokenViewSet(AuthFaceMixin, ExtraActionApiMixin, RootOrgViewMixi
                 self.create_face_verify(response)
         except JMSException as e:
             data = {'code': e.detail.code, 'detail': e.detail}
+            return Response(data, status=e.status_code)
+        except ValidationError as e:
+            data = {'detail': self.format_validation_error(e.detail)}
             return Response(data, status=e.status_code)
         return response
 
